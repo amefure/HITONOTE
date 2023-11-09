@@ -6,15 +6,15 @@
   
 */
 
-"person_name" = "name";
-"person_ruby" = "ruby";
-"person_work" = "work";
-"person_birthday" = "birthday";
-"person_tell" = "tell";
-"person_mail" = "mail";
-"person_group" = "group";
-"person_imagePath" = "image";
-"person_memo" = "memo";
+"person_name" = "Name";
+"person_ruby" = "Ruby";
+"person_work" = "Work";
+"person_birthday" = "Birthday";
+"person_tell" = "Tell";
+"person_mail" = "Mail";
+"person_group" = "Group";
+"person_imagePath" = "Image";
+"person_memo" = "Memo";
 
 
 // MARK: - Setting

@@ -45,6 +45,7 @@ struct PersonListView: View {
         }.onAppear {
             repository.readAllPerson()
         }
+        .tint(Asset.Colors.themaGreen.swiftUIColor)
     }
 
 }

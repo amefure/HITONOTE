@@ -23,7 +23,7 @@ class Person: Object, ObjectKeyIdentifiable {
     static var demoPerson: Person {
         let person = Person()
         person.name = "吉田　真紘"
-        person.ruby = "よしだ　真紘"
+        person.ruby = "よしだ　まひろ"
         person.work = "デザイナー"
         person.birthday = Date()
         person.tell = "090-XXXX-XXXX"

@@ -30,26 +30,115 @@ struct InputPersonView: View {
     @State var memo: String = ""           // メモ
     
     @State var image: UIImage?
-    @State var showingAlert: Bool = false
+    @State var isAlert: Bool = false
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ScrollView {
-            
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 200, height: 200)
+        
+        HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
+        
+            if let person = person {
+                
+                var imgName = person.imagePath
+                
+                if imgName == "" {
+                    imgName = UUID().uuidString   // 画像のファイル名を構築
+                }
+                
+                if let image = image {
+                    let result = imageFileManager.saveImage(name: imgName, image: image)
+                    if result {
+                        print("保存成功")
+                    }
+                }
+                
+                /// 更新処理
+                repository.updatePerson(
+                    id: person.id,
+                    name: name,
+                    ruby: ruby,
+                    work: work,
+                    birthday: birthday,
+                    tell: tell,
+                    mail: mail,
+                    group: group,
+                    imagePath: imgName,
+                    memo: memo)
+                
             } else {
-                Text("No Image")
-                    .font(Font.system(size: 24).bold())
-                    .foregroundColor(Color.white)
-                    .frame(width: 200, height: 200)
-                    .background(Color(UIColor.lightGray))
+                /// 新規登録
+                var imgName = ""
+                
+                /// 画像がセットされていれば画像を表示
+                if let image = image {
+                    imgName = UUID().uuidString   // 画像のファイル名を構築
+                    let result = imageFileManager.saveImage(name: imgName, image: image)
+                    if result {
+                        print("保存成功")
+                    }
+                }
+                
+                repository.createPerson(
+                    name: name,
+                    ruby: ruby,
+                    work: work,
+                    birthday: birthday,
+                    tell: tell,
+                    mail: mail,
+                    group: group,
+                    imagePath: imgName,
+                    memo: memo)
+                
             }
             
-            TextField("名前", text: $name)
-            TextField("ふりがな", text: $ruby)
-            TextField("職業", text: $work)
+        })
+        
+        
+        ScrollView {
+            
+            ZStack {
+                if let image = image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                } else {
+                    Asset.Images.person.swiftUIImage
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                }
+                
+                Button {
+                    isAlert = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+                
+            }
+            
+            HStack {
+                Text(L10n.personName)
+                    .frame(width: 70)
+                TextField("名前", text: $name)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
+            
+            HStack {
+                Text(L10n.personRuby)
+                    .frame(width: 70)
+                TextField("ふりがな", text: $ruby)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
+            
+            HStack {
+                Text(L10n.personWork)
+                    .frame(width: 70)
+                TextField("職業", text: $work)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
+            
             
             DatePicker(selection: $birthday,
                        displayedComponents: DatePickerComponents.date,
@@ -57,80 +146,35 @@ struct InputPersonView: View {
             .environment(\.locale, Locale(identifier: "ja_JP"))
             .environment(\.calendar, Calendar(identifier: .gregorian))
             
-            TextField("電話番号", text: $tell)
-            TextField("メールアドレス", text: $mail)
-            TextField("グループ", text: $group)
-            TextField("MEMO", text: $memo)
+            HStack {
+                Text(L10n.personTell)
+                    .frame(width: 70)
+                TextField("電話番号", text: $tell)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
             
-            Button {
-                
-                if let person = person {
-                    
-                    var imgName = person.imagePath
-                    
-                    if imgName == "" {
-                        imgName = UUID().uuidString   // 画像のファイル名を構築
-                    }
-                    
-                    if let image = image {
-                        let result = imageFileManager.saveImage(name: imgName, image: image)
-                        if result {
-                            print("保存成功")
-                        }
-                    }
-                    
-                    /// 更新処理
-                    repository.updatePerson(
-                        id: person.id,
-                        name: name,
-                        ruby: ruby,
-                        work: work,
-                        birthday: birthday,
-                        tell: tell,
-                        mail: mail,
-                        group: group,
-                        imagePath: imgName,
-                        memo: memo)
-                    
-                } else {
-                    /// 新規登録
-                    var imgName = ""
-                    
-                    /// 画像がセットされていれば画像を表示
-                    if let image = image {
-                        imgName = UUID().uuidString   // 画像のファイル名を構築
-                        let result = imageFileManager.saveImage(name: imgName, image: image)
-                        if result {
-                            print("保存成功")
-                        }
-                    }
-                    
-                    repository.createPerson(
-                        name: name,
-                        ruby: ruby,
-                        work: work,
-                        birthday: birthday,
-                        tell: tell,
-                        mail: mail,
-                        group: group,
-                        imagePath: imgName,
-                        memo: memo)
-                    
-                }
-                
-                
-                
-            } label: {
-                Image(systemName: "plus")
-            }
+            HStack {
+                Text(L10n.personMail)
+                    .frame(width: 70)
+                TextField("メールアドレス", text: $mail)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
             
+            HStack {
+                Text(L10n.personGroup)
+                    .frame(width: 70)
+                TextField("グループ", text: $group)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
+           
+            HStack {
+                Text(L10n.personMemo)
+                    .frame(width: 70)
+                TextField("MEMO", text: $memo)
+                    .textFieldStyle(.roundedBorder)
+            }.padding(.trailing, 20)
             
-            Button {
-                showingAlert = true
-            } label: {
-                Text("Select Image")
-            }
-        }.sheet(isPresented: $showingAlert) {
+        }.sheet(isPresented: $isAlert) {
             
         } content: {
             ImagePickerDialog(image: $image)
@@ -147,7 +191,7 @@ struct InputPersonView: View {
                 image = imageFileManager.loadImage(name: person.imagePath)
                 memo = person.memo
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 

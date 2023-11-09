@@ -11,9 +11,11 @@ struct SettingView: View {
     
     private let viewModel = SettingViewModel()
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         
-        HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: {}, trailingAction: {})
+        HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
         
         Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
             NavigationLink {
@@ -60,7 +62,10 @@ struct SettingView: View {
                     Image(systemName: "link").font(.caption)
                 }.foregroundColor(.white)
             })
-        }
+            
+            Spacer()
+        }.navigationBarBackButtonHidden()
+            .navigationBarHidden(true)
     }
 }
 

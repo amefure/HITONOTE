@@ -18,47 +18,50 @@ struct DisplayItemControlView: View {
     @State var isGroup: Bool = false         // グループ
     @State var isMemo: Bool = false          // メモ
     
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
-        HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: {}, trailingAction: {})
-        
-        Spacer()
-        
-        
-        Toggle(isOn: $isName) {
-            Text(L10n.personName)
-        }
-        
-        Toggle(isOn: $isRuby) {
-            Text(L10n.personRuby)
-        }
-        
-        Toggle(isOn: $isWork) {
-            Text(L10n.personWork)
-        }
-        
-        Toggle(isOn: $isBirthday) {
-            Text(L10n.personBirthday)
-        }
-        
-        Toggle(isOn: $isTell) {
-            Text(L10n.personTell)
-        }
-        
-        Toggle(isOn: $isMail) {
-            Text(L10n.personMail)
-        }
-        
-        Toggle(isOn: $isGroup) {
-            Text(L10n.personGroup)
-        }
-        
-        Toggle(isOn: $isMemo) {
-            Text(L10n.personMemo)
-        }
-        
-        Spacer()
+        VStack {
+            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
+            
+            Spacer()
+            
+            
+            Toggle(isOn: $isName) {
+                Text(L10n.personName)
+            }
+            
+            Toggle(isOn: $isRuby) {
+                Text(L10n.personRuby)
+            }
+            
+            Toggle(isOn: $isWork) {
+                Text(L10n.personWork)
+            }
+            
+            Toggle(isOn: $isBirthday) {
+                Text(L10n.personBirthday)
+            }
+            
+            Toggle(isOn: $isTell) {
+                Text(L10n.personTell)
+            }
+            
+            Toggle(isOn: $isMail) {
+                Text(L10n.personMail)
+            }
+            
+            Toggle(isOn: $isGroup) {
+                Text(L10n.personGroup)
+            }
+            
+            Toggle(isOn: $isMemo) {
+                Text(L10n.personMemo)
+            }
+            
+            Spacer()
+        }.navigationBarBackButtonHidden()
+            .navigationBarHidden(true)
     }
 }
 
