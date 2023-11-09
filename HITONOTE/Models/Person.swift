@@ -17,7 +17,19 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted var tell: String = ""           // 電話
     @Persisted var mail: String = ""           // メール
     @Persisted var group: String = ""          // グループ
-    @Persisted var image: String = ""          // 画像
+    @Persisted var imagePath: String = ""      // 画像パス
     @Persisted var memo: String = ""           // メモ
 
+    static var demoPerson: Person {
+        let person = Person()
+        person.name = "吉田　真紘"
+        person.ruby = "よしだ　真紘"
+        person.work = "デザイナー"
+        person.birthday = Date()
+        person.tell = "090-XXXX-XXXX"
+        person.mail = "sample@sample.com"
+        person.imagePath = ""
+        person.memo = "これはメモです。"
+        return person
+    }
 }

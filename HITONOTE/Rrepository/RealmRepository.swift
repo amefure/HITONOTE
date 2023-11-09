@@ -14,7 +14,7 @@ class RealmRepository {
     private let realm = try! Realm()
     
     // MARK: - Person
-    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, image: String, memo: String) {
+    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let person = Person()
             person.name = name
@@ -23,7 +23,8 @@ class RealmRepository {
             person.birthday = birthday
             person.tell = tell
             person.mail = mail
-            person.image = image
+            person.group = group
+            person.imagePath = imagePath
             person.memo = memo
             realm.add(person)
         }

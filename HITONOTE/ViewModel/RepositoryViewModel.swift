@@ -20,8 +20,8 @@ class RepositoryViewModel: ObservableObject {
         people = Array(result)
     }
     
-    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, image: String, memo: String) {
-        repository.createPerson(name: name, ruby: ruby, work: work, birthday: birthday, tell: tell, mail: mail, image: image, memo: memo)
+    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+        repository.createPerson(name: name, ruby: ruby, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
 

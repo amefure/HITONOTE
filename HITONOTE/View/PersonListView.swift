@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct PersonListView: View {
     
@@ -13,9 +14,16 @@ struct PersonListView: View {
     
     var body: some View {
         NavigationStack {
+            
             List {
                 ForEach(repository.people) { person in
-                    Text(person.name)
+                    NavigationLink {
+                        DetailPersonView(person: person)
+                        
+                    } label: {
+                        Text(person.name)
+                    }
+                    
                 }
             }
             
@@ -24,13 +32,20 @@ struct PersonListView: View {
             } label: {
                 Text("Input")
             }
+            
 
         }.onAppear {
             repository.readAllPerson()
         }
     }
+
 }
 
 #Preview {
     PersonListView()
 }
+
+
+
+
+

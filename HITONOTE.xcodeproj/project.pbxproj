@@ -11,6 +11,10 @@
 		125F84762AFC59A700CCC2AF /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125F84752AFC59A700CCC2AF /* PersonListView.swift */; };
 		125F84782AFC59A800CCC2AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F84772AFC59A800CCC2AF /* Images.xcassets */; };
 		125F847B2AFC59A800CCC2AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F847A2AFC59A800CCC2AF /* Preview Assets.xcassets */; };
+		127B569E2AFCA7150086439E /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B569D2AFCA7150086439E /* ImageFileManager.swift */; };
+		127B56A12AFCE8970086439E /* ImagePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A02AFCE8970086439E /* ImagePickerDialog.swift */; };
+		127B56A32AFCECF10086439E /* DetailPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A22AFCECF10086439E /* DetailPersonView.swift */; };
+		127B56A52AFCEE910086439E /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A42AFCEE910086439E /* DateFormatManager.swift */; };
 		12C8D94F2AFC5B5C009EDD14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9512AFC5B5C009EDD14 /* Localizable.strings */; };
 		12C8D9542AFC5CF7009EDD14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */; };
 		12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9572AFC60B4009EDD14 /* Person.swift */; };
@@ -29,6 +33,10 @@
 		125F84752AFC59A700CCC2AF /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 		125F84772AFC59A800CCC2AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		125F847A2AFC59A800CCC2AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		127B569D2AFCA7150086439E /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		127B56A02AFCE8970086439E /* ImagePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDialog.swift; sourceTree = "<group>"; };
+		127B56A22AFCECF10086439E /* DetailPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPersonView.swift; sourceTree = "<group>"; };
+		127B56A42AFCEE910086439E /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		12C8D9502AFC5B5C009EDD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9522AFC5B7B009EDD14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -82,6 +90,7 @@
 				12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */,
 				12C8D94C2AFC5B24009EDD14 /* Generated */,
 				12C8D94A2AFC5AF4009EDD14 /* Resources */,
+				127B569C2AFCA6D50086439E /* Extension&Utility */,
 				12C8D9562AFC608D009EDD14 /* Models */,
 				12C8D94B2AFC5AFB009EDD14 /* View */,
 				12C8D9592AFC61F2009EDD14 /* ViewModel */,
@@ -97,6 +106,23 @@
 				125F847A2AFC59A800CCC2AF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		127B569C2AFCA6D50086439E /* Extension&Utility */ = {
+			isa = PBXGroup;
+			children = (
+				127B569D2AFCA7150086439E /* ImageFileManager.swift */,
+				127B56A42AFCEE910086439E /* DateFormatManager.swift */,
+			);
+			path = "Extension&Utility";
+			sourceTree = "<group>";
+		};
+		127B569F2AFCE87B0086439E /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				127B56A02AFCE8970086439E /* ImagePickerDialog.swift */,
+			);
+			path = Dialog;
 			sourceTree = "<group>";
 		};
 		12C8D94A2AFC5AF4009EDD14 /* Resources */ = {
@@ -115,6 +141,8 @@
 				125F84732AFC59A700CCC2AF /* HITONOTEApp.swift */,
 				125F84752AFC59A700CCC2AF /* PersonListView.swift */,
 				12C8D9652AFCA223009EDD14 /* InputPersonView.swift */,
+				127B56A22AFCECF10086439E /* DetailPersonView.swift */,
+				127B569F2AFCE87B0086439E /* Dialog */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,11 +317,15 @@
 			files = (
 				12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */,
 				12C8D95C2AFC625D009EDD14 /* RealmRepository.swift in Sources */,
+				127B56A32AFCECF10086439E /* DetailPersonView.swift in Sources */,
 				12C8D9662AFCA223009EDD14 /* InputPersonView.swift in Sources */,
+				127B56A52AFCEE910086439E /* DateFormatManager.swift in Sources */,
 				12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */,
 				12C8D95E2AFC62CC009EDD14 /* RepositoryViewModel.swift in Sources */,
+				127B56A12AFCE8970086439E /* ImagePickerDialog.swift in Sources */,
 				125F84762AFC59A700CCC2AF /* PersonListView.swift in Sources */,
 				125F84742AFC59A700CCC2AF /* HITONOTEApp.swift in Sources */,
+				127B569E2AFCA7150086439E /* ImageFileManager.swift in Sources */,
 				12C8D9642AFCA012009EDD14 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
