@@ -15,6 +15,8 @@ struct PersonListView: View {
     var body: some View {
         NavigationStack {
             
+            HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: {}, trailingAction: {})
+            
             List {
                 ForEach(repository.people) { person in
                     NavigationLink {
