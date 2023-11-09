@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		125F84742AFC59A700CCC2AF /* HITONOTEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125F84732AFC59A700CCC2AF /* HITONOTEApp.swift */; };
 		125F84762AFC59A700CCC2AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125F84752AFC59A700CCC2AF /* ContentView.swift */; };
-		125F84782AFC59A800CCC2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F84772AFC59A800CCC2AF /* Assets.xcassets */; };
+		125F84782AFC59A800CCC2AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F84772AFC59A800CCC2AF /* Images.xcassets */; };
 		125F847B2AFC59A800CCC2AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F847A2AFC59A800CCC2AF /* Preview Assets.xcassets */; };
 		12C8D94F2AFC5B5C009EDD14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9512AFC5B5C009EDD14 /* Localizable.strings */; };
 		12C8D9542AFC5CF7009EDD14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */; };
+		12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9572AFC60B4009EDD14 /* Person.swift */; };
+		12C8D95C2AFC625D009EDD14 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D95B2AFC625D009EDD14 /* RealmRepository.swift */; };
+		12C8D95E2AFC62CC009EDD14 /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D95D2AFC62CC009EDD14 /* RepositoryViewModel.swift */; };
+		12C8D9602AFC9FF5009EDD14 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D95F2AFC9FF5009EDD14 /* Colors.xcassets */; };
+		12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9612AFCA012009EDD14 /* Assets.swift */; };
+		12C8D9642AFCA012009EDD14 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9622AFCA012009EDD14 /* Strings.swift */; };
 		1FC43675BB5AE52F42AFBE92 /* Pods_HITONOTE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF993EE6375C1A3E52ACE692 /* Pods_HITONOTE.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,12 +26,18 @@
 		125F84702AFC59A700CCC2AF /* HITONOTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HITONOTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		125F84732AFC59A700CCC2AF /* HITONOTEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HITONOTEApp.swift; sourceTree = "<group>"; };
 		125F84752AFC59A700CCC2AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		125F84772AFC59A800CCC2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		125F84772AFC59A800CCC2AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		125F847A2AFC59A800CCC2AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12C8D9502AFC5B5C009EDD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9522AFC5B7B009EDD14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		12C8D9552AFC5EE1009EDD14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		12C8D9572AFC60B4009EDD14 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		12C8D95B2AFC625D009EDD14 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		12C8D95D2AFC62CC009EDD14 /* RepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
+		12C8D95F2AFC9FF5009EDD14 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		12C8D9612AFCA012009EDD14 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		12C8D9622AFCA012009EDD14 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A60932F73774839E2C0AB7FF /* Pods-HITONOTE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HITONOTE.debug.xcconfig"; path = "Target Support Files/Pods-HITONOTE/Pods-HITONOTE.debug.xcconfig"; sourceTree = "<group>"; };
 		AF993EE6375C1A3E52ACE692 /* Pods_HITONOTE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HITONOTE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57BEEAB91599A7C4E5DBE43 /* Pods-HITONOTE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HITONOTE.release.xcconfig"; path = "Target Support Files/Pods-HITONOTE/Pods-HITONOTE.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,7 +80,10 @@
 				12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */,
 				12C8D94C2AFC5B24009EDD14 /* Generated */,
 				12C8D94A2AFC5AF4009EDD14 /* Resources */,
+				12C8D9562AFC608D009EDD14 /* Models */,
 				12C8D94B2AFC5AFB009EDD14 /* View */,
+				12C8D9592AFC61F2009EDD14 /* ViewModel */,
+				12C8D95A2AFC6232009EDD14 /* Rrepository */,
 				125F84792AFC59A800CCC2AF /* Preview Content */,
 			);
 			path = HITONOTE;
@@ -85,7 +100,8 @@
 		12C8D94A2AFC5AF4009EDD14 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				125F84772AFC59A800CCC2AF /* Assets.xcassets */,
+				125F84772AFC59A800CCC2AF /* Images.xcassets */,
+				12C8D95F2AFC9FF5009EDD14 /* Colors.xcassets */,
 				12C8D9512AFC5B5C009EDD14 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -103,8 +119,34 @@
 		12C8D94C2AFC5B24009EDD14 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				12C8D9612AFCA012009EDD14 /* Assets.swift */,
+				12C8D9622AFCA012009EDD14 /* Strings.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		12C8D9562AFC608D009EDD14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				12C8D9572AFC60B4009EDD14 /* Person.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		12C8D9592AFC61F2009EDD14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				12C8D95D2AFC62CC009EDD14 /* RepositoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		12C8D95A2AFC6232009EDD14 /* Rrepository */ = {
+			isa = PBXGroup;
+			children = (
+				12C8D95B2AFC625D009EDD14 /* RealmRepository.swift */,
+			);
+			path = Rrepository;
 			sourceTree = "<group>";
 		};
 		2794C67DB28B81E143A8EFB1 /* Frameworks */ = {
@@ -185,10 +227,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C8D9602AFC9FF5009EDD14 /* Colors.xcassets in Resources */,
 				125F847B2AFC59A800CCC2AF /* Preview Assets.xcassets in Resources */,
 				12C8D9542AFC5CF7009EDD14 /* GoogleService-Info.plist in Resources */,
 				12C8D94F2AFC5B5C009EDD14 /* Localizable.strings in Resources */,
-				125F84782AFC59A800CCC2AF /* Assets.xcassets in Resources */,
+				125F84782AFC59A800CCC2AF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,8 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */,
+				12C8D95C2AFC625D009EDD14 /* RealmRepository.swift in Sources */,
+				12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */,
+				12C8D95E2AFC62CC009EDD14 /* RepositoryViewModel.swift in Sources */,
 				125F84762AFC59A700CCC2AF /* ContentView.swift in Sources */,
 				125F84742AFC59A700CCC2AF /* HITONOTEApp.swift in Sources */,
+				12C8D9642AFCA012009EDD14 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
