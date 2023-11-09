@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DetailPersonView: View {
     
-    private var dateFormatManager = DateFormatManager()
+    var dateFormatManager = DateFormatManager()
+    var imageFileManager = ImageFileManager()
     
     public var person: Person
     
@@ -22,6 +23,9 @@ struct DetailPersonView: View {
             Text(person.tell)
             Text(person.mail)
             Text(person.group)
+            
+            Image(uiImage: imageFileManager.loadImage(name: person.imagePath) ?? UIImage(systemName: "iphone")!)
+           
             Text(person.imagePath)
             Text(person.memo)
         }

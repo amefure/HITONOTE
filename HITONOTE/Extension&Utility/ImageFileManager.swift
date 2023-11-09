@@ -31,34 +31,33 @@ class ImageFileManager {
         }
     }
     
-//    public func loadImage(name: String) -> Image {
-//        /// 名前がないなら終了
-//        guard let name == "" else { return }
-//        
-//        guard let path = getDocmentsUrl("\(name + suffix)")?.path  else { return }
-//        
-//        if fileManager.fileExists(atPath: path) {
-//            if let image = UIImage(contentsOfFile: path) {
-//                return image
-//            } else {
-//                print("読み込みに失敗しました")
-//            }
-//        }
-//    }
+    public func loadImage(name: String) -> UIImage? {
+        /// 名前がないなら終了
+        guard name != "" else { return nil }
+        
+        guard let path = getDocmentsUrl("\(name + suffix)")?.path  else { return nil }
+        
+        if fileManager.fileExists(atPath: path) {
+            if let image = UIImage(contentsOfFile: path) {
+                return image
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
     
     /// 画像保存処理
     public func saveImage(name: String, image: UIImage) -> Bool {
         guard let imageData = image.jpegData(compressionQuality: 1.0) else { return false }
         guard let path = getDocmentsUrl("\(name + suffix)") else { return false }
         do {
-            
             try imageData.write(to: path)
             return true
         } catch {
             print("保存失敗")
             return false
         }
-
     }
     
     /// 画像削除処理

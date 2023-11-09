@@ -27,6 +27,19 @@ struct InputPersonView: View {
     
     var body: some View {
         ScrollView {
+            
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+            } else {
+                Text("No Image")
+                    .font(Font.system(size: 24).bold())
+                    .foregroundColor(Color.white)
+                    .frame(width: 200, height: 200)
+                    .background(Color(UIColor.lightGray))
+            }
+            
             TextField("名前", text: $name)
             TextField("ふりがな", text: $ruby)
             TextField("職業", text: $work)
@@ -49,7 +62,10 @@ struct InputPersonView: View {
                 /// 画像がセットされていれば画像を表示
                 if let image = image {
                     imgName = UUID().uuidString   // 画像のファイル名を構築
-                    imageFileManager.saveImage(name: imgName, image: image)
+                    let result = imageFileManager.saveImage(name: imgName, image: image)
+                    if result {
+                        print("保存成功")
+                    }
                 }
                 
                 repository.createPerson(
@@ -68,36 +84,16 @@ struct InputPersonView: View {
                 Image(systemName: "plus")
             }
         
-      
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 200, height: 200)
-            } else {
-                Text("No Image")
-                    .font(Font.system(size: 24).bold())
-                    .foregroundColor(Color.white)
-                    .frame(width: 200, height: 200)
-                    .background(Color(UIColor.lightGray))
-            }
             
             Button {
                 showingAlert = true
             } label: {
                 Text("Select Image")
-                    .font(Font.system(size:20).bold())
-                    .foregroundColor(Color.white)
-                    .padding(.horizontal, 100)
-                    .padding(.vertical, 16)
-                    .background(Color(UIColor.lightGray))
             }
-            .padding(.top, 60)
-            .sheet(isPresented: $showingAlert) {
-                
-            } content: {
-                ImagePickerDialog(image: $image)
-            }
-
+        }.sheet(isPresented: $showingAlert) {
+            
+        } content: {
+            ImagePickerDialog(image: $image)
         }
     }
 }
