@@ -31,149 +31,139 @@ struct InputPersonView: View {
     
     @State var image: UIImage?
     @State var isAlert: Bool = false
+    @State var successAlert: Bool = false
+    @State var validationAlert: Bool = false
     
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
-        HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
-        
-            if let person = person {
-                
-                var imgName = person.imagePath
-                
-                if imgName == "" {
-                    imgName = UUID().uuidString   // 画像のファイル名を構築
-                }
-                
-                if let image = image {
-                    let result = imageFileManager.saveImage(name: imgName, image: image)
-                    if result {
-                        print("保存成功")
-                    }
-                }
-                
-                /// 更新処理
-                repository.updatePerson(
-                    id: person.id,
-                    name: name,
-                    ruby: ruby,
-                    work: work,
-                    birthday: birthday,
-                    tell: tell,
-                    mail: mail,
-                    group: group,
-                    imagePath: imgName,
-                    memo: memo)
-                
-            } else {
-                /// 新規登録
-                var imgName = ""
-                
-                /// 画像がセットされていれば画像を表示
-                if let image = image {
-                    imgName = UUID().uuidString   // 画像のファイル名を構築
-                    let result = imageFileManager.saveImage(name: imgName, image: image)
-                    if result {
-                        print("保存成功")
-                    }
-                }
-                
-                repository.createPerson(
-                    name: name,
-                    ruby: ruby,
-                    work: work,
-                    birthday: birthday,
-                    tell: tell,
-                    mail: mail,
-                    group: group,
-                    imagePath: imgName,
-                    memo: memo)
-                
-            }
+        VStack {
             
-        })
-        
-        
-        ScrollView {
+            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
+                
+                guard !name.isEmpty else {
+                    validationAlert = true
+                    return
+                }
+            
+                if let person = person {
+                    
+                    var imgName = person.imagePath
+                    
+                    if imgName == "" {
+                        imgName = UUID().uuidString   // 画像のファイル名を構築
+                    }
+                    
+                    if let image = image {
+                        let result = imageFileManager.saveImage(name: imgName, image: image)
+                        if result {
+                            print("保存成功")
+                        }
+                    }
+                    
+                    /// 更新処理
+                    repository.updatePerson(
+                        id: person.id,
+                        name: name,
+                        ruby: ruby,
+                        work: work,
+                        birthday: birthday,
+                        tell: tell,
+                        mail: mail,
+                        group: group,
+                        imagePath: imgName,
+                        memo: memo)
+                    
+                } else {
+                    /// 新規登録
+                    var imgName = ""
+                    
+                    /// 画像がセットされていれば画像を表示
+                    if let image = image {
+                        imgName = UUID().uuidString   // 画像のファイル名を構築
+                        let result = imageFileManager.saveImage(name: imgName, image: image)
+                        if result {
+                            print("保存成功")
+                        }
+                    }
+                    
+                    repository.createPerson(
+                        name: name,
+                        ruby: ruby,
+                        work: work,
+                        birthday: birthday,
+                        tell: tell,
+                        mail: mail,
+                        group: group,
+                        imagePath: imgName,
+                        memo: memo)
+                    
+                }
+                
+                successAlert = true
+                
+            })
+            
             
             ZStack {
                 if let image = image {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .clipShape(RoundedRectangle(cornerRadius: 100))
                 } else {
                     Asset.Images.person.swiftUIImage
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .clipShape(RoundedRectangle(cornerRadius: 100))
                 }
                 
                 Button {
                     isAlert = true
                 } label: {
                     Image(systemName: "plus")
+                        .frame(width: 100, height: 100)
+                        .background(Asset.Colors.opacityGray.swiftUIColor)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 100))
                 }
                 
             }
             
-            HStack {
-                Text(L10n.personName)
-                    .frame(width: 70)
-                TextField("名前", text: $name)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
             
-            HStack {
-                Text(L10n.personRuby)
-                    .frame(width: 70)
-                TextField("ふりがな", text: $ruby)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-            
-            HStack {
-                Text(L10n.personWork)
-                    .frame(width: 70)
-                TextField("職業", text: $work)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-            
-            
-            DatePicker(selection: $birthday,
-                       displayedComponents: DatePickerComponents.date,
-                       label: { Text("誕生日") })
-            .environment(\.locale, Locale(identifier: "ja_JP"))
-            .environment(\.calendar, Calendar(identifier: .gregorian))
-            
-            HStack {
-                Text(L10n.personTell)
-                    .frame(width: 70)
-                TextField("電話番号", text: $tell)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-            
-            HStack {
-                Text(L10n.personMail)
-                    .frame(width: 70)
-                TextField("メールアドレス", text: $mail)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-            
-            HStack {
-                Text(L10n.personGroup)
-                    .frame(width: 70)
-                TextField("グループ", text: $group)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-           
-            HStack {
-                Text(L10n.personMemo)
-                    .frame(width: 70)
-                TextField("MEMO", text: $memo)
-                    .textFieldStyle(.roundedBorder)
-            }.padding(.trailing, 20)
-            
+            ScrollView {
+                
+                VStack {
+                    
+                     CustomInputView(label: L10n.personName, text: $name)
+                    
+                     CustomInputView(label: L10n.personRuby, text: $ruby)
+                    
+                     
+                     CustomInputView(label: L10n.personWork, text: $work)
+                     
+                     CustomInputView(label: L10n.personTell, text: $tell)
+              
+                     
+                     
+                     DatePicker(selection: $birthday,
+                                displayedComponents: DatePickerComponents.date,
+                                label: { Text("誕生日") })
+                     .environment(\.locale, Locale(identifier: "ja_JP"))
+                     .environment(\.calendar, Calendar(identifier: .gregorian))
+
+                     
+                     CustomInputView(label: L10n.personMail, text: $mail)
+                     
+                     CustomInputView(label: L10n.personGroup, text: $group)
+                     
+                     CustomInputView(label: L10n.personMemo, text: $memo)
+                
+                }
+            }.padding(20)
+            .background(Asset.Colors.themaGreen.swiftUIColor)
+                .foregroundStyle(.white)
+                .fontWeight(.bold)
         }.sheet(isPresented: $isAlert) {
             
         } content: {
@@ -191,9 +181,44 @@ struct InputPersonView: View {
                 image = imageFileManager.loadImage(name: person.imagePath)
                 memo = person.memo
             }
-        }.navigationBarBackButtonHidden()
+        }.alert("「\(name)」さんを登録しました。", isPresented: $successAlert) {
+            Button("OK") {
+                dismiss()
+            }
+        }.alert("名前は必須入力です。", isPresented: $validationAlert) {
+            
+        }
+        .navigationBarBackButtonHidden()
+            .navigationBarHidden(true)
+            
+       
     }
 }
+
+
+struct CustomInputView: View {
+    
+    public var label: String
+    @Binding var text: String
+    
+    var body: some View {
+        Group {
+            HStack {
+                Text(label)
+                    .padding(.leading, 5)
+                Spacer()
+            }
+            Divider()
+                .padding(.bottom, 5)
+            TextField(label, text: $text)
+                .textFieldStyle(.roundedBorder)
+                .padding(.bottom, 10)
+                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+        }
+    }
+}
+
+
 
 #Preview {
     InputPersonView(person: nil)

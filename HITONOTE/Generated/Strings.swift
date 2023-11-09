@@ -31,8 +31,8 @@ internal enum L10n {
   /// 
   ///   Created by t&a on 2023/11/09.
   internal static let personName = L10n.tr("Localizable", "person_name", fallback: "名前")
-  /// ルビ
-  internal static let personRuby = L10n.tr("Localizable", "person_ruby", fallback: "ルビ")
+  /// ふりがな
+  internal static let personRuby = L10n.tr("Localizable", "person_ruby", fallback: "ふりがな")
   /// 電話
   internal static let personTell = L10n.tr("Localizable", "person_tell", fallback: "電話")
   /// 職業
