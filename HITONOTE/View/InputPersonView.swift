@@ -13,6 +13,13 @@ struct InputPersonView: View {
     
     private var imageFileManager = ImageFileManager()
     
+    // Updateデータ受け取り用
+    public var person: Person?
+    
+    init(person: Person?) {
+        self.person = person
+    }
+    
     @State var name: String = ""           // 名前
     @State var ruby: String = ""           // ルビ
     @State var work: String = ""           // 職業
@@ -57,33 +64,66 @@ struct InputPersonView: View {
             
             Button {
                 
-                var imgName = ""
-                
-                /// 画像がセットされていれば画像を表示
-                if let image = image {
-                    imgName = UUID().uuidString   // 画像のファイル名を構築
-                    let result = imageFileManager.saveImage(name: imgName, image: image)
-                    if result {
-                        print("保存成功")
+                if let person = person {
+                    
+                    var imgName = person.imagePath
+                    
+                    if imgName == "" {
+                        imgName = UUID().uuidString   // 画像のファイル名を構築
                     }
+                    
+                    if let image = image {
+                        let result = imageFileManager.saveImage(name: imgName, image: image)
+                        if result {
+                            print("保存成功")
+                        }
+                    }
+                    
+                    /// 更新処理
+                    repository.updatePerson(
+                        id: person.id,
+                        name: name,
+                        ruby: ruby,
+                        work: work,
+                        birthday: birthday,
+                        tell: tell,
+                        mail: mail,
+                        group: group,
+                        imagePath: imgName,
+                        memo: memo)
+                    
+                } else {
+                    /// 新規登録
+                    var imgName = ""
+                    
+                    /// 画像がセットされていれば画像を表示
+                    if let image = image {
+                        imgName = UUID().uuidString   // 画像のファイル名を構築
+                        let result = imageFileManager.saveImage(name: imgName, image: image)
+                        if result {
+                            print("保存成功")
+                        }
+                    }
+                    
+                    repository.createPerson(
+                        name: name,
+                        ruby: ruby,
+                        work: work,
+                        birthday: birthday,
+                        tell: tell,
+                        mail: mail,
+                        group: group,
+                        imagePath: imgName,
+                        memo: memo)
+                    
                 }
                 
-                repository.createPerson(
-                    name: name,
-                    ruby: ruby,
-                    work: work,
-                    birthday: birthday,
-                    tell: tell,
-                    mail: mail,
-                    group: group,
-                    imagePath: imgName,
-                    memo: memo)
                 
                 
             } label: {
                 Image(systemName: "plus")
             }
-        
+            
             
             Button {
                 showingAlert = true
@@ -94,10 +134,23 @@ struct InputPersonView: View {
             
         } content: {
             ImagePickerDialog(image: $image)
+        }.onAppear {
+            // Update時なら初期値セット
+            if let person = person {
+                name = person.name
+                ruby = person.ruby
+                work = person.work
+                birthday = person.birthday
+                tell = person.tell
+                mail = person.mail
+                group = person.group
+                image = imageFileManager.loadImage(name: person.imagePath)
+                memo = person.memo
+            }
         }
     }
 }
 
 #Preview {
-    InputPersonView()
+    InputPersonView(person: nil)
 }

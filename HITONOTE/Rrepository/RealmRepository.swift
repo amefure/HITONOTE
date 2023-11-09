@@ -30,14 +30,24 @@ class RealmRepository {
         }
     }
     
-    public func updatePerson(id: ObjectId, name: String) {
+    public func updatePerson(id: ObjectId, name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
-            let Persons = realm.objects(Person.self)
-            if let Person = Persons.where({ $0.id == id }).first {
-                Person.name = name
+            let people = realm.objects(Person.self)
+            if let person = people.where({ $0.id == id }).first {
+                person.name = name
+                person.ruby = ruby
+                person.work = work
+                person.birthday = birthday
+                person.tell = tell
+                person.mail = mail
+                person.group = group
+                person.imagePath = imagePath
+                person.memo = memo
             }
         }
     }
+    
+    
     
     // Read
     public func readSinglePerson(id: ObjectId) -> Person {

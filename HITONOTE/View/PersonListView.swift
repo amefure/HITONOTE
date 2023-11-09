@@ -19,7 +19,6 @@ struct PersonListView: View {
                 ForEach(repository.people) { person in
                     NavigationLink {
                         DetailPersonView(person: person)
-                        
                     } label: {
                         Text(person.name)
                     }
@@ -28,7 +27,7 @@ struct PersonListView: View {
             }
             
             NavigationLink {
-                InputPersonView()
+                InputPersonView(person: nil)
             } label: {
                 Text("Input")
             }

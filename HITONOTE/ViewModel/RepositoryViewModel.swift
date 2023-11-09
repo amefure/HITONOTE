@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RepositoryViewModel: ObservableObject {
     
@@ -24,5 +25,11 @@ class RepositoryViewModel: ObservableObject {
         repository.createPerson(name: name, ruby: ruby, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
+    
+    public func updatePerson(id: ObjectId ,name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+        repository.updatePerson(id: id, name: name, ruby: ruby, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
+        self.readAllPerson()
+    }
+
 
 }
