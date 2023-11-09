@@ -48,9 +48,7 @@ class RealmRepository {
     }
     
     
-    
-    // Read
-    public func readSinglePerson(id: ObjectId) -> Person {
+    private func readSinglePerson(id: ObjectId) -> Person {
         return realm.objects(Person.self).where({ $0.id == id }).first!
     }
     

@@ -11,6 +11,7 @@ struct DetailPersonView: View {
     
     private var dateFormatManager = DateFormatManager()
     private var imageFileManager = ImageFileManager()
+    @ObservedObject var repository = RepositoryViewModel.shared
     
     init(person: Person) {
         self.person = person
@@ -25,6 +26,12 @@ struct DetailPersonView: View {
                 InputPersonView(person: person)
             } label: {
                 Text("編集する")
+            }
+            
+            Button {
+                repository.deletePerson(id: person.id)
+            } label: {
+                Text("削除する")
             }
 
             ScrollView {
