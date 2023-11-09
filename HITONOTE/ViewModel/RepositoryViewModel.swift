@@ -15,13 +15,13 @@ class RepositoryViewModel: ObservableObject {
     @Published var people: Array<Person> = []
     
     public func readAllPerson() {
-        let results = repository.readAllPerson()
         people.removeAll()
-        
+        let result = repository.readAllPerson()
+        people = Array(result)
     }
     
-    public func createPerson(name:String, order:Int) {
-        repository.createPerson(name: name, order: order)
+    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, image: String, memo: String) {
+        repository.createPerson(name: name, ruby: ruby, work: work, birthday: birthday, tell: tell, mail: mail, image: image, memo: memo)
         self.readAllPerson()
     }
 

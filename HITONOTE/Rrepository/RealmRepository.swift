@@ -12,12 +12,20 @@ class RealmRepository {
 
     // MARK: - private property
     private let realm = try! Realm()
-
+    
     // MARK: - Person
-    public func createPerson(name: String, order: Int) {
+    public func createPerson(name: String, ruby: String, work: String, birthday: Date, tell: String, mail: String, image: String, memo: String) {
         try! realm.write {
-            let Person = Person()
-            realm.add(Person)
+            let person = Person()
+            person.name = name
+            person.ruby = ruby
+            person.work = work
+            person.birthday = birthday
+            person.tell = tell
+            person.mail = mail
+            person.image = image
+            person.memo = memo
+            realm.add(person)
         }
     }
     

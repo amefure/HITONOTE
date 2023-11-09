@@ -16,7 +16,8 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted var birthday: Date = Date()     // 誕生日
     @Persisted var tell: String = ""           // 電話
     @Persisted var mail: String = ""           // メール
-    @Persisted var group: String               // グループ
+    @Persisted var group: String = ""          // グループ
+    @Persisted var image: String = ""          // 画像
     @Persisted var memo: String = ""           // メモ
 
 }
