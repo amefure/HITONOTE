@@ -34,6 +34,13 @@ struct PersonListView: View {
                 Text("Input")
             }
             
+            NavigationLink {
+                SettingView()
+            } label: {
+                Text("Setting")
+            }
+
+            
 
         }.onAppear {
             repository.readAllPerson()

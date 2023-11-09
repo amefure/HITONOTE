@@ -16,6 +16,9 @@
 		127B56A32AFCECF10086439E /* DetailPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A22AFCECF10086439E /* DetailPersonView.swift */; };
 		127B56A52AFCEE910086439E /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A42AFCEE910086439E /* DateFormatManager.swift */; };
 		127B56A82AFCF8C50086439E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A72AFCF8C50086439E /* HeaderView.swift */; };
+		127B56AA2AFCFD330086439E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56A92AFCFD330086439E /* SettingView.swift */; };
+		127B56AC2AFCFDBC0086439E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56AB2AFCFDBC0086439E /* SettingViewModel.swift */; };
+		127B56AE2AFCFE410086439E /* DisplayItemControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56AD2AFCFE410086439E /* DisplayItemControlView.swift */; };
 		12C8D94F2AFC5B5C009EDD14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9512AFC5B5C009EDD14 /* Localizable.strings */; };
 		12C8D9542AFC5CF7009EDD14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */; };
 		12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9572AFC60B4009EDD14 /* Person.swift */; };
@@ -39,6 +42,9 @@
 		127B56A22AFCECF10086439E /* DetailPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPersonView.swift; sourceTree = "<group>"; };
 		127B56A42AFCEE910086439E /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		127B56A72AFCF8C50086439E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		127B56A92AFCFD330086439E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		127B56AB2AFCFDBC0086439E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		127B56AD2AFCFE410086439E /* DisplayItemControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayItemControlView.swift; sourceTree = "<group>"; };
 		12C8D9502AFC5B5C009EDD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9522AFC5B7B009EDD14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -152,6 +158,8 @@
 				125F84752AFC59A700CCC2AF /* PersonListView.swift */,
 				12C8D9652AFCA223009EDD14 /* InputPersonView.swift */,
 				127B56A22AFCECF10086439E /* DetailPersonView.swift */,
+				127B56A92AFCFD330086439E /* SettingView.swift */,
+				127B56AD2AFCFE410086439E /* DisplayItemControlView.swift */,
 				127B56A62AFCF8AF0086439E /* Components */,
 				127B569F2AFCE87B0086439E /* Dialog */,
 			);
@@ -179,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				12C8D95D2AFC62CC009EDD14 /* RepositoryViewModel.swift */,
+				127B56AB2AFCFDBC0086439E /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -329,12 +338,15 @@
 				12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */,
 				12C8D95C2AFC625D009EDD14 /* RealmRepository.swift in Sources */,
 				127B56A32AFCECF10086439E /* DetailPersonView.swift in Sources */,
+				127B56AA2AFCFD330086439E /* SettingView.swift in Sources */,
 				12C8D9662AFCA223009EDD14 /* InputPersonView.swift in Sources */,
 				127B56A52AFCEE910086439E /* DateFormatManager.swift in Sources */,
 				12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */,
 				12C8D95E2AFC62CC009EDD14 /* RepositoryViewModel.swift in Sources */,
+				127B56AE2AFCFE410086439E /* DisplayItemControlView.swift in Sources */,
 				127B56A12AFCE8970086439E /* ImagePickerDialog.swift in Sources */,
 				125F84762AFC59A700CCC2AF /* PersonListView.swift in Sources */,
+				127B56AC2AFCFDBC0086439E /* SettingViewModel.swift in Sources */,
 				125F84742AFC59A700CCC2AF /* HITONOTEApp.swift in Sources */,
 				127B569E2AFCA7150086439E /* ImageFileManager.swift in Sources */,
 				12C8D9642AFCA012009EDD14 /* Strings.swift in Sources */,
