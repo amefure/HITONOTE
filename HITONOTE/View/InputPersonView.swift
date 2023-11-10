@@ -23,6 +23,7 @@ struct InputPersonView: View {
     @State var name: String = ""           // 名前
     @State var ruby: String = ""           // ルビ
     @State var work: String = ""           // 職業
+    @State var character: String = ""      // こんな人
     @State var birthday: Date = Date()     // 誕生日
     @State var tell: String = ""           // 電話
     @State var mail: String = ""           // メール
@@ -65,7 +66,8 @@ struct InputPersonView: View {
                     repository.updatePerson(
                         id: person.id,
                         name: name,
-                        ruby: ruby,
+                        ruby: ruby, 
+                        character: character,
                         work: work,
                         birthday: birthday,
                         tell: tell,
@@ -90,6 +92,7 @@ struct InputPersonView: View {
                     repository.createPerson(
                         name: name,
                         ruby: ruby,
+                        character: character,
                         work: work,
                         birthday: birthday,
                         tell: tell,
@@ -106,17 +109,8 @@ struct InputPersonView: View {
             
             
             ZStack {
-                if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 100))
-                } else {
-                    Asset.Images.person.swiftUIImage
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 100))
-                }
+                
+                PersonImageView(image: image)
                 
                 Button {
                     isAlert = true
@@ -126,6 +120,7 @@ struct InputPersonView: View {
                         .background(Asset.Colors.opacityGray.swiftUIColor)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 100))
+                        .padding(.top, 20)
                 }
                 
             }
@@ -135,29 +130,27 @@ struct InputPersonView: View {
                 
                 VStack {
                     
-                     CustomInputView(label: L10n.personName, text: $name)
+                    CustomInputView(label: L10n.personName, text: $name)
                     
-                     CustomInputView(label: L10n.personRuby, text: $ruby)
+                    CustomInputView(label: L10n.personRuby, text: $ruby)
                     
-                     
-                     CustomInputView(label: L10n.personWork, text: $work)
-                     
-                     CustomInputView(label: L10n.personTell, text: $tell)
-              
-                     
-                     
-                     DatePicker(selection: $birthday,
-                                displayedComponents: DatePickerComponents.date,
-                                label: { Text("誕生日") })
-                     .environment(\.locale, Locale(identifier: "ja_JP"))
-                     .environment(\.calendar, Calendar(identifier: .gregorian))
+                    CustomInputView(label: L10n.personCharacter, text: $character)
+                    
+                    CustomInputView(label: L10n.personWork, text: $work)
+                    
+                    CustomInputView(label: L10n.personTell, text: $tell)
+                    
+                    DatePicker(selection: $birthday,
+                               displayedComponents: DatePickerComponents.date,
+                               label: { Text("誕生日") })
+                    .environment(\.locale, Locale(identifier: "ja_JP"))
+                    .environment(\.calendar, Calendar(identifier: .gregorian))
 
-                     
-                     CustomInputView(label: L10n.personMail, text: $mail)
-                     
-                     CustomInputView(label: L10n.personGroup, text: $group)
-                     
-                     CustomInputView(label: L10n.personMemo, text: $memo)
+                    CustomInputView(label: L10n.personMail, text: $mail)
+                    
+                    CustomInputView(label: L10n.personGroup, text: $group)
+                    
+                    CustomInputView(label: L10n.personMemo, text: $memo)
                 
                 }
             }.padding(20)

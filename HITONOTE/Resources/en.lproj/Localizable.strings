@@ -8,6 +8,7 @@
 
 "person_name" = "Name";
 "person_ruby" = "Ruby";
+"person_character" = "Character";
 "person_work" = "Work";
 "person_birthday" = "Birthday";
 "person_tell" = "Tell";

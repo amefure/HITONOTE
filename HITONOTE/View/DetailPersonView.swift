@@ -30,58 +30,32 @@ struct DetailPersonView: View {
                 isPresented = true
             })
             
-            ScrollView {
             
-                if let image = imageFileManager.loadImage(name: person.imagePath) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                } else {
-                    Asset.Images.person.swiftUIImage
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                }
+            PersonImageView(image: imageFileManager.loadImage(name: person.imagePath))
+            
+            VStack {
+                Text(person.name)
+                    .font(.system(size: 30))
+                Text(person.ruby)
+                    .font(.system(size: 15))
+            }.fontWeight(.bold)
+                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
                 
-                VStack {
-                    Text(person.name)
-                        .font(.system(size: 30))
-                    Text(person.ruby)
-                        .font(.system(size: 15))
-                }.fontWeight(.bold)
-                    .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
-                    
             
-                VStack {
-                    HStack {
-                        Text(L10n.personWork)
-                        Text(person.work)
-                    }.padding(.horizontal,20)
+            ScrollView {
+                
                     
-                    HStack {
-                        Text(L10n.personBirthday)
-                        Text(dateFormatManager.getString(date: person.birthday))
-                    }.padding(.horizontal,20)
+                    CustomPersonItemView(label: L10n.personCharacter, value: person.character)
                     
-                    HStack {
-                        Text(L10n.personTell)
-                        Text(person.tell)
-                    }.padding(.horizontal,20)
+                    CustomPersonItemView(label: L10n.personWork, value: person.work)
                     
-                    HStack {
-                        Text(L10n.personMail)
-                        Text(person.mail)
-                    }.padding(.horizontal,20)
+                    CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: person.birthday))
                     
-                    HStack {
-                        Text(L10n.personMemo)
-                        Text(person.memo)
-                    }.padding(.horizontal,20)
-                    
+                    CustomPersonItemView(label: L10n.personTell, value: person.tell)
+                    CustomPersonItemView(label: L10n.personMail, value: person.mail)
+                    CustomPersonItemView(label: L10n.personMemo, value: person.memo)
                     
                     Text(person.group)
-                   
                     
                     Button {
                         repository.deletePerson(id: person.id)
@@ -91,14 +65,14 @@ struct DetailPersonView: View {
                     }
                     
                     Spacer()
-                }.frame(width: UIScreen.main.bounds.width)
+                
+            }.frame(width: UIScreen.main.bounds.width)
+                .padding(20)
                 .background(Asset.Colors.themaGreen.swiftUIColor)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
-            
                 
-            }
+            
         }.navigationDestination(isPresented: $isPresented) {
             InputPersonView(person: person)
         }
@@ -106,6 +80,27 @@ struct DetailPersonView: View {
             .navigationBarHidden(true)
     }
 }
+
+struct CustomPersonItemView: View {
+    
+    public var label: String
+    public var value: String
+    
+    var body: some View {
+        Group {
+            HStack {
+                Text(label)
+                    .padding(.leading, 5)
+                Spacer()
+            }
+            Divider()
+                .padding(.bottom, 5)
+            Text(value.isEmpty ? "-" : value)
+                .padding(.bottom, 10)
+        }
+    }
+}
+
 
 #Preview {
     DetailPersonView(person: Person.demoPerson)

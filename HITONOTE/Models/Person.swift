@@ -12,6 +12,7 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""           // 名前
     @Persisted var ruby: String = ""           // ルビ
+    @Persisted var character: String = ""      // こんな人
     @Persisted var work: String = ""           // 職業
     @Persisted var birthday: Date = Date()     // 誕生日
     @Persisted var tell: String = ""           // 電話
@@ -19,6 +20,7 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted var group: String = ""          // グループ
     @Persisted var imagePath: String = ""      // 画像パス
     @Persisted var memo: String = ""           // メモ
+    
 
     static var demoPerson: Person {
         let person = Person()
