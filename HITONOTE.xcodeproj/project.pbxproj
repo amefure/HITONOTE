@@ -20,6 +20,7 @@
 		127B56AC2AFCFDBC0086439E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56AB2AFCFDBC0086439E /* SettingViewModel.swift */; };
 		127B56AE2AFCFE410086439E /* DisplayItemControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56AD2AFCFE410086439E /* DisplayItemControlView.swift */; };
 		127B56B02AFDD0390086439E /* PersonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B56AF2AFDD0390086439E /* PersonImageView.swift */; };
+		12B3A2782AFE6D5400FD00CF /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B3A2772AFE6D5400FD00CF /* Gender.swift */; };
 		12C8D94F2AFC5B5C009EDD14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9512AFC5B5C009EDD14 /* Localizable.strings */; };
 		12C8D9542AFC5CF7009EDD14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */; };
 		12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9572AFC60B4009EDD14 /* Person.swift */; };
@@ -47,6 +48,7 @@
 		127B56AB2AFCFDBC0086439E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		127B56AD2AFCFE410086439E /* DisplayItemControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayItemControlView.swift; sourceTree = "<group>"; };
 		127B56AF2AFDD0390086439E /* PersonImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImageView.swift; sourceTree = "<group>"; };
+		12B3A2772AFE6D5400FD00CF /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		12C8D9502AFC5B5C009EDD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9522AFC5B7B009EDD14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		12C8D9532AFC5CF7009EDD14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				12C8D9572AFC60B4009EDD14 /* Person.swift */,
+				12B3A2772AFE6D5400FD00CF /* Gender.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				127B56AA2AFCFD330086439E /* SettingView.swift in Sources */,
 				12C8D9662AFCA223009EDD14 /* InputPersonView.swift in Sources */,
 				127B56A52AFCEE910086439E /* DateFormatManager.swift in Sources */,
+				12B3A2782AFE6D5400FD00CF /* Gender.swift in Sources */,
 				12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */,
 				12C8D95E2AFC62CC009EDD14 /* RepositoryViewModel.swift in Sources */,
 				127B56B02AFDD0390086439E /* PersonImageView.swift in Sources */,

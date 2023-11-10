@@ -6,6 +6,7 @@
   
 */
 
+// MARK: - Person Model
 "person_name" = "Name";
 "person_ruby" = "Ruby";
 "person_gender" = "Gender";
@@ -18,6 +19,12 @@
 "person_imagePath" = "Image";
 "person_memo" = "Memo";
 
+
+// MARK: - Gender Model
+"gender_man" = "Man";
+"gender_woman" = "Woman";
+"gender_other" = "Other";
+"gender_unknown" = "Unknown";
 
 // MARK: - Setting
 "setting_admob_title" = "Watch ads and add Stock";

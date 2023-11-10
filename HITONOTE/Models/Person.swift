@@ -12,10 +12,10 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""           // 名前
     @Persisted var ruby: String = ""           // ルビ
-    @Persisted var gender: String = ""         // 性別
+    @Persisted var gender: Gender = .other              // 性別
     @Persisted var character: String = ""      // こんな人
     @Persisted var work: String = ""           // 職業
-    @Persisted var birthday: Date? = nil     // 誕生日
+    @Persisted var birthday: Date? = nil       // 誕生日
     @Persisted var tell: String = ""           // 電話
     @Persisted var mail: String = ""           // メール
     @Persisted var group: String = ""          // グループ
@@ -27,7 +27,7 @@ class Person: Object, ObjectKeyIdentifiable {
         let person = Person()
         person.name = "吉田　真紘"
         person.ruby = "よしだ　まひろ"
-        person.gender = "女性"
+        person.gender = .woman
         person.work = "デザイナー"
         person.birthday = Date()
         person.tell = "090-XXXX-XXXX"

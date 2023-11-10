@@ -16,6 +16,14 @@ internal enum L10n {
   internal static let dialogAdmobText = L10n.tr("Localizable", "dialog_admob_text", fallback: "広告を視聴できるのは1日に1回までです。")
   /// お知らせ
   internal static let dialogAdmobTitle = L10n.tr("Localizable", "dialog_admob_title", fallback: "お知らせ")
+  /// 男性
+  internal static let genderMan = L10n.tr("Localizable", "gender_man", fallback: "男性")
+  /// その他
+  internal static let genderOther = L10n.tr("Localizable", "gender_other", fallback: "その他")
+  /// 未設定
+  internal static let genderUnknown = L10n.tr("Localizable", "gender_unknown", fallback: "未設定")
+  /// 女性
+  internal static let genderWoman = L10n.tr("Localizable", "gender_woman", fallback: "女性")
   /// 誕生日
   internal static let personBirthday = L10n.tr("Localizable", "person_birthday", fallback: "誕生日")
   /// こんな人

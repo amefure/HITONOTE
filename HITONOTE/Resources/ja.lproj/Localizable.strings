@@ -20,7 +20,11 @@
 "person_imagePath" = "画像";
 "person_memo" = "メモ";
 
-
+// MARK: - Gender Model
+"gender_man" = "男性";
+"gender_woman" = "女性";
+"gender_other" = "その他";
+"gender_unknown" = "未設定";
 
 // MARK: - Setting
 "dialog_admob_title" = "お知らせ";

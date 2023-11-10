@@ -22,19 +22,16 @@ struct InputPersonView: View {
     
     @State var name: String = ""           // 名前
     @State var ruby: String = ""           // ルビ
-    @State var gender: String = ""         // 性別
+    @State var gender: Gender = .unknown   // 性別
     @State var work: String = ""           // 職業
     @State var character: String = ""      // こんな人
-    @State var birthday: Date? = nil     // 誕生日
+    @State var birthday: Date? = nil       // 誕生日
     @State var tell: String = ""           // 電話
     @State var mail: String = ""           // メール
     @State var group: String = ""          // グループ
     @State var memo: String = ""           // メモ
     
-    @State var date: Date = Date()     // 誕生日
-    
-    
-    @State var isShowDatePicker: Bool = false
+
     @State var image: UIImage?
     @State var isAlert: Bool = false
     @State var successAlert: Bool = false
@@ -142,85 +139,34 @@ struct InputPersonView: View {
                 
                 VStack {
                     
+                    /// 名前
                     CustomInputView(label: L10n.personName, text: $name)
                     
+                    /// ふりがな
                     CustomInputView(label: L10n.personRuby, text: $ruby)
+                
+                    /// 性別
+                    CustomGenderPickerView(gender: $gender)
                     
-                    CustomInputView(label: L10n.personGender, text: $gender)
-                    
+                    ///  こんな人
                     CustomInputEditorView(label: L10n.personCharacter, text: $character)
                     
+                    /// 職業
                     CustomInputView(label: L10n.personWork, text: $work)
                     
+                    /// 誕生日
+                    CustomBirthdayPickerView(birthday: $birthday)
+                    
+                    /// 電話
                     CustomInputView(label: L10n.personTell, text: $tell)
                     
-                    CustomInputView(label: L10n.personTell, text: $tell)
-                    
-                    
-                    Button {
-                        /// 決定ボタン押下時
-                        if isShowDatePicker {
-                            birthday = date
-                        }
-                        isShowDatePicker.toggle()
-                    } label: {
-                        Text(isShowDatePicker ? "決定" :  "誕生日を設定する" )
-                    }
-                    if isShowDatePicker {
-                        DatePicker(selection: $date,
-                                   displayedComponents: DatePickerComponents.date,
-                                   label: { Text("誕生日") })
-                        .environment(\.locale, Locale(identifier: "ja_JP"))
-                        .environment(\.calendar, Calendar(identifier: .gregorian))
-                        .datePickerStyle(.wheel)
-                    }
-                    
-
+                    /// メール
                     CustomInputView(label: L10n.personMail, text: $mail)
                     
-
+                    /// グループ
+                    CustomGroupPickerView(group: $group, groups: repository.groups)
                     
-                    
-                    
-                    
-                    HStack {
-                     
-                        VStack {
-                            HStack {
-                                Text(L10n.personGroup)
-                                    .padding(.leading, 5)
-                                Spacer()
-                                
-                                if repository.groups.count != 0 {
-                                    
-                                    Menu(L10n.personGroup) {
-                                        ForEach(repository.groups, id: \.self) { group in
-                                            Button {
-                                                self.group = group
-                                            } label: {
-                                                Text(group)
-                                            }
-                                        }
-                                    }.padding(5)
-                                        .border(Asset.Colors.textColor.swiftUIColor)
-                                        .background(Asset.Colors.opacityGray.swiftUIColor)
-                                        .tint(.white)
-                                        
-                              
-                                }
-                            }
-                            Divider()
-                                .padding(.bottom, 5)
-                            TextField(L10n.personGroup, text: $group)
-                                .textFieldStyle(.roundedBorder)
-                                .padding(.bottom, 10)
-                               
-                        }
-                    
-                        
-                    }
-                    
-                    
+                    /// メモ
                     CustomInputEditorView(label: L10n.personMemo, text: $memo)
                 
                 }
@@ -261,7 +207,7 @@ struct InputPersonView: View {
     }
 }
 
-
+// MARK: - 入力要素
 struct CustomInputView: View {
     
     public var label: String
@@ -288,6 +234,7 @@ struct CustomInputView: View {
     }
 }
 
+// MARK: - Editor入力要素
 struct CustomInputEditorView: View {
     
     public var label: String
@@ -320,6 +267,121 @@ struct CustomInputEditorView: View {
 }
 
 
+// MARK: - 性別ピッカー
+struct CustomGenderPickerView: View {
+    
+    @Binding var gender: Gender
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(L10n.personGender)
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
+                    .padding(.leading, 5)
+                Spacer()
+            }
+            Divider()
+                .padding(.bottom, 5)
+            
+            Picker(selection: $gender, label: Text(L10n.personGender)) {
+                ForEach(Gender.allCases, id: \.self) { item in
+                    Text(item.rawValue)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - 誕生日ピッカー
+struct CustomBirthdayPickerView: View {
+    
+    @Binding var birthday: Date?
+    @State var date: Date = Date()
+    @State var isShowDatePicker: Bool = false
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(L10n.personBirthday)
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
+                    .padding(.leading, 5)
+                Spacer()
+            }
+            
+            Divider()
+                .padding(.bottom, 5)
+            
+            Button {
+                /// 決定ボタン押下時
+                if isShowDatePicker {
+                    birthday = date
+                }
+                isShowDatePicker.toggle()
+            } label: {
+                Text(isShowDatePicker ? "決定" :  "誕生日を設定する" )
+            }
+            if isShowDatePicker {
+                DatePicker(selection: $date,
+                           displayedComponents: DatePickerComponents.date,
+                           label: { Text("誕生日") })
+                .environment(\.locale, Locale(identifier: "ja_JP"))
+                .environment(\.calendar, Calendar(identifier: .gregorian))
+                .datePickerStyle(.wheel)
+            }
+        }
+    }
+}
+
+
+// MARK: - グループピッカー
+struct CustomGroupPickerView: View {
+    
+    @Binding var group: String
+    let groups: Array<String>
+    
+    var body: some View {
+        VStack {
+            HStack {
+                VStack {
+                    HStack {
+                        Text(L10n.personGroup)
+                            .font(.system(size: 13))
+                            .fontWeight(.light)
+                            .padding(.leading, 5)
+                        
+                        Spacer()
+                        
+                        if groups.count != 0 {
+                            
+                            Menu(L10n.personGroup) {
+                                ForEach(groups, id: \.self) { group in
+                                    Button {
+                                        self.group = group
+                                    } label: {
+                                        Text(group)
+                                    }
+                                }
+                            }.padding(5)
+                                .border(Asset.Colors.textColor.swiftUIColor)
+                                .background(Asset.Colors.opacityGray.swiftUIColor)
+                                .tint(.white)
+                                
+                      
+                        }
+                    }
+                    Divider()
+                        .padding(.bottom, 5)
+                    TextField(L10n.personGroup, text: $group)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.bottom, 10)
+                       
+                }
+            }
+        }
+    }
+}
 
 #Preview {
     InputPersonView(person: nil)
