@@ -10,35 +10,36 @@ import SwiftUI
 struct PersonImageView: View {
     
     public var image: UIImage?
+    public var size: CGFloat
     
     var body: some View {
         if let image = image {
             Image(uiImage: image)
                 .resizable()
-                .frame(width: 100, height: 100)
-                .clipShape(RoundedRectangle(cornerRadius: 100))
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: size))
                 .overlay{
-                    RoundedRectangle(cornerRadius: 100)
-                            .stroke(style: StrokeStyle(lineWidth: 5))
-                            .frame(width: 100)
+                    RoundedRectangle(cornerRadius: size)
+                        .stroke(style: StrokeStyle(lineWidth: size * 0.05))
+                            .frame(width: size)
                             .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
-                }.padding(.top, 20)
+                }
                 
         } else {
             Asset.Images.person.swiftUIImage
                 .resizable()
-                .frame(width: 100, height: 100)
-                .clipShape(RoundedRectangle(cornerRadius: 100))
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: size))
                 .overlay{
-                    RoundedRectangle(cornerRadius: 100)
-                            .stroke(style: StrokeStyle(lineWidth: 5))
-                            .frame(width: 100)
+                    RoundedRectangle(cornerRadius: size)
+                            .stroke(style: StrokeStyle(lineWidth: size * 0.05))
+                            .frame(width: size)
                             .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
-                }.padding(.top, 20)
+                }
         }
     }
 }
 
 #Preview {
-    PersonImageView(image: nil)
+    PersonImageView(image: nil, size: 100)
 }

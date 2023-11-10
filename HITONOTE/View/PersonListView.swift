@@ -11,7 +11,7 @@ import PhotosUI
 struct PersonListView: View {
     
     @ObservedObject var repository = RepositoryViewModel.shared
-    
+    private var imageFileManager = ImageFileManager()
     @State var selectedGroup: String = ""
     @State var isPresented = false
     
@@ -23,18 +23,21 @@ struct PersonListView: View {
             if repository.groups.count != 0 {
                 Picker(selection: $selectedGroup, label: Text(L10n.personGroup)) {
                     ForEach(repository.groups, id: \.self) { group in
-                        
-                      Text(group)
+                        Text(group)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
             }
             
             List {
                 ForEach(repository.people) { person in
+                    
                     NavigationLink {
                         DetailPersonView(person: person)
                     } label: {
-                        Text(person.name)
+                        HStack {
+                            PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 30)
+                            Text(person.name)
+                        }
                     }
                     
                 }

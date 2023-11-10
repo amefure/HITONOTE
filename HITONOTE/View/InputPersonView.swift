@@ -68,6 +68,7 @@ struct InputPersonView: View {
                         id: person.id,
                         name: name,
                         ruby: ruby, 
+                        gender: gender,
                         character: character,
                         work: work,
                         birthday: birthday,
@@ -93,6 +94,7 @@ struct InputPersonView: View {
                     repository.createPerson(
                         name: name,
                         ruby: ruby,
+                        gender: gender,
                         character: character,
                         work: work,
                         birthday: birthday,
@@ -111,8 +113,8 @@ struct InputPersonView: View {
             
             ZStack {
                 
-                PersonImageView(image: image)
-                
+                PersonImageView(image: image, size: 100)
+                    .padding(.top, 20)
                 Button {
                     isAlert = true
                 } label: {
@@ -121,9 +123,7 @@ struct InputPersonView: View {
                         .background(Asset.Colors.opacityGray.swiftUIColor)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 100))
-                        .padding(.top, 20)
-                }
-                
+                }.padding(.top, 20)
             }
             
             

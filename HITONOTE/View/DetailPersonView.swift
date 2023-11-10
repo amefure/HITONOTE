@@ -30,7 +30,8 @@ struct DetailPersonView: View {
                 isPresented = true
             })
                         
-            PersonImageView(image: imageFileManager.loadImage(name: person.imagePath))
+            PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
+                .padding(.top, 20)
             
             VStack {
                 Text(person.name)
