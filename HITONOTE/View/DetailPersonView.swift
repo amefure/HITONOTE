@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DetailPersonView: View {
     
-    private var dateFormatManager = DateFormatManager()
-    private var imageFileManager = ImageFileManager()
+    private let dateFormatManager = DateFormatManager()
+    private let imageFileManager = ImageFileManager()
     @ObservedObject var repository = RepositoryViewModel.shared
     
     init(person: Person) {

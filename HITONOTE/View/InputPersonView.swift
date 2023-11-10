@@ -11,7 +11,7 @@ struct InputPersonView: View {
     
     @ObservedObject var repository = RepositoryViewModel.shared
     
-    private var imageFileManager = ImageFileManager()
+    private let imageFileManager = ImageFileManager()
     
     // Updateデータ受け取り用
     public var person: Person?
@@ -299,6 +299,7 @@ struct CustomBirthdayPickerView: View {
     @Binding var birthday: Date?
     @State var date: Date = Date()
     @State var isShowDatePicker: Bool = false
+    private let dateFormatManager = DateFormatManager()
     
     var body: some View {
         VStack {
@@ -320,8 +321,17 @@ struct CustomBirthdayPickerView: View {
                 }
                 isShowDatePicker.toggle()
             } label: {
-                Text(isShowDatePicker ? "決定" :  "誕生日を設定する" )
-            }
+                if let birthday = birthday {
+                    Text(isShowDatePicker ? "決定" : dateFormatManager.getString(date: birthday))
+                } else {
+                    Text(isShowDatePicker ? "決定" : "誕生日を設定する")
+                    if !isShowDatePicker {
+                        Image(systemName: "chevron.up.chevron.down")
+                            .font(.system(size: 13))
+                    }
+                }
+            }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                .fontWeight(.none)
             if isShowDatePicker {
                 DatePicker(selection: $date,
                            displayedComponents: DatePickerComponents.date,
@@ -355,20 +365,20 @@ struct CustomGroupPickerView: View {
                         
                         if groups.count != 0 {
                             
-                            Menu(L10n.personGroup) {
-                                ForEach(groups, id: \.self) { group in
-                                    Button {
-                                        self.group = group
-                                    } label: {
-                                        Text(group)
+                            HStack {
+                                Menu(L10n.personGroup) {
+                                    ForEach(groups, id: \.self) { group in
+                                        Button {
+                                            self.group = group
+                                        } label: {
+                                            Text(group)
+                                        }
                                     }
                                 }
-                            }.padding(5)
-                                .border(Asset.Colors.textColor.swiftUIColor)
-                                .background(Asset.Colors.opacityGray.swiftUIColor)
-                                .tint(.white)
-                                
-                      
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .font(.system(size: 13))
+                            }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                                .fontWeight(.none)
                         }
                     }
                     Divider()
@@ -376,7 +386,6 @@ struct CustomGroupPickerView: View {
                     TextField(L10n.personGroup, text: $group)
                         .textFieldStyle(.roundedBorder)
                         .padding(.bottom, 10)
-                       
                 }
             }
         }

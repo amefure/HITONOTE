@@ -11,7 +11,7 @@ import PhotosUI
 struct PersonListView: View {
     
     @ObservedObject var repository = RepositoryViewModel.shared
-    private var imageFileManager = ImageFileManager()
+    private let imageFileManager = ImageFileManager()
     @State var selectedGroup: String = ""
     @State var isShowInput = false
     @State var isShowSetting = false
