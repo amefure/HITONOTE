@@ -22,6 +22,7 @@ struct InputPersonView: View {
     
     @State var name: String = ""           // 名前
     @State var ruby: String = ""           // ルビ
+    @State var gender: String = ""         // 性別
     @State var work: String = ""           // 職業
     @State var character: String = ""      // こんな人
     @State var birthday: Date = Date()     // 誕生日
@@ -105,7 +106,7 @@ struct InputPersonView: View {
                 
                 successAlert = true
                 
-            })
+            }).padding(.top ,30)
             
             
             ZStack {
@@ -134,6 +135,8 @@ struct InputPersonView: View {
                     
                     CustomInputView(label: L10n.personRuby, text: $ruby)
                     
+                    CustomInputView(label: L10n.personGender, text: $gender)
+                    
                     CustomInputView(label: L10n.personCharacter, text: $character)
                     
                     CustomInputView(label: L10n.personWork, text: $work)
@@ -148,7 +151,47 @@ struct InputPersonView: View {
 
                     CustomInputView(label: L10n.personMail, text: $mail)
                     
-                    CustomInputView(label: L10n.personGroup, text: $group)
+                    
+                    
+                    
+                    HStack {
+                     
+                        VStack {
+                            HStack {
+                                Text(L10n.personGroup)
+                                    .padding(.leading, 5)
+                                Spacer()
+                                
+                                if repository.groups.count != 0 {
+                                    
+                                    Menu(L10n.personGroup) {
+                                        ForEach(repository.groups, id: \.self) { group in
+                                            Button {
+                                                self.group = group
+                                            } label: {
+                                                Text(group)
+                                            }
+                                        }
+                                    }.padding(5)
+                                        .border(Asset.Colors.textColor.swiftUIColor)
+                                        .background(Asset.Colors.opacityGray.swiftUIColor)
+                                        .tint(.white)
+                                        
+                              
+                                }
+                            }
+                            Divider()
+                                .padding(.bottom, 5)
+                            TextField(L10n.personGroup, text: $group)
+                                .textFieldStyle(.roundedBorder)
+                                .padding(.bottom, 10)
+                                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+                        }
+//                        CustomInputView(label: L10n.personGroup, text: $group)
+                    
+                        
+                    }
+                    
                     
                     CustomInputView(label: L10n.personMemo, text: $memo)
                 
@@ -195,7 +238,7 @@ struct CustomInputView: View {
     @Binding var text: String
     
     var body: some View {
-        Group {
+        VStack {
             HStack {
                 Text(label)
                     .padding(.leading, 5)

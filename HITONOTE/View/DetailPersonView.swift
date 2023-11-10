@@ -17,7 +17,7 @@ struct DetailPersonView: View {
         self.person = person
     }
     
-    public var person: Person
+    var person: Person
     
     @State var isPresented = false
     
@@ -29,8 +29,7 @@ struct DetailPersonView: View {
             HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: { dismiss() }, trailingAction: {
                 isPresented = true
             })
-            
-            
+                        
             PersonImageView(image: imageFileManager.loadImage(name: person.imagePath))
             
             VStack {
@@ -73,10 +72,9 @@ struct DetailPersonView: View {
                 .foregroundStyle(.white)
                 
             
-        }.navigationDestination(isPresented: $isPresented) {
+        }.sheet(isPresented: $isPresented, content: {
             InputPersonView(person: person)
-        }
-        .navigationBarBackButtonHidden()
+        }).navigationBarBackButtonHidden()
             .navigationBarHidden(true)
     }
 }

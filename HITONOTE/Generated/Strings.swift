@@ -20,6 +20,8 @@ internal enum L10n {
   internal static let personBirthday = L10n.tr("Localizable", "person_birthday", fallback: "誕生日")
   /// こんな人
   internal static let personCharacter = L10n.tr("Localizable", "person_character", fallback: "こんな人")
+  /// 性別
+  internal static let personGender = L10n.tr("Localizable", "person_gender", fallback: "性別")
   /// グループ
   internal static let personGroup = L10n.tr("Localizable", "person_group", fallback: "グループ")
   /// 画像

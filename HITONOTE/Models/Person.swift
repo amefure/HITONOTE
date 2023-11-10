@@ -12,6 +12,7 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""           // 名前
     @Persisted var ruby: String = ""           // ルビ
+    @Persisted var gender: String = ""         // 性別
     @Persisted var character: String = ""      // こんな人
     @Persisted var work: String = ""           // 職業
     @Persisted var birthday: Date = Date()     // 誕生日
@@ -26,6 +27,7 @@ class Person: Object, ObjectKeyIdentifiable {
         let person = Person()
         person.name = "吉田　真紘"
         person.ruby = "よしだ　まひろ"
+        person.gender = "女性"
         person.work = "デザイナー"
         person.birthday = Date()
         person.tell = "090-XXXX-XXXX"

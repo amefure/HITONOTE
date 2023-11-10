@@ -12,10 +12,22 @@ struct PersonListView: View {
     
     @ObservedObject var repository = RepositoryViewModel.shared
     
+    @State var selectedGroup: String = ""
+    @State var isPresented = false
+    
     var body: some View {
         NavigationStack {
             
             HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: {}, trailingAction: {})
+            
+            if repository.groups.count != 0 {
+                Picker(selection: $selectedGroup, label: Text(L10n.personGroup)) {
+                    ForEach(repository.groups, id: \.self) { group in
+                        
+                      Text(group)
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+            }
             
             List {
                 ForEach(repository.people) { person in
@@ -28,8 +40,8 @@ struct PersonListView: View {
                 }
             }
             
-            NavigationLink {
-                InputPersonView(person: nil)
+            Button {
+                isPresented = true
             } label: {
                 Text("Input")
             }
@@ -44,8 +56,9 @@ struct PersonListView: View {
 
         }.onAppear {
             repository.readAllPerson()
-        }
-        .tint(Asset.Colors.themaGreen.swiftUIColor)
+        }.sheet(isPresented: $isPresented, content: {
+            InputPersonView(person: nil)
+        }).tint(Asset.Colors.themaGreen.swiftUIColor)
     }
 
 }
@@ -53,8 +66,3 @@ struct PersonListView: View {
 #Preview {
     PersonListView()
 }
-
-
-
-
-

@@ -14,11 +14,12 @@ class RealmRepository {
     private let realm = try! Realm()
     
     // MARK: - Person
-    public func createPerson(name: String, ruby: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func createPerson(name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let person = Person()
             person.name = name
             person.ruby = ruby
+            person.gender = gender
             person.character = character
             person.work = work
             person.birthday = birthday
@@ -31,12 +32,13 @@ class RealmRepository {
         }
     }
     
-    public func updatePerson(id: ObjectId, name: String, ruby: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let people = realm.objects(Person.self)
             if let person = people.where({ $0.id == id }).first {
                 person.name = name
                 person.ruby = ruby
+                person.gender = gender
                 person.character = character
                 person.work = work
                 person.birthday = birthday
@@ -50,8 +52,11 @@ class RealmRepository {
     }
     
     
-    private func readSinglePerson(id: ObjectId) -> Person {
-        return realm.objects(Person.self).where({ $0.id == id }).first!
+    private func readSinglePerson(id: ObjectId) -> Person? {
+        if let person = realm.objects(Person.self).where({ $0.id == id }).first {
+            return person
+        }
+        return nil
     }
     
     public func readAllPerson() -> Results<Person> {
@@ -64,8 +69,9 @@ class RealmRepository {
     
     public func deletePerson(id: ObjectId) {
         try! self.realm.write{
-            let result = readSinglePerson(id: id)
-            self.realm.delete(result)
+            if let result = readSinglePerson(id: id) {
+                self.realm.delete(result)
+            }
         }
     }
     // MARK: - Person

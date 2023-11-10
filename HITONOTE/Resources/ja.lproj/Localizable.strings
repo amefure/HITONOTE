@@ -10,6 +10,7 @@
 // MARK: - Person
 "person_name" = "名前";
 "person_ruby" = "ふりがな";
+"person_gender" = "性別";
 "person_character" = "こんな人";
 "person_work" = "職業";
 "person_birthday" = "誕生日";
