@@ -13,12 +13,16 @@ struct PersonListView: View {
     @ObservedObject var repository = RepositoryViewModel.shared
     private var imageFileManager = ImageFileManager()
     @State var selectedGroup: String = ""
-    @State var isPresented = false
+    @State var isShowInput = false
+    @State var isShowSetting = false
     
     var body: some View {
         NavigationStack {
             
-            HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: {}, trailingAction: {})
+            HeaderView(leadingIcon: "gearshape.fill", trailingIcon: "plus", leadingAction: { isShowSetting = true }, trailingAction: { isShowInput = true })
+                .navigationDestination(isPresented: $isShowSetting) {
+                    SettingView()
+                }
             
             if repository.groups.count != 0 {
                 Picker(selection: $selectedGroup, label: Text(L10n.personGroup)) {
@@ -45,24 +49,11 @@ struct PersonListView: View {
             }.listStyle(.grouped)
                 .scrollContentBackground(.hidden)
                 .background(.clear)
-            
-            Button {
-                isPresented = true
-            } label: {
-                Text("Input")
-            }
-            
-            NavigationLink {
-                SettingView()
-            } label: {
-                Text("Setting")
-            }
-
-            
+                    
 
         }.onAppear {
             repository.readAllPerson()
-        }.sheet(isPresented: $isPresented, content: {
+        }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: nil)
         }).tint(Asset.Colors.themaGreen.swiftUIColor)
     }

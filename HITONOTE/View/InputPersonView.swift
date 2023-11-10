@@ -25,12 +25,16 @@ struct InputPersonView: View {
     @State var gender: String = ""         // 性別
     @State var work: String = ""           // 職業
     @State var character: String = ""      // こんな人
-    @State var birthday: Date = Date()     // 誕生日
+    @State var birthday: Date? = nil     // 誕生日
     @State var tell: String = ""           // 電話
     @State var mail: String = ""           // メール
     @State var group: String = ""          // グループ
     @State var memo: String = ""           // メモ
     
+    @State var date: Date = Date()     // 誕生日
+    
+    
+    @State var isShowDatePicker: Bool = false
     @State var image: UIImage?
     @State var isAlert: Bool = false
     @State var successAlert: Bool = false
@@ -144,19 +148,37 @@ struct InputPersonView: View {
                     
                     CustomInputView(label: L10n.personGender, text: $gender)
                     
-                    CustomInputView(label: L10n.personCharacter, text: $character)
+                    CustomInputEditorView(label: L10n.personCharacter, text: $character)
                     
                     CustomInputView(label: L10n.personWork, text: $work)
                     
                     CustomInputView(label: L10n.personTell, text: $tell)
                     
-                    DatePicker(selection: $birthday,
-                               displayedComponents: DatePickerComponents.date,
-                               label: { Text("誕生日") })
-                    .environment(\.locale, Locale(identifier: "ja_JP"))
-                    .environment(\.calendar, Calendar(identifier: .gregorian))
+                    CustomInputView(label: L10n.personTell, text: $tell)
+                    
+                    
+                    Button {
+                        /// 決定ボタン押下時
+                        if isShowDatePicker {
+                            birthday = date
+                        }
+                        isShowDatePicker.toggle()
+                    } label: {
+                        Text(isShowDatePicker ? "決定" :  "誕生日を設定する" )
+                    }
+                    if isShowDatePicker {
+                        DatePicker(selection: $date,
+                                   displayedComponents: DatePickerComponents.date,
+                                   label: { Text("誕生日") })
+                        .environment(\.locale, Locale(identifier: "ja_JP"))
+                        .environment(\.calendar, Calendar(identifier: .gregorian))
+                        .datePickerStyle(.wheel)
+                    }
+                    
 
                     CustomInputView(label: L10n.personMail, text: $mail)
+                    
+
                     
                     
                     
@@ -199,7 +221,7 @@ struct InputPersonView: View {
                     }
                     
                     
-                    CustomInputView(label: L10n.personMemo, text: $memo)
+                    CustomInputEditorView(label: L10n.personMemo, text: $memo)
                 
                 }
             }.padding(20)
@@ -225,7 +247,7 @@ struct InputPersonView: View {
                 image = imageFileManager.loadImage(name: person.imagePath)
                 memo = person.memo
             }
-        }.alert("「\(name)」さんを登録しました。", isPresented: $successAlert) {
+        }.alert(person == nil ? "「\(name)」さんを登録しました。" : "データを更新しました。", isPresented: $successAlert) {
             Button("OK") {
                 dismiss()
             }
@@ -249,15 +271,50 @@ struct CustomInputView: View {
         VStack {
             HStack {
                 Text(label)
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
                     .padding(.leading, 5)
                 Spacer()
             }
+            
             Divider()
                 .padding(.bottom, 5)
+            
             TextField(label, text: $text)
                 .textFieldStyle(.roundedBorder)
                 .padding(.bottom, 10)
                 .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+        }
+    }
+}
+
+struct CustomInputEditorView: View {
+    
+    public var label: String
+    @Binding var text: String
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(label)
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
+                    .padding(.leading, 5)
+                Spacer()
+            }
+            
+            Divider()
+                .padding(.bottom, 5)
+            
+            TextEditor(text: $text)
+                .frame(height: 100)
+                .padding(.bottom, 10)
+                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 10)
+                            .stroke(style: StrokeStyle(lineWidth: 1))
+                            .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
+                }
         }
     }
 }

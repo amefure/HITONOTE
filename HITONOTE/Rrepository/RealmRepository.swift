@@ -14,7 +14,7 @@ class RealmRepository {
     private let realm = try! Realm()
     
     // MARK: - Person
-    public func createPerson(name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func createPerson(name: String, ruby: String, gender: String, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let person = Person()
             person.name = name
@@ -32,7 +32,7 @@ class RealmRepository {
         }
     }
     
-    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: String, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let people = realm.objects(Person.self)
             if let person = people.where({ $0.id == id }).first {

@@ -53,6 +53,7 @@ struct DetailPersonView: View {
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .fontWeight(.bold)
+                        .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
                         
                 }
                             
@@ -74,30 +75,35 @@ struct DetailPersonView: View {
             ScrollView {
                 
                     
-                    CustomPersonItemView(label: L10n.personCharacter, value: person.character)
+                CustomPersonItemView(label: L10n.personCharacter, value: person.character)
+                
+                CustomPersonItemView(label: L10n.personWork, value: person.work)
+                
+                if let birthday = person.birthday {
+                    CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: birthday))
+                }
+                
+                CustomPersonItemView(label: L10n.personTell, value: person.tell)
+                CustomPersonItemView(label: L10n.personMail, value: person.mail)
+                CustomPersonItemView(label: L10n.personMemo, value: person.memo)
                     
-                    CustomPersonItemView(label: L10n.personWork, value: person.work)
-                    
-                    CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: person.birthday))
-                    
-                    CustomPersonItemView(label: L10n.personTell, value: person.tell)
-                    CustomPersonItemView(label: L10n.personMail, value: person.mail)
-                    CustomPersonItemView(label: L10n.personMemo, value: person.memo)
+                
+                Spacer()
                     
                     
-                    
-                    Button {
-                        repository.deletePerson(id: person.id)
-                    } label: {
-                        Image(systemName: "figure.wave")
-                        Text("削除")
-                    }.padding()
-                    .frame(width: 200)
-                    .background(Asset.Colors.themaRed.swiftUIColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .foregroundStyle(.white)
-                    
-                    Spacer()
+                Button {
+                    repository.deletePerson(id: person.id)
+                } label: {
+                    Text("削除")
+                }.padding(.vertical, 7)
+                .frame(width: 100)
+                .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 8)
+                            .stroke(style: StrokeStyle(lineWidth: 1))
+                            .frame(width: 100)
+                            .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
+                }.padding(.top , 20)
                 
             }.padding(20)
                 .frame(width: UIScreen.main.bounds.width)
@@ -123,6 +129,8 @@ struct CustomPersonItemView: View {
             if !value.isEmpty {
                 HStack {
                     Text(label)
+                        .font(.system(size: 13))
+                        .fontWeight(.light)
                         .padding(.leading, 5)
                     Spacer()
                 }

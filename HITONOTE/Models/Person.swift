@@ -15,7 +15,7 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted var gender: String = ""         // 性別
     @Persisted var character: String = ""      // こんな人
     @Persisted var work: String = ""           // 職業
-    @Persisted var birthday: Date = Date()     // 誕生日
+    @Persisted var birthday: Date? = nil     // 誕生日
     @Persisted var tell: String = ""           // 電話
     @Persisted var mail: String = ""           // メール
     @Persisted var group: String = ""          // グループ

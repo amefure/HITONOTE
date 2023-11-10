@@ -17,53 +17,56 @@ struct SettingView: View {
         
         HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
         
-        Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
-            NavigationLink {
-                DisplayItemControlView()
-            } label: {
-                Text("Display")
-            }
-        }
-        
-        Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
-            //            RewardButtonView()
-            HStack {
-                Image(systemName: "bag")
-                Text(L10n.settingCapacityText(20))
-            }
-        }
-        
-        // MARK: - (3)
-        
-        Section(header: Text("Link")) {
-            // 1:レビューページ
-            Link(destination: viewModel.reviewUrl, label: {
-                HStack {
-                    Image(systemName: "hand.thumbsup")
-                    Text(L10n.settingReviewTitle)
-                }.foregroundColor(.white)
-            })
-            
-            // 2:シェアボタン
-            Button(action: {
-                viewModel.shareApp()
-            }) {
-                HStack {
-                    Image(systemName: "star.bubble")
-                    Text(L10n.settingRecommendTitle)
-                }.foregroundColor(.white)
+        List {
+            Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
+                NavigationLink {
+                    DisplayItemControlView()
+                } label: {
+                    Text("Display")
+                }
             }
             
-            // 3:利用規約とプライバシーポリシー
-            Link(destination: viewModel.termsUrl, label: {
+            Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
+                //            RewardButtonView()
                 HStack {
-                    Image(systemName: "note.text")
-                    Text(L10n.settingTermsOfServiceTitle)
-                    Image(systemName: "link").font(.caption)
-                }.foregroundColor(.white)
-            })
+                    Image(systemName: "bag")
+                    Text(L10n.settingCapacityText(20))
+                }
+            }
             
-            Spacer()
+            // MARK: - (3)
+            
+            Section(header: Text("Link")) {
+                // 1:レビューページ
+                Link(destination: viewModel.reviewUrl, label: {
+                    HStack {
+                        Image(systemName: "hand.thumbsup")
+                        Text(L10n.settingReviewTitle)
+                    }.foregroundColor(.white)
+                })
+                
+                // 2:シェアボタン
+                Button(action: {
+                    viewModel.shareApp()
+                }) {
+                    HStack {
+                        Image(systemName: "star.bubble")
+                        Text(L10n.settingRecommendTitle)
+                    }.foregroundColor(.white)
+                }
+                
+                // 3:利用規約とプライバシーポリシー
+                Link(destination: viewModel.termsUrl, label: {
+                    HStack {
+                        Image(systemName: "note.text")
+                        Text(L10n.settingTermsOfServiceTitle)
+                        Image(systemName: "link").font(.caption)
+                    }.foregroundColor(.white)
+                })
+                       
+        }.scrollContentBackground(.hidden)
+                .background(.clear)
+       
         }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
     }

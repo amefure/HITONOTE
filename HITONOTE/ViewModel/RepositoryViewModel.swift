@@ -23,12 +23,12 @@ class RepositoryViewModel: ObservableObject {
         groups = people.filter({ $0.group != "" }).map({ $0.group })
     }
     
-    public func createPerson(name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func createPerson(name: String, ruby: String, gender: String, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         repository.createPerson(name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
     
-    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: String, character: String, work: String, birthday: Date, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: String, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
         repository.updatePerson(id: id, name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
