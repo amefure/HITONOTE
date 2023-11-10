@@ -26,22 +26,51 @@ struct DetailPersonView: View {
     var body: some View {
         VStack {
         
-            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: { dismiss() }, trailingAction: {
-                isPresented = true
-            })
-                        
-            PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
-                .padding(.top, 20)
-            
             VStack {
-                Text(person.name)
-                    .font(.system(size: 30))
-                Text(person.ruby)
-                    .font(.system(size: 15))
-            }.fontWeight(.bold)
-                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+                
+                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: { dismiss() }, trailingAction: {
+                    isPresented = true
+                }, isShowLogo: false)
+                .tint(.white)
+                
+                /// アイコンとグループ
+                HStack {
+                    
+                    Spacer()
+                        .frame(width: 100)
+                    
+                    Spacer()
+                        
+                    PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
+                        .padding(.top, 20)
+                    
+                    Spacer()
+                    
+                    Text(person.group)
+                        .padding(8)
+                        .frame(width: 100)
+                        .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .fontWeight(.bold)
+                        
+                }
+                            
+                /// 名前とふりがな
+                VStack {
+                    Text(person.name)
+                        .font(.system(size: 30))
+                    Text(person.ruby)
+                        .font(.system(size: 15))
+                }.fontWeight(.bold)
+                        .foregroundStyle(.white)
+                
+            }.padding(.bottom)
+                .background(Asset.Colors.themaGreen.swiftUIColor)
                 
             
+            
+            /// 情報
             ScrollView {
                 
                     
@@ -55,23 +84,27 @@ struct DetailPersonView: View {
                     CustomPersonItemView(label: L10n.personMail, value: person.mail)
                     CustomPersonItemView(label: L10n.personMemo, value: person.memo)
                     
-                    Text(person.group)
+                    
                     
                     Button {
                         repository.deletePerson(id: person.id)
                     } label: {
                         Image(systemName: "figure.wave")
                         Text("削除")
-                    }
+                    }.padding()
+                    .frame(width: 200)
+                    .background(Asset.Colors.themaRed.swiftUIColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .foregroundStyle(.white)
                     
                     Spacer()
                 
-            }.frame(width: UIScreen.main.bounds.width)
-                .padding(20)
-                .background(Asset.Colors.themaGreen.swiftUIColor)
+            }.padding(20)
+                .frame(width: UIScreen.main.bounds.width)
+                .background(.white)
                 .fontWeight(.bold)
-                .foregroundStyle(.white)
-                
+                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+
             
         }.sheet(isPresented: $isPresented, content: {
             InputPersonView(person: person)
@@ -87,15 +120,19 @@ struct CustomPersonItemView: View {
     
     var body: some View {
         Group {
-            HStack {
-                Text(label)
-                    .padding(.leading, 5)
-                Spacer()
+            if !value.isEmpty {
+                HStack {
+                    Text(label)
+                        .padding(.leading, 5)
+                    Spacer()
+                }
+                Divider()
+                    .padding(.bottom, 5)
+                Text(value)
+                    .font(.system(size: 18))
+                    .padding(.bottom, 10)
+                    .textSelection(.enabled)
             }
-            Divider()
-                .padding(.bottom, 5)
-            Text(value.isEmpty ? "-" : value)
-                .padding(.bottom, 10)
         }
     }
 }

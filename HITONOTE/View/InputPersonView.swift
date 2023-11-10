@@ -41,90 +41,97 @@ struct InputPersonView: View {
     var body: some View {
         VStack {
             
-            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
-                
-                guard !name.isEmpty else {
-                    validationAlert = true
-                    return
-                }
             
-                if let person = person {
+            VStack {
+                
+                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
                     
-                    var imgName = person.imagePath
-                    
-                    if imgName == "" {
-                        imgName = UUID().uuidString   // 画像のファイル名を構築
+                    guard !name.isEmpty else {
+                        validationAlert = true
+                        return
                     }
-                    
-                    if let image = image {
-                        let result = imageFileManager.saveImage(name: imgName, image: image)
-                        if result {
-                            print("保存成功")
+                
+                    if let person = person {
+                        
+                        var imgName = person.imagePath
+                        
+                        if imgName == "" {
+                            imgName = UUID().uuidString   // 画像のファイル名を構築
                         }
-                    }
-                    
-                    /// 更新処理
-                    repository.updatePerson(
-                        id: person.id,
-                        name: name,
-                        ruby: ruby, 
-                        gender: gender,
-                        character: character,
-                        work: work,
-                        birthday: birthday,
-                        tell: tell,
-                        mail: mail,
-                        group: group,
-                        imagePath: imgName,
-                        memo: memo)
-                    
-                } else {
-                    /// 新規登録
-                    var imgName = ""
-                    
-                    /// 画像がセットされていれば画像を表示
-                    if let image = image {
-                        imgName = UUID().uuidString   // 画像のファイル名を構築
-                        let result = imageFileManager.saveImage(name: imgName, image: image)
-                        if result {
-                            print("保存成功")
+                        
+                        if let image = image {
+                            let result = imageFileManager.saveImage(name: imgName, image: image)
+                            if result {
+                                print("保存成功")
+                            }
                         }
+                        
+                        /// 更新処理
+                        repository.updatePerson(
+                            id: person.id,
+                            name: name,
+                            ruby: ruby,
+                            gender: gender,
+                            character: character,
+                            work: work,
+                            birthday: birthday,
+                            tell: tell,
+                            mail: mail,
+                            group: group,
+                            imagePath: imgName,
+                            memo: memo)
+                        
+                    } else {
+                        /// 新規登録
+                        var imgName = ""
+                        
+                        /// 画像がセットされていれば画像を表示
+                        if let image = image {
+                            imgName = UUID().uuidString   // 画像のファイル名を構築
+                            let result = imageFileManager.saveImage(name: imgName, image: image)
+                            if result {
+                                print("保存成功")
+                            }
+                        }
+                        
+                        repository.createPerson(
+                            name: name,
+                            ruby: ruby,
+                            gender: gender,
+                            character: character,
+                            work: work,
+                            birthday: birthday,
+                            tell: tell,
+                            mail: mail,
+                            group: group,
+                            imagePath: imgName,
+                            memo: memo)
+                        
                     }
                     
-                    repository.createPerson(
-                        name: name,
-                        ruby: ruby,
-                        gender: gender,
-                        character: character,
-                        work: work,
-                        birthday: birthday,
-                        tell: tell,
-                        mail: mail,
-                        group: group,
-                        imagePath: imgName,
-                        memo: memo)
+                    successAlert = true
                     
+                }, isShowLogo: false)
+                .padding(.top ,30)
+                .tint(.white)
+                
+                
+                ZStack {
+                    
+                    PersonImageView(image: image, size: 100)
+                        .padding(.top, 20)
+                    Button {
+                        isAlert = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .frame(width: 100, height: 100)
+                            .background(Asset.Colors.opacityGray.swiftUIColor)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 100))
+                    }.padding(.top, 20)
                 }
-                
-                successAlert = true
-                
-            }).padding(.top ,30)
-            
-            
-            ZStack {
-                
-                PersonImageView(image: image, size: 100)
-                    .padding(.top, 20)
-                Button {
-                    isAlert = true
-                } label: {
-                    Image(systemName: "plus")
-                        .frame(width: 100, height: 100)
-                        .background(Asset.Colors.opacityGray.swiftUIColor)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 100))
-                }.padding(.top, 20)
-            }
+            }.padding(.bottom)
+                .background(Asset.Colors.themaGreen.swiftUIColor)
             
             
             ScrollView {
@@ -185,9 +192,8 @@ struct InputPersonView: View {
                             TextField(L10n.personGroup, text: $group)
                                 .textFieldStyle(.roundedBorder)
                                 .padding(.bottom, 10)
-                                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+                               
                         }
-//                        CustomInputView(label: L10n.personGroup, text: $group)
                     
                         
                     }
@@ -197,9 +203,9 @@ struct InputPersonView: View {
                 
                 }
             }.padding(20)
-            .background(Asset.Colors.themaGreen.swiftUIColor)
-                .foregroundStyle(.white)
+                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
                 .fontWeight(.bold)
+            
         }.sheet(isPresented: $isAlert) {
             
         } content: {
@@ -209,6 +215,8 @@ struct InputPersonView: View {
             if let person = person {
                 name = person.name
                 ruby = person.ruby
+                gender = person.gender
+                character = person.character
                 work = person.work
                 birthday = person.birthday
                 tell = person.tell

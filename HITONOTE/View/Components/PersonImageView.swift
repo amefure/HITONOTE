@@ -16,26 +16,28 @@ struct PersonImageView: View {
         if let image = image {
             Image(uiImage: image)
                 .resizable()
+                .background(.white)
                 .frame(width: size, height: size)
                 .clipShape(RoundedRectangle(cornerRadius: size))
                 .overlay{
                     RoundedRectangle(cornerRadius: size)
                         .stroke(style: StrokeStyle(lineWidth: size * 0.05))
                             .frame(width: size)
-                            .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
-                }
+                            .foregroundStyle(.white)
+                }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
                 
         } else {
             Asset.Images.person.swiftUIImage
                 .resizable()
+                .background(.white)
                 .frame(width: size, height: size)
                 .clipShape(RoundedRectangle(cornerRadius: size))
                 .overlay{
                     RoundedRectangle(cornerRadius: size)
                             .stroke(style: StrokeStyle(lineWidth: size * 0.05))
                             .frame(width: size)
-                            .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
-                }
+                            .foregroundStyle(.white)
+                }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
         }
     }
 }

@@ -37,11 +37,14 @@ struct PersonListView: View {
                         HStack {
                             PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 30)
                             Text(person.name)
+                                .fontWeight(.bold)
                         }
                     }
                     
                 }
-            }
+            }.listStyle(.grouped)
+                .scrollContentBackground(.hidden)
+                .background(.clear)
             
             Button {
                 isPresented = true

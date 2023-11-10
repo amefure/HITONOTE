@@ -9,10 +9,12 @@ import SwiftUI
 
 struct HeaderView: View {
     
+   
     public var leadingIcon: String
     public var trailingIcon: String
     public var leadingAction: () -> Void
     public var trailingAction: () -> Void
+    public var isShowLogo: Bool = true
     
     var body: some View {
         HStack {
@@ -31,10 +33,13 @@ struct HeaderView: View {
             
             Spacer()
             
-            Asset.Images.hitonoteLogo.swiftUIImage
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100)
+            if isShowLogo {
+                Asset.Images.hitonoteLogo.swiftUIImage
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 140)
+                
+            }
             
             Spacer()
             
