@@ -128,6 +128,8 @@ struct DetailPersonView: View {
             } label: {
                 Text("削除")
             }
+        }.onAppear {
+            userDefaultsRepository.setDisplayAllItem()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: person)
         }).navigationBarBackButtonHidden()
@@ -137,9 +139,9 @@ struct DetailPersonView: View {
 
 struct CustomPersonItemView: View {
     
-    public var label: String
-    public var value: String
-    public var isShow: Bool
+    public let label: String
+    public let value: String
+    public let isShow: Bool
     
     var body: some View {
         if isShow {

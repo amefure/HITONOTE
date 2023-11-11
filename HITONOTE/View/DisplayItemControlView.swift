@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DisplayItemControlView: View {
 
-    private var viewModel = DisplayItemControlViewModel()
+    private let viewModel = DisplayItemControlViewModel()
     
     @State private var isRuby: Bool = true          // ふりがな
     @State private var isGender: Bool = true        // 性別

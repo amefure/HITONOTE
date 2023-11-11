@@ -213,9 +213,9 @@ struct InputPersonView: View {
 // MARK: - 入力要素
 struct CustomInputView: View {
     
-    public var label: String
+    public let label: String
     @Binding var text: String
-    public var isShow: Bool
+    public let isShow: Bool
     
     var body: some View {
         if isShow {
@@ -243,9 +243,9 @@ struct CustomInputView: View {
 // MARK: - Editor入力要素
 struct CustomInputEditorView: View {
     
-    public var label: String
+    public let label: String
     @Binding var text: String
-    public var isShow: Bool
+    public let isShow: Bool
     
     var body: some View {
         if isShow {
@@ -280,7 +280,7 @@ struct CustomInputEditorView: View {
 struct CustomGenderPickerView: View {
     
     @Binding var gender: Gender
-    public var isShow: Bool
+    public let isShow: Bool
     
     var body: some View {
         if isShow {
@@ -311,7 +311,7 @@ struct CustomBirthdayPickerView: View {
     @Binding var birthday: Date?
     @State var date: Date = Date()
     @State var isShowDatePicker: Bool = false
-    public var isShow: Bool
+    public let isShow: Bool
     
     private let dateFormatManager = DateFormatManager()
     
@@ -366,8 +366,8 @@ struct CustomBirthdayPickerView: View {
 struct CustomGroupPickerView: View {
     
     @Binding var group: String
-    let groups: Array<String>
-    public var isShow: Bool
+    public let groups: Array<String>
+    public let isShow: Bool
     
     var body: some View {
         if isShow {

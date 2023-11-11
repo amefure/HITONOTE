@@ -12,10 +12,6 @@ import Foundation
 internal enum L10n {
   /// https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771
   internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771")
-  /// 広告を視聴できるのは1日に1回までです。
-  internal static let dialogAdmobText = L10n.tr("Localizable", "dialog_admob_text", fallback: "広告を視聴できるのは1日に1回までです。")
-  /// お知らせ
-  internal static let dialogAdmobTitle = L10n.tr("Localizable", "dialog_admob_title", fallback: "お知らせ")
   /// 男性
   internal static let genderMan = L10n.tr("Localizable", "gender_man", fallback: "男性")
   /// その他
@@ -49,19 +45,6 @@ internal enum L10n {
   internal static let personTell = L10n.tr("Localizable", "person_tell", fallback: "電話")
   /// 職業
   internal static let personWork = L10n.tr("Localizable", "person_work", fallback: "職業")
-  /// 広告を視聴して容量を追加する
-  internal static let settingAdmobTitle = L10n.tr("Localizable", "setting_admob_title", fallback: "広告を視聴して容量を追加する")
-  /// 広告の準備ができていません
-  internal static let settingAdmobTitleDisable = L10n.tr("Localizable", "setting_admob_title_disable", fallback: "広告の準備ができていません")
-  /// ・追加される容量は3個です。
-  /// ・容量の追加は1日に1回までです。
-  internal static let settingCapacitySectionFooter = L10n.tr("Localizable", "setting_capacity_section_footer", fallback: "・追加される容量は3個です。\n・容量の追加は1日に1回までです。")
-  /// 広告
-  internal static let settingCapacitySectionTitle = L10n.tr("Localizable", "setting_capacity_section_title", fallback: "広告")
-  /// 現在の容量: %@個
-  internal static func settingCapacityText(_ p1: Any) -> String {
-    return L10n.tr("Localizable", "setting_capacity_text_%@", String(describing: p1), fallback: "現在の容量: %@個")
-  }
   /// ONにしている項目が詳細や登録ページに表示されます。
   /// OFFにしている項目は非表示になります。
   internal static let settingDisplayItemDesc = L10n.tr("Localizable", "setting_display_item_desc", fallback: "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。")
@@ -69,10 +52,12 @@ internal enum L10n {
   internal static let settingDisplayItemLabel = L10n.tr("Localizable", "setting_display_item_label", fallback: "項目")
   /// 表示する項目のカスタマイズ
   internal static let settingDisplayItemTitle = L10n.tr("Localizable", "setting_display_item_title", fallback: "表示する項目のカスタマイズ")
+  /// アプリ設定
+  internal static let settingDisplayTitle = L10n.tr("Localizable", "setting_display_title", fallback: "アプリ設定")
   /// お出かけ前の忘れ物チェックにはこのアプリがおすすめ！
   internal static let settingRecommendShareText = L10n.tr("Localizable", "setting_recommend_share_text", fallback: "お出かけ前の忘れ物チェックにはこのアプリがおすすめ！")
-  /// 「Stock」をオススメする
-  internal static let settingRecommendTitle = L10n.tr("Localizable", "setting_recommend_title", fallback: "「Stock」をオススメする")
+  /// 「HITONOTE」をオススメする
+  internal static let settingRecommendTitle = L10n.tr("Localizable", "setting_recommend_title", fallback: "「HITONOTE」をオススメする")
   /// アプリをレビューする
   internal static let settingReviewTitle = L10n.tr("Localizable", "setting_review_title", fallback: "アプリをレビューする")
   /// ?action=write-review

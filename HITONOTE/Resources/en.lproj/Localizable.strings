@@ -27,18 +27,11 @@
 "gender_unknown" = "Unknown";
 
 // MARK: - Setting
-"setting_admob_title" = "Watch ads and add Stock";
-"setting_admob_title_disable" = "Ad not ready";
-
-"setting_capacity_section_title" = "advertisement";
-"setting_capacity_section_footer" = "・The number of capacities added is 3.\n・Capacity can be added only once a day.";
-"setting_capacity_text_%@" = "Current capacity: %@ pieces";
-
 "setting_review_title" = "Review app";
 "setting_review_url_query" = "?action=write-review";
 "app_url" = "https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771";
 
-"setting_recommend_title" = "Recommend ’Stock’";
+"setting_recommend_title" = "Recommend ’HITONOTE’";
 "setting_recommend_share_text" = "This app is recommended for checking things you forgot before going out!";
 
 "setting_terms_of_service_title" = "Terms of Service and Privacy Policy";

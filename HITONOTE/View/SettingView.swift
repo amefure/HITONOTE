@@ -19,26 +19,19 @@ struct SettingView: View {
         HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
         
         List {
-            Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
+            Section(header: Text(L10n.settingDisplayTitle), footer: Text(L10n.settingDisplayItemDesc)) {
                 Button {
                     isShow = true
                 } label: {
-                    Text(L10n.settingDisplayItemTitle)
+                    HStack {
+                        Image(systemName: "switch.2")
+                        Text(L10n.settingDisplayItemTitle)
+                    }.fontWeight(.bold)
                 }
             }
             .sheet(isPresented: $isShow) {
                 DisplayItemControlView()
             }
-            
-            Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
-                //            RewardButtonView()
-                HStack {
-                    Image(systemName: "bag")
-                    Text(L10n.settingCapacityText(20))
-                }
-            }
-            
-            // MARK: - (3)
             
             Section(header: Text("Link")) {
                 // 1:レビューページ
@@ -46,7 +39,7 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "hand.thumbsup")
                         Text(L10n.settingReviewTitle)
-                    }.foregroundColor(.white)
+                    }
                 })
                 
                 // 2:シェアボタン
@@ -56,7 +49,7 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "star.bubble")
                         Text(L10n.settingRecommendTitle)
-                    }.foregroundColor(.white)
+                    }
                 }
                 
                 // 3:利用規約とプライバシーポリシー
@@ -65,14 +58,15 @@ struct SettingView: View {
                         Image(systemName: "note.text")
                         Text(L10n.settingTermsOfServiceTitle)
                         Image(systemName: "link").font(.caption)
-                    }.foregroundColor(.white)
+                    }
                 })
-                       
-        }.scrollContentBackground(.hidden)
+                
+            }.scrollContentBackground(.hidden)
                 .background(.clear)
-       
+            
         }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
+            .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
     }
 }
 
