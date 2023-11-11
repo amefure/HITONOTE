@@ -43,5 +43,10 @@ class RepositoryViewModel: ObservableObject {
         readAllPerson()
         people = people.filter( {$0.group == group })
     }
+    
+    public func filteringName(name: String) {
+        readAllPerson()
+        people = people.filter( {$0.name.contains(name) })
+    }
 
 }

@@ -16,6 +16,8 @@ struct PersonListView: View {
     @State var isShowInput = false
     @State var isShowSetting = false
     
+    @State var search = ""
+    
     var body: some View {
         NavigationStack {
             
@@ -24,16 +26,36 @@ struct PersonListView: View {
                     SettingView()
                 }
             
-            if repository.groups.count != 0 {                
+            
+            /// グループタブピッカー
+            if repository.groups.count != 0 {
                 CustomHorizontalPicker(groups: repository.groups, selectedSegment: $selectedGroup)
                     .onChange(of: selectedGroup) { newValue in
-                        if newValue != "All" {
-                            repository.filteringGroup(group: newValue)
-                        } else {
+                        if newValue == "All" {
                             repository.readAllPerson()
+                        } else {
+                            repository.filteringGroup(group: newValue)
                         }
                     }
             }
+            
+            /// 検索ボックス
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                TextField(L10n.personName + "...", text: $search)
+                    .textFieldStyle(.roundedBorder)
+                    .onChange(of: search) { newValue in
+                        if newValue.isEmpty {
+                            repository.readAllPerson()
+                        } else {
+                            repository.filteringName(name: newValue)
+                        }
+                        
+                    }
+            }.padding(.horizontal, 20)
+                .padding(.top, 10)
+            
             
             List {
                 ForEach(repository.people) { person in

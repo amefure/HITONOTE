@@ -99,15 +99,16 @@ struct DetailPersonView: View {
                     isDeleteDialog = true
                 } label: {
                     Text("削除")
-                }.padding(.vertical, 7)
-                .frame(width: 100)
-                .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
-                .overlay{
-                    RoundedRectangle(cornerRadius: 8)
-                            .stroke(style: StrokeStyle(lineWidth: 1))
-                            .frame(width: 100)
-                            .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
-                }.padding(.top , 20)
+                        .padding(.vertical, 7)
+                        .frame(width: 100)
+                        .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
+                        .overlay{
+                            RoundedRectangle(cornerRadius: 8)
+                                    .stroke(style: StrokeStyle(lineWidth: 1))
+                                    .frame(width: 100)
+                                    .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
+                        }.padding(.top , 20)
+                }
                 
             }.padding(20)
                 .frame(width: UIScreen.main.bounds.width)
