@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-enum Gender: String, PersistableEnum, Identifiable, CaseIterable {
+enum Gender: Int, PersistableEnum, Identifiable, CaseIterable {
     var id:String{self.rawValue}
     
     case man
@@ -23,9 +23,9 @@ enum Gender: String, PersistableEnum, Identifiable, CaseIterable {
         case .woman:
             return L10n.genderWoman
         case .other:
-            return  L10n.genderOther
+            return L10n.genderOther
         case .unknown:
-            return  L10n.genderUnknown
+            return L10n.genderUnknown
         }
     }
 }

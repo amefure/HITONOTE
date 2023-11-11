@@ -37,26 +37,29 @@ struct DetailPersonView: View {
                 /// アイコンとグループ
                 HStack {
                     
-                    Spacer()
-                        .frame(width: 100)
+                    if !person.group.isEmpty {
+                        Spacer()
+                            .frame(width: 100)
+                    }
                     
                     Spacer()
                         
                     PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
-                        .padding(.top, 20)
                     
                     Spacer()
                     
-                    Text(person.group)
-                        .padding(8)
-                        .frame(width: 100)
-                        .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
-                        .background(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .fontWeight(.bold)
-                        .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
+                    if !person.group.isEmpty {
+                        Text(person.group)
+                            .padding(8)
+                            .frame(width: 100)
+                            .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .fontWeight(.bold)
+                            .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
+                    }
                         
-                }
+                }.padding()
                             
                 /// 名前とふりがな
                 VStack {

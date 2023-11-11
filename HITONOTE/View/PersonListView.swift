@@ -24,12 +24,9 @@ struct PersonListView: View {
                     SettingView()
                 }
             
-            if repository.groups.count != 0 {
-                Picker(selection: $selectedGroup, label: Text(L10n.personGroup)) {
-                    ForEach(repository.groups, id: \.self) { group in
-                        Text(group)
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
+            if repository.groups.count != 0 {                
+                CustomSegmentedPicker(groups: repository.groups, selectedSegment: $selectedGroup)
+                
             }
             
             List {
@@ -59,6 +56,39 @@ struct PersonListView: View {
     }
 
 }
+
+
+struct CustomSegmentedPicker: View {
+    
+    var groups: Array<String>
+    @Binding var selectedSegment: String
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(groups, id: \.self) { group in
+                    Button {
+                        withAnimation {
+                            print(group)
+                            selectedSegment = group
+                            print(selectedSegment)
+                        }
+                    } label: {
+                        Text(group)
+                    }.padding(10)
+                        .background(selectedSegment == group ? Asset.Colors.themaGreen.swiftUIColor : .clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .foregroundStyle(.white)
+                }
+            }
+        }.padding(5)
+            .background(Asset.Colors.opacityGray.swiftUIColor)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .transition(.scale)
+            .padding(.horizontal, 5)
+    }
+}
+
 
 #Preview {
     PersonListView()
