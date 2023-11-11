@@ -19,7 +19,8 @@ class RepositoryViewModel: ObservableObject {
     public func readAllPerson() {
         people.removeAll()
         let result = repository.readAllPerson()
-        people = Array(result)
+        // 名前の昇順で並び替える
+        people = Array(result.sorted(by: { $0.name < $1.name }))
         groups = people.filter({ $0.group != "" }).map({ $0.group })
     }
     
@@ -38,5 +39,9 @@ class RepositoryViewModel: ObservableObject {
         self.readAllPerson()
     }
 
+    public func filteringGroup(group: String) {
+        readAllPerson()
+        people = people.filter( {$0.group == group })
+    }
 
 }

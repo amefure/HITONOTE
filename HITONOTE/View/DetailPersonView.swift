@@ -54,7 +54,7 @@ struct DetailPersonView: View {
                             .frame(width: 100)
                             .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
                             .background(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .clipShape(RoundedRectangle(cornerRadius:  8))
                             .fontWeight(.bold)
                             .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
                     }
@@ -76,7 +76,7 @@ struct DetailPersonView: View {
             
             
             /// 情報
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 
                     
                 CustomPersonItemView(label: L10n.personCharacter, value: person.character)

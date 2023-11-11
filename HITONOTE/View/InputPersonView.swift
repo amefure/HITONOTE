@@ -135,7 +135,7 @@ struct InputPersonView: View {
                 .background(Asset.Colors.themaGreen.swiftUIColor)
             
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 
                 VStack {
                     

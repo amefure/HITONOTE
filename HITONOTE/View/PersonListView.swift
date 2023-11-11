@@ -12,7 +12,7 @@ struct PersonListView: View {
     
     @ObservedObject var repository = RepositoryViewModel.shared
     private let imageFileManager = ImageFileManager()
-    @State var selectedGroup: String = ""
+    @State var selectedGroup: String = "All"
     @State var isShowInput = false
     @State var isShowSetting = false
     
@@ -25,8 +25,14 @@ struct PersonListView: View {
                 }
             
             if repository.groups.count != 0 {                
-                CustomSegmentedPicker(groups: repository.groups, selectedSegment: $selectedGroup)
-                
+                CustomHorizontalPicker(groups: repository.groups, selectedSegment: $selectedGroup)
+                    .onChange(of: selectedGroup) { newValue in
+                        if newValue != "All" {
+                            repository.filteringGroup(group: newValue)
+                        } else {
+                            repository.readAllPerson()
+                        }
+                    }
             }
             
             List {
@@ -58,34 +64,45 @@ struct PersonListView: View {
 }
 
 
-struct CustomSegmentedPicker: View {
+/// 横スクロールカスタムピッカー
+struct CustomHorizontalPicker: View {
     
-    var groups: Array<String>
+    @State var groups: Array<String>
     @Binding var selectedSegment: String
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
+                Spacer()
                 ForEach(groups, id: \.self) { group in
                     Button {
                         withAnimation {
-                            print(group)
                             selectedSegment = group
-                            print(selectedSegment)
                         }
                     } label: {
                         Text(group)
                     }.padding(10)
+                        .frame(width: 100)
                         .background(selectedSegment == group ? Asset.Colors.themaGreen.swiftUIColor : .clear)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(selectedSegment == group ? .white : Asset.Colors.textColor.swiftUIColor)
+                        .lineLimit(1)
+                        .fontWeight(.bold)
                 }
+                Spacer()
             }
         }.padding(5)
-            .background(Asset.Colors.opacityGray.swiftUIColor)
+            .background(Asset.Colors.systemFoundation.swiftUIColor)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .transition(.scale)
             .padding(.horizontal, 5)
+            .compositingGroup()
+            .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
+            .onAppear {
+                if !groups.contains("All") {
+                    groups.insert("All", at: 0)
+                }
+            }
     }
 }
 
