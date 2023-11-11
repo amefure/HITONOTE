@@ -11,6 +11,7 @@ struct SettingView: View {
     
     private let viewModel = SettingViewModel()
     
+    @State var isShow = false
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -19,11 +20,14 @@ struct SettingView: View {
         
         List {
             Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {
-                NavigationLink {
-                    DisplayItemControlView()
+                Button {
+                    isShow = true
                 } label: {
-                    Text("Display")
+                    Text(L10n.settingDisplayItemTitle)
                 }
+            }
+            .sheet(isPresented: $isShow) {
+                DisplayItemControlView()
             }
             
             Section(header: Text(L10n.settingCapacitySectionTitle), footer: Text(L10n.settingCapacitySectionFooter)) {

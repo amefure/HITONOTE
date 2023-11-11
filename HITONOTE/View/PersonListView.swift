@@ -74,6 +74,7 @@ struct PersonListView: View {
             }.listStyle(.grouped)
                 .scrollContentBackground(.hidden)
                 .background(.clear)
+                .offset(y: -20)
                     
 
         }.onAppear {

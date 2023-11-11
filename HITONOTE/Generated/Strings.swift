@@ -62,6 +62,13 @@ internal enum L10n {
   internal static func settingCapacityText(_ p1: Any) -> String {
     return L10n.tr("Localizable", "setting_capacity_text_%@", String(describing: p1), fallback: "現在の容量: %@個")
   }
+  /// ONにしている項目が詳細や登録ページに表示されます。
+  /// OFFにしている項目は非表示になります。
+  internal static let settingDisplayItemDesc = L10n.tr("Localizable", "setting_display_item_desc", fallback: "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。")
+  /// 項目
+  internal static let settingDisplayItemLabel = L10n.tr("Localizable", "setting_display_item_label", fallback: "項目")
+  /// 表示する項目のカスタマイズ
+  internal static let settingDisplayItemTitle = L10n.tr("Localizable", "setting_display_item_title", fallback: "表示する項目のカスタマイズ")
   /// お出かけ前の忘れ物チェックにはこのアプリがおすすめ！
   internal static let settingRecommendShareText = L10n.tr("Localizable", "setting_recommend_share_text", fallback: "お出かけ前の忘れ物チェックにはこのアプリがおすすめ！")
   /// 「Stock」をオススメする

@@ -43,3 +43,8 @@
 
 "setting_terms_of_service_title" = "Terms of Service and Privacy Policy";
 "setting_terms_of_service_url" = "https://tech.amefure.com/app-terms-of-service";
+
+// MARK: - DisplayItem
+"setting_display_item_title" = "Customizing the displayed items";
+"setting_display_item_label" = "Item";
+"setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \n Items that are set to OFF will be hidden.";

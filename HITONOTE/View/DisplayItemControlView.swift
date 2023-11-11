@@ -8,60 +8,93 @@
 import SwiftUI
 
 struct DisplayItemControlView: View {
+
+    private var viewModel = DisplayItemControlViewModel()
     
-    @State var isName: Bool = false          // 名前
-    @State var isRuby: Bool = false          // ルビ
-    @State var isWork: Bool = false          // 職業
-    @State var isBirthday: Bool = false      // 誕生日
-    @State var isTell: Bool = false          // 電話
-    @State var isMail: Bool = false          // メール
-    @State var isGroup: Bool = false         // グループ
-    @State var isMemo: Bool = false          // メモ
+    @State private var isGender: Bool = false        // 性別
+    @State private var isCharacter: Bool = false     // キャラクター
+    @State private var isWork: Bool = false          // 職業
+    @State private var isBirthday: Bool = false      // 誕生日
+    @State private var isTell: Bool = false          // 電話
+    @State private var isMail: Bool = false          // メール
+    @State private var isMemo: Bool = false          // メモ
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
-            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
+            
+            HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {}, isShowLogo: false)
+                .padding(.top , 20)
+            
+            Text(L10n.settingDisplayItemTitle)
+                .fontWeight(.bold)
             
             Spacer()
             
-            
-            Toggle(isOn: $isName) {
-                Text(L10n.personName)
-            }
-            
-            Toggle(isOn: $isRuby) {
-                Text(L10n.personRuby)
-            }
-            
-            Toggle(isOn: $isWork) {
-                Text(L10n.personWork)
-            }
-            
-            Toggle(isOn: $isBirthday) {
-                Text(L10n.personBirthday)
-            }
-            
-            Toggle(isOn: $isTell) {
-                Text(L10n.personTell)
-            }
-            
-            Toggle(isOn: $isMail) {
-                Text(L10n.personMail)
-            }
-            
-            Toggle(isOn: $isGroup) {
-                Text(L10n.personGroup)
-            }
-            
-            Toggle(isOn: $isMemo) {
-                Text(L10n.personMemo)
+            List {
+                
+                Section(header: Text(L10n.settingDisplayItemLabel), footer: Text(L10n.settingDisplayItemDesc)) {
+                    Toggle(isOn: $isGender) {
+                        Text(L10n.personGender)
+                    }.onChange(of: isGender) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.GENDER_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isCharacter) {
+                        Text(L10n.personCharacter)
+                    }.onChange(of: isCharacter) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.CHARACTER_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isWork) {
+                        Text(L10n.personWork)
+                    }.onChange(of: isWork) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.WORK_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isBirthday) {
+                        Text(L10n.personBirthday)
+                    }.onChange(of: isBirthday) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.BIRTHDAY_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isTell) {
+                        Text(L10n.personTell)
+                    }.onChange(of: isTell) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.TELL_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isMail) {
+                        Text(L10n.personMail)
+                    }.onChange(of: isMail) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.MAIL_KEY, isOn: newValue)
+                    }
+                    
+                    Toggle(isOn: $isMemo) {
+                        Text(L10n.personMemo)
+                    }.onChange(of: isMemo) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.MEMO_KEY, isOn: newValue)
+                    }
+
+                }
+
             }
             
             Spacer()
-        }.navigationBarBackButtonHidden()
-            .navigationBarHidden(true)
+        }
+            .onAppear {
+                // 初期値セット
+                isGender = viewModel.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)
+                isCharacter = viewModel.getDisplayItem(key: UserDefaultsKey.CHARACTER_KEY)
+                isWork = viewModel.getDisplayItem(key: UserDefaultsKey.WORK_KEY)
+                isBirthday = viewModel.getDisplayItem(key: UserDefaultsKey.BIRTHDAY_KEY)
+                isTell = viewModel.getDisplayItem(key: UserDefaultsKey.TELL_KEY)
+                isMail = viewModel.getDisplayItem(key: UserDefaultsKey.MAIL_KEY)
+                isMemo = viewModel.getDisplayItem(key: UserDefaultsKey.MEMO_KEY)
+            }
+            .navigationBarBackButtonHidden()
+                .navigationBarHidden(true)
     }
 }
 

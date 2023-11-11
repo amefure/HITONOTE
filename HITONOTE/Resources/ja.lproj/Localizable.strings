@@ -46,3 +46,9 @@
 
 "setting_terms_of_service_title" = "利用規約とプライバシーポリシー";
 "setting_terms_of_service_url" = "https://tech.amefure.com/app-terms-of-service";
+
+
+// MARK: - DisplayItem
+"setting_display_item_title" = "表示する項目のカスタマイズ";
+"setting_display_item_label" = "項目";
+"setting_display_item_desc" = "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。";
