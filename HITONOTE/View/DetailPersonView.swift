@@ -19,7 +19,8 @@ struct DetailPersonView: View {
     
     var person: Person
     
-    @State var isPresented = false
+    @State var isShowInput = false
+    @State var isDeleteDialog = false
     
     @Environment(\.dismiss) var dismiss
     
@@ -29,7 +30,7 @@ struct DetailPersonView: View {
             VStack {
                 
                 HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: { dismiss() }, trailingAction: {
-                    isPresented = true
+                    isShowInput = true
                 }, isShowLogo: false)
                 .tint(.white)
                 
@@ -92,7 +93,7 @@ struct DetailPersonView: View {
                     
                     
                 Button {
-                    repository.deletePerson(id: person.id)
+                    isDeleteDialog = true
                 } label: {
                     Text("削除")
                 }.padding(.vertical, 7)
@@ -112,7 +113,14 @@ struct DetailPersonView: View {
                 .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
 
             
-        }.sheet(isPresented: $isPresented, content: {
+        }.alert("「\(person.name)」さんを削除しますか？", isPresented: $isDeleteDialog) {
+            Button(role: .destructive) {
+                repository.deletePerson(id: person.id)
+                dismiss()
+            } label: {
+                Text("削除")
+            }
+        }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: person)
         }).navigationBarBackButtonHidden()
             .navigationBarHidden(true)
