@@ -11,7 +11,9 @@ struct DetailPersonView: View {
     
     private let dateFormatManager = DateFormatManager()
     private let imageFileManager = ImageFileManager()
-    @ObservedObject var repository = RepositoryViewModel.shared
+    
+    @ObservedObject var repository = RealmRepositoryViewModel.shared
+    private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
     
     init(person: Person) {
         self.person = person
@@ -65,8 +67,10 @@ struct DetailPersonView: View {
                 VStack {
                     Text(person.name)
                         .font(.system(size: 30))
-                    Text(person.ruby)
-                        .font(.system(size: 15))
+                    if userDefaultsRepository.isRuby {
+                        Text(person.ruby)
+                            .font(.system(size: 15))
+                    }
                 }.fontWeight(.bold)
                         .foregroundStyle(.white)
                 
@@ -79,17 +83,17 @@ struct DetailPersonView: View {
             ScrollView(showsIndicators: false) {
                 
                     
-                CustomPersonItemView(label: L10n.personCharacter, value: person.character)
+                CustomPersonItemView(label: L10n.personCharacter, value: person.character, isShow: userDefaultsRepository.isCharacter)
                 
-                CustomPersonItemView(label: L10n.personWork, value: person.work)
+                CustomPersonItemView(label: L10n.personWork, value: person.work, isShow: userDefaultsRepository.isWork)
                 
                 if let birthday = person.birthday {
-                    CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: birthday))
+                    CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: birthday), isShow: userDefaultsRepository.isBirthday)
                 }
                 
-                CustomPersonItemView(label: L10n.personTell, value: person.tell)
-                CustomPersonItemView(label: L10n.personMail, value: person.mail)
-                CustomPersonItemView(label: L10n.personMemo, value: person.memo)
+                CustomPersonItemView(label: L10n.personTell, value: person.tell, isShow: userDefaultsRepository.isTell)
+                CustomPersonItemView(label: L10n.personMail, value: person.mail, isShow: userDefaultsRepository.isMail)
+                CustomPersonItemView(label: L10n.personMemo, value: person.memo, isShow: userDefaultsRepository.isMemo)
                     
                 
                 Spacer()
@@ -135,23 +139,26 @@ struct CustomPersonItemView: View {
     
     public var label: String
     public var value: String
+    public var isShow: Bool
     
     var body: some View {
-        Group {
-            if !value.isEmpty {
-                HStack {
-                    Text(label)
-                        .font(.system(size: 13))
-                        .fontWeight(.light)
-                        .padding(.leading, 5)
-                    Spacer()
+        if isShow {
+            Group {
+                if !value.isEmpty {
+                    HStack {
+                        Text(label)
+                            .font(.system(size: 13))
+                            .fontWeight(.light)
+                            .padding(.leading, 5)
+                        Spacer()
+                    }
+                    Divider()
+                        .padding(.bottom, 5)
+                    Text(value)
+                        .font(.system(size: 18))
+                        .padding(.bottom, 10)
+                        .textSelection(.enabled)
                 }
-                Divider()
-                    .padding(.bottom, 5)
-                Text(value)
-                    .font(.system(size: 18))
-                    .padding(.bottom, 10)
-                    .textSelection(.enabled)
             }
         }
     }

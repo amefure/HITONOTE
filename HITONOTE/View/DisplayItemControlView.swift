@@ -11,13 +11,14 @@ struct DisplayItemControlView: View {
 
     private var viewModel = DisplayItemControlViewModel()
     
-    @State private var isGender: Bool = false        // 性別
-    @State private var isCharacter: Bool = false     // キャラクター
-    @State private var isWork: Bool = false          // 職業
-    @State private var isBirthday: Bool = false      // 誕生日
-    @State private var isTell: Bool = false          // 電話
-    @State private var isMail: Bool = false          // メール
-    @State private var isMemo: Bool = false          // メモ
+    @State private var isRuby: Bool = true          // ふりがな
+    @State private var isGender: Bool = true        // 性別
+    @State private var isCharacter: Bool = true     // キャラクター
+    @State private var isWork: Bool = true          // 職業
+    @State private var isBirthday: Bool = true      // 誕生日
+    @State private var isTell: Bool = true          // 電話
+    @State private var isMail: Bool = true          // メール
+    @State private var isMemo: Bool = true          // メモ
     
     @Environment(\.dismiss) private var dismiss
     
@@ -35,6 +36,14 @@ struct DisplayItemControlView: View {
             List {
                 
                 Section(header: Text(L10n.settingDisplayItemLabel), footer: Text(L10n.settingDisplayItemDesc)) {
+                    
+                    Toggle(isOn: $isRuby) {
+                        Text(L10n.personRuby)
+                    }.onChange(of: isRuby) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.RUBY_KEY, isOn: newValue)
+                    }
+                    
+                    
                     Toggle(isOn: $isGender) {
                         Text(L10n.personGender)
                     }.onChange(of: isGender) { newValue in
@@ -85,6 +94,7 @@ struct DisplayItemControlView: View {
         }
             .onAppear {
                 // 初期値セット
+                isRuby = viewModel.getDisplayItem(key: UserDefaultsKey.RUBY_KEY)
                 isGender = viewModel.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)
                 isCharacter = viewModel.getDisplayItem(key: UserDefaultsKey.CHARACTER_KEY)
                 isWork = viewModel.getDisplayItem(key: UserDefaultsKey.WORK_KEY)

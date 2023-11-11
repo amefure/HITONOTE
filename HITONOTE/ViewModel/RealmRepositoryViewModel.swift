@@ -8,9 +8,9 @@
 import UIKit
 import RealmSwift
 
-class RepositoryViewModel: ObservableObject {
+class RealmRepositoryViewModel: ObservableObject {
     
-    static let shared = RepositoryViewModel()
+    static let shared = RealmRepositoryViewModel()
     private let repository = RealmRepository()
     
     @Published var people: Array<Person> = []

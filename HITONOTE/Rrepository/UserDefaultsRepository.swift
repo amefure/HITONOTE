@@ -9,6 +9,7 @@ import UIKit
 
 class UserDefaultsKey {
     
+    static let RUBY_KEY = "RUBY_KEY"
     static let GENDER_KEY = "GENDER_KEY"
     static let CHARACTER_KEY = "CHARACTER_KEY"
     static let WORK_KEY = "WORK_KEY"

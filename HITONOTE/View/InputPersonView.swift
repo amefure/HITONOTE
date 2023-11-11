@@ -9,7 +9,8 @@ import SwiftUI
 
 struct InputPersonView: View {
     
-    @ObservedObject var repository = RepositoryViewModel.shared
+    @ObservedObject var repository = RealmRepositoryViewModel.shared
+    private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
     
     private let imageFileManager = ImageFileManager()
     
@@ -140,34 +141,34 @@ struct InputPersonView: View {
                 VStack {
                     
                     /// 名前
-                    CustomInputView(label: L10n.personName, text: $name)
+                    CustomInputView(label: L10n.personName, text: $name, isShow: true)
                     
                     /// ふりがな
-                    CustomInputView(label: L10n.personRuby, text: $ruby)
+                    CustomInputView(label: L10n.personRuby, text: $ruby, isShow: userDefaultsRepository.isRuby)
                 
                     /// 性別
-                    CustomGenderPickerView(gender: $gender)
+                    CustomGenderPickerView(gender: $gender, isShow: userDefaultsRepository.isGender)
                     
                     ///  こんな人
-                    CustomInputEditorView(label: L10n.personCharacter, text: $character)
+                    CustomInputEditorView(label: L10n.personCharacter, text: $character, isShow: userDefaultsRepository.isCharacter)
                     
                     /// 職業
-                    CustomInputView(label: L10n.personWork, text: $work)
+                    CustomInputView(label: L10n.personWork, text: $work, isShow: userDefaultsRepository.isWork)
                     
                     /// 誕生日
-                    CustomBirthdayPickerView(birthday: $birthday)
+                    CustomBirthdayPickerView(birthday: $birthday, isShow: userDefaultsRepository.isBirthday)
                     
                     /// 電話
-                    CustomInputView(label: L10n.personTell, text: $tell)
+                    CustomInputView(label: L10n.personTell, text: $tell, isShow: userDefaultsRepository.isTell)
                     
                     /// メール
-                    CustomInputView(label: L10n.personMail, text: $mail)
+                    CustomInputView(label: L10n.personMail, text: $mail, isShow: userDefaultsRepository.isMail)
                     
                     /// グループ
-                    CustomGroupPickerView(group: $group, groups: repository.groups)
+                    CustomGroupPickerView(group: $group, groups: repository.groups, isShow: true)
                     
                     /// メモ
-                    CustomInputEditorView(label: L10n.personMemo, text: $memo)
+                    CustomInputEditorView(label: L10n.personMemo, text: $memo, isShow: userDefaultsRepository.isMemo)
                 
                 }
             }.padding(20)
@@ -193,6 +194,8 @@ struct InputPersonView: View {
                 image = imageFileManager.loadImage(name: person.imagePath)
                 memo = person.memo
             }
+            
+            userDefaultsRepository.setDisplayAllItem()
         }.alert(person == nil ? "「\(name)」さんを登録しました。" : "データを更新しました。", isPresented: $successAlert) {
             Button("OK") {
                 dismiss()
@@ -212,24 +215,27 @@ struct CustomInputView: View {
     
     public var label: String
     @Binding var text: String
+    public var isShow: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(label)
-                    .font(.system(size: 13))
-                    .fontWeight(.light)
-                    .padding(.leading, 5)
-                Spacer()
+        if isShow {
+            VStack {
+                HStack {
+                    Text(label)
+                        .font(.system(size: 13))
+                        .fontWeight(.light)
+                        .padding(.leading, 5)
+                    Spacer()
+                }
+                
+                Divider()
+                    .padding(.bottom, 5)
+                
+                TextField(label, text: $text)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.bottom, 10)
+                    .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
             }
-            
-            Divider()
-                .padding(.bottom, 5)
-            
-            TextField(label, text: $text)
-                .textFieldStyle(.roundedBorder)
-                .padding(.bottom, 10)
-                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
         }
     }
 }
@@ -239,29 +245,32 @@ struct CustomInputEditorView: View {
     
     public var label: String
     @Binding var text: String
+    public var isShow: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(label)
-                    .font(.system(size: 13))
-                    .fontWeight(.light)
-                    .padding(.leading, 5)
-                Spacer()
-            }
-            
-            Divider()
-                .padding(.bottom, 5)
-            
-            TextEditor(text: $text)
-                .frame(height: 100)
-                .padding(.bottom, 10)
-                .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
-                .overlay{
-                    RoundedRectangle(cornerRadius: 10)
+        if isShow {
+            VStack {
+                HStack {
+                    Text(label)
+                        .font(.system(size: 13))
+                        .fontWeight(.light)
+                        .padding(.leading, 5)
+                    Spacer()
+                }
+                
+                Divider()
+                    .padding(.bottom, 5)
+                
+                TextEditor(text: $text)
+                    .frame(height: 100)
+                    .padding(.bottom, 10)
+                    .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 10)
                             .stroke(style: StrokeStyle(lineWidth: 1))
                             .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
-                }
+                    }
+            }
         }
     }
 }
@@ -271,22 +280,25 @@ struct CustomInputEditorView: View {
 struct CustomGenderPickerView: View {
     
     @Binding var gender: Gender
+    public var isShow: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(L10n.personGender)
-                    .font(.system(size: 13))
-                    .fontWeight(.light)
-                    .padding(.leading, 5)
-                Spacer()
-            }
-            Divider()
-                .padding(.bottom, 5)
-            
-            Picker(selection: $gender, label: Text(L10n.personGender)) {
-                ForEach(Gender.allCases, id: \.self) { item in
-                    Text(item.rawValue)
+        if isShow {
+            VStack {
+                HStack {
+                    Text(L10n.personGender)
+                        .font(.system(size: 13))
+                        .fontWeight(.light)
+                        .padding(.leading, 5)
+                    Spacer()
+                }
+                Divider()
+                    .padding(.bottom, 5)
+                
+                Picker(selection: $gender, label: Text(L10n.personGender)) {
+                    ForEach(Gender.allCases, id: \.self) { item in
+                        Text(item.rawValue)
+                    }
                 }
             }
         }
@@ -299,46 +311,51 @@ struct CustomBirthdayPickerView: View {
     @Binding var birthday: Date?
     @State var date: Date = Date()
     @State var isShowDatePicker: Bool = false
+    public var isShow: Bool
+    
     private let dateFormatManager = DateFormatManager()
     
+    
     var body: some View {
-        VStack {
-            HStack {
-                Text(L10n.personBirthday)
-                    .font(.system(size: 13))
-                    .fontWeight(.light)
-                    .padding(.leading, 5)
-                Spacer()
-            }
-            
-            Divider()
-                .padding(.bottom, 5)
-            
-            Button {
-                /// 決定ボタン押下時
-                if isShowDatePicker {
-                    birthday = date
+        if isShow {
+            VStack {
+                HStack {
+                    Text(L10n.personBirthday)
+                        .font(.system(size: 13))
+                        .fontWeight(.light)
+                        .padding(.leading, 5)
+                    Spacer()
                 }
-                isShowDatePicker.toggle()
-            } label: {
-                if let birthday = birthday {
-                    Text(isShowDatePicker ? "決定" : dateFormatManager.getString(date: birthday))
-                } else {
-                    Text(isShowDatePicker ? "決定" : "誕生日を設定する")
-                    if !isShowDatePicker {
-                        Image(systemName: "chevron.up.chevron.down")
-                            .font(.system(size: 13))
+                
+                Divider()
+                    .padding(.bottom, 5)
+                
+                Button {
+                    /// 決定ボタン押下時
+                    if isShowDatePicker {
+                        birthday = date
                     }
+                    isShowDatePicker.toggle()
+                } label: {
+                    if let birthday = birthday {
+                        Text(isShowDatePicker ? "決定" : dateFormatManager.getString(date: birthday))
+                    } else {
+                        Text(isShowDatePicker ? "決定" : "誕生日を設定する")
+                        if !isShowDatePicker {
+                            Image(systemName: "chevron.up.chevron.down")
+                                .font(.system(size: 13))
+                        }
+                    }
+                }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                    .fontWeight(.none)
+                if isShowDatePicker {
+                    DatePicker(selection: $date,
+                               displayedComponents: DatePickerComponents.date,
+                               label: { Text("誕生日") })
+                    .environment(\.locale, Locale(identifier: "ja_JP"))
+                    .environment(\.calendar, Calendar(identifier: .gregorian))
+                    .datePickerStyle(.wheel)
                 }
-            }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
-                .fontWeight(.none)
-            if isShowDatePicker {
-                DatePicker(selection: $date,
-                           displayedComponents: DatePickerComponents.date,
-                           label: { Text("誕生日") })
-                .environment(\.locale, Locale(identifier: "ja_JP"))
-                .environment(\.calendar, Calendar(identifier: .gregorian))
-                .datePickerStyle(.wheel)
             }
         }
     }
@@ -350,42 +367,45 @@ struct CustomGroupPickerView: View {
     
     @Binding var group: String
     let groups: Array<String>
+    public var isShow: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    HStack {
-                        Text(L10n.personGroup)
-                            .font(.system(size: 13))
-                            .fontWeight(.light)
-                            .padding(.leading, 5)
-                        
-                        Spacer()
-                        
-                        if groups.count != 0 {
+        if isShow {
+            VStack {
+                HStack {
+                    VStack {
+                        HStack {
+                            Text(L10n.personGroup)
+                                .font(.system(size: 13))
+                                .fontWeight(.light)
+                                .padding(.leading, 5)
                             
-                            HStack {
-                                Menu(L10n.personGroup) {
-                                    ForEach(groups, id: \.self) { group in
-                                        Button {
-                                            self.group = group
-                                        } label: {
-                                            Text(group)
+                            Spacer()
+                            
+                            if groups.count != 0 {
+                                
+                                HStack {
+                                    Menu(L10n.personGroup) {
+                                        ForEach(groups, id: \.self) { group in
+                                            Button {
+                                                self.group = group
+                                            } label: {
+                                                Text(group)
+                                            }
                                         }
                                     }
-                                }
-                                Image(systemName: "chevron.up.chevron.down")
-                                    .font(.system(size: 13))
-                            }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
-                                .fontWeight(.none)
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .font(.system(size: 13))
+                                }.foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                                    .fontWeight(.none)
+                            }
                         }
+                        Divider()
+                            .padding(.bottom, 5)
+                        TextField(L10n.personGroup, text: $group)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.bottom, 10)
                     }
-                    Divider()
-                        .padding(.bottom, 5)
-                    TextField(L10n.personGroup, text: $group)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.bottom, 10)
                 }
             }
         }

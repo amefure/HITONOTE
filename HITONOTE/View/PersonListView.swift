@@ -10,7 +10,7 @@ import PhotosUI
 
 struct PersonListView: View {
     
-    @ObservedObject var repository = RepositoryViewModel.shared
+    @ObservedObject var repository = RealmRepositoryViewModel.shared
     private let imageFileManager = ImageFileManager()
     @State var selectedGroup: String = "All"
     @State var isShowInput = false
