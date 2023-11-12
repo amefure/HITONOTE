@@ -9,8 +9,10 @@ import SwiftUI
 
 struct DisplayItemControlView: View {
 
+    // MARK: - ViewMidel
     private let viewModel = DisplayItemControlViewModel()
     
+    // MARK: - View
     @State private var isRuby: Bool = true          // ふりがな
     @State private var isGender: Bool = true        // 性別
     @State private var isCharacter: Bool = true     // キャラクター
@@ -91,8 +93,8 @@ struct DisplayItemControlView: View {
             }.tint(Asset.Colors.themaGreen.swiftUIColor)
             
             Spacer()
-        }
-            .onAppear {
+            
+        }.onAppear {
                 // 初期値セット
                 isRuby = viewModel.getDisplayItem(key: UserDefaultsKey.RUBY_KEY)
                 isGender = viewModel.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)

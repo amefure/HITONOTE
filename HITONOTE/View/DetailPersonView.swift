@@ -9,20 +9,24 @@ import SwiftUI
 
 struct DetailPersonView: View {
     
+    // MARK: - Utility
     private let dateFormatManager = DateFormatManager()
     private let imageFileManager = ImageFileManager()
     
-    @ObservedObject var repository = RealmRepositoryViewModel.shared
+    // MARK: - ViewModel
     private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     
     init(person: Person) {
         self.person = person
     }
     
+    // MARK: - Receive
     var person: Person
     
-    @State var isShowInput = false
-    @State var isDeleteDialog = false
+    // MARK: - View
+    @State private var isShowInput = false
+    @State private var isDeleteDialog = false
     
     @Environment(\.dismiss) var dismiss
     

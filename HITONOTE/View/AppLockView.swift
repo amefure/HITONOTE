@@ -9,14 +9,13 @@ import SwiftUI
 
 struct AppLockView: View {
     
-    @State var password: Array<String> = []
-    @State var isShowApp = false
-    @State var isShowProgress = false
-    @State var isShowFailureAlert = false
+    @State private var password: Array<String> = []
+    @State private var isShowApp = false             // アプリメイン画面遷移
+    @State private var isShowProgress = false        // プログレス表示
+    @State private var isShowFailureAlert = false    // パスワード失敗アラート
     
     var body: some View {
         VStack(spacing: 0) {
-            
             
             HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: { }, trailingAction: { })
             
@@ -166,7 +165,6 @@ struct PasswordBackGroundView: View {
                         clockwise: true)
         }.fill(Asset.Colors.themaRed.swiftUIColor)
             .opacity(0.7)
-            
         
         Path { path in
             path.addArc(center: CGPoint(x: DeviceSizeManager.deviceWidth - 40, y: 250),
@@ -181,6 +179,7 @@ struct PasswordBackGroundView: View {
 
 /// 4桁のブラインドパスワードビュー
 struct DisplayPasswordView: View {
+    
     let password: Array<String>
     
     var body: some View {
@@ -199,8 +198,6 @@ struct DisplayPasswordView: View {
 struct NumberButton: View {
     
     public let number: String
-    
-    
     @Binding var password: Array<String>
     
     var body: some View {

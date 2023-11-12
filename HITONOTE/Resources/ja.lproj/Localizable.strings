@@ -45,3 +45,7 @@
 // MARK: - DisplayItem
 "setting_display_item_label" = "項目";
 "setting_display_item_desc" = "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。";
+
+// MARK: - AppLockInput
+"setting_app_lock_title" = "パスワードを登録";
+"setting_app_lock_entry" = "登録";

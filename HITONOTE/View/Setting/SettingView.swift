@@ -9,15 +9,15 @@ import SwiftUI
 
 struct SettingView: View {
     
+    // MARK: - ViewModel
     private let viewModel = SettingViewModel()
     
-    @State var isShowDisplayItem: Bool = false
-    @State var isLock: Bool = false
-    @State var isShowPassInput: Bool = false
-
+    // MARK: - View
+    @State private var isShowDisplayItem: Bool = false
+    @State private var isLock: Bool = false
+    @State private var isShowPassInput: Bool = false
     
     @Environment(\.dismiss) var dismiss
-    
     
     var body: some View {
         
@@ -56,23 +56,23 @@ struct SettingView: View {
             
             
             Section(header: Text("Link")) {
-                // 1:レビューページ
-                Link(destination: viewModel.reviewUrl, label: {
-                    HStack {
-                        Image(systemName: "hand.thumbsup")
-                        Text(L10n.settingReviewTitle)
-                    }
-                })
-                
-                // 2:シェアボタン
-                Button(action: {
-                    viewModel.shareApp()
-                }) {
-                    HStack {
-                        Image(systemName: "star.bubble")
-                        Text(L10n.settingRecommendTitle)
-                    }
-                }
+//                // 1:レビューページ
+//                Link(destination: viewModel.reviewUrl, label: {
+//                    HStack {
+//                        Image(systemName: "hand.thumbsup")
+//                        Text(L10n.settingReviewTitle)
+//                    }
+//                })
+//                
+//                // 2:シェアボタン
+//                Button(action: {
+//                    viewModel.shareApp()
+//                }) {
+//                    HStack {
+//                        Image(systemName: "star.bubble")
+//                        Text(L10n.settingRecommendTitle)
+//                    }
+//                }
                 
                 // 3:利用規約とプライバシーポリシー
                 Link(destination: viewModel.termsUrl, label: {
@@ -88,8 +88,7 @@ struct SettingView: View {
             
         }.onAppear {
             isLock = KeyChainRepository.sheard.getData().count == 4
-        }
-        .navigationBarBackButtonHidden()
+        }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
             .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
     }

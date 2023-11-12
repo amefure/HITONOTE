@@ -10,8 +10,10 @@ import PhotosUI
 
 struct ImagePickerDialog: UIViewControllerRepresentable {
     
-    @Environment(\.presentationMode) var presentationMode
+    // MARK: - Receive
     @Binding var image: UIImage?
+    
+    @Environment(\.presentationMode) var presentationMode
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)

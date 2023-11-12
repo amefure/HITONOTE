@@ -10,13 +10,17 @@ import PhotosUI
 
 struct PersonListView: View {
     
+    // MARK: - Utility
     private let imageFileManager = ImageFileManager()
+    
+    // MARK: - ViewModel
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     
-    @State private var search:String = ""
-    @State private var selectedGroup: String = "All"
-    @State private var isShowInput = false
-    @State private var isShowSetting = false
+    // MARK: - View
+    @State private var search:String = ""            // 検索テキスト
+    @State private var selectedGroup: String = "All" // 選択されているグループ値
+    @State private var isShowInput = false           // Input画面表示
+    @State private var isShowSetting = false         // 設定画面表示
     
     var body: some View {
         VStack {

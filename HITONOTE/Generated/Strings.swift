@@ -45,8 +45,10 @@ internal enum L10n {
   internal static let personTell = L10n.tr("Localizable", "person_tell", fallback: "電話")
   /// 職業
   internal static let personWork = L10n.tr("Localizable", "person_work", fallback: "職業")
-  /// アプリをロックする
-  internal static let settingAppLockTitle = L10n.tr("Localizable", "setting_app_lock_title", fallback: "アプリをロックする")
+  /// 登録
+  internal static let settingAppLockEntry = L10n.tr("Localizable", "setting_app_lock_entry", fallback: "登録")
+  /// パスワードを登録
+  internal static let settingAppLockTitle = L10n.tr("Localizable", "setting_app_lock_title", fallback: "パスワードを登録")
   /// アプリ設定
   internal static let settingAppSetting = L10n.tr("Localizable", "setting_app_setting", fallback: "アプリ設定")
   /// ONにしている項目が詳細や登録ページに表示されます。

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     
-   
+    // MARK: - Receive
     public var leadingIcon: String
     public var trailingIcon: String
     public var leadingAction: () -> Void
@@ -56,6 +56,7 @@ struct HeaderView: View {
                     .frame(width: 50)
             }
         }.padding(10)
+            .tint(Asset.Colors.themaGreen.swiftUIColor)
     }
 }
 

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct InputPersonView: View {
     
-    @ObservedObject var repository = RealmRepositoryViewModel.shared
-    private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
-    
+    // MARK: - Utility
     private let imageFileManager = ImageFileManager()
+    
+    // MARK: - ViewModel
+    private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     
     // Updateデータ受け取り用
     public var person: Person?
@@ -21,22 +23,22 @@ struct InputPersonView: View {
         self.person = person
     }
     
-    @State var name: String = ""           // 名前
-    @State var ruby: String = ""           // ルビ
-    @State var gender: Gender = .unknown   // 性別
-    @State var work: String = ""           // 職業
-    @State var character: String = ""      // こんな人
-    @State var birthday: Date? = nil       // 誕生日
-    @State var tell: String = ""           // 電話
-    @State var mail: String = ""           // メール
-    @State var group: String = ""          // グループ
-    @State var memo: String = ""           // メモ
+    // MARK: - View
+    @State private var name: String = ""           // 名前
+    @State private var ruby: String = ""           // ルビ
+    @State private var gender: Gender = .unknown   // 性別
+    @State private var work: String = ""           // 職業
+    @State private var character: String = ""      // こんな人
+    @State private var birthday: Date? = nil       // 誕生日
+    @State private var tell: String = ""           // 電話
+    @State private var mail: String = ""           // メール
+    @State private var group: String = ""          // グループ
+    @State private var memo: String = ""           // メモ
     
-
-    @State var image: UIImage?
-    @State var isAlert: Bool = false
-    @State var successAlert: Bool = false
-    @State var validationAlert: Bool = false
+    @State private var image: UIImage?                  // 画像表示用
+    @State private var isShowImagePicker: Bool = false  // 画像ピッカー表示
+    @State private var successAlert: Bool = false       // 登録成功アラート
+    @State private var validationAlert: Bool = false    // バリデーションアラート
     
     @Environment(\.dismiss) var dismiss
     
@@ -52,7 +54,7 @@ struct InputPersonView: View {
                         validationAlert = true
                         return
                     }
-                
+                    
                     if let person = person {
                         
                         var imgName = person.imagePath
@@ -123,7 +125,7 @@ struct InputPersonView: View {
                     PersonImageView(image: image, size: 100)
                         .padding(.top, 20)
                     Button {
-                        isAlert = true
+                        isShowImagePicker = true
                     } label: {
                         Image(systemName: "plus")
                             .frame(width: 100, height: 100)
@@ -145,7 +147,7 @@ struct InputPersonView: View {
                     
                     /// ふりがな
                     CustomInputView(label: L10n.personRuby, text: $ruby, isShow: userDefaultsRepository.isRuby)
-                
+                    
                     /// 性別
                     CustomGenderPickerView(gender: $gender, isShow: userDefaultsRepository.isGender)
                     
@@ -169,13 +171,13 @@ struct InputPersonView: View {
                     
                     /// メモ
                     CustomInputEditorView(label: L10n.personMemo, text: $memo, isShow: userDefaultsRepository.isMemo)
-                
+                    
                 }
             }.padding(20)
                 .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
                 .fontWeight(.bold)
             
-        }.sheet(isPresented: $isAlert) {
+        }.sheet(isPresented: $isShowImagePicker) {
             
         } content: {
             ImagePickerDialog(image: $image)
@@ -202,20 +204,19 @@ struct InputPersonView: View {
             }
         }.alert("名前は必須入力です。", isPresented: $validationAlert) {
             
-        }
-        .navigationBarBackButtonHidden()
+        }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
-            
-       
+        
     }
 }
 
 // MARK: - 入力要素
 struct CustomInputView: View {
     
-    public let label: String
-    @Binding var text: String
-    public let isShow: Bool
+    // MARK: - Receive
+    public let label: String    // ラベル
+    @Binding var text: String   // 入力値
+    public let isShow: Bool     // 表示/非表示フラグ
     
     var body: some View {
         if isShow {
@@ -243,6 +244,7 @@ struct CustomInputView: View {
 // MARK: - Editor入力要素
 struct CustomInputEditorView: View {
     
+    // MARK: - Receive
     public let label: String
     @Binding var text: String
     public let isShow: Bool
@@ -279,8 +281,9 @@ struct CustomInputEditorView: View {
 // MARK: - 性別ピッカー
 struct CustomGenderPickerView: View {
     
-    @Binding var gender: Gender
-    public let isShow: Bool
+    // MARK: - Receive
+    @Binding var gender: Gender  // 性別情報
+    public let isShow: Bool      // 表示/非表示フラグ
     
     var body: some View {
         if isShow {
@@ -308,13 +311,16 @@ struct CustomGenderPickerView: View {
 // MARK: - 誕生日ピッカー
 struct CustomBirthdayPickerView: View {
     
-    @Binding var birthday: Date?
-    @State var date: Date = Date()
-    @State var isShowDatePicker: Bool = false
-    public let isShow: Bool
-    
+    // MARK: - Utility
     private let dateFormatManager = DateFormatManager()
     
+    // MARK: - Receive
+    @Binding var birthday: Date? // 誕生日情報
+    public let isShow: Bool      // 表示/非表示フラグ
+    
+    // MARK: - View
+    @State private var date: Date = Date()
+    @State private var isShowDatePicker: Bool = false
     
     var body: some View {
         if isShow {
@@ -365,9 +371,10 @@ struct CustomBirthdayPickerView: View {
 // MARK: - グループピッカー
 struct CustomGroupPickerView: View {
     
-    @Binding var group: String
-    public let groups: Array<String>
-    public let isShow: Bool
+    // MARK: - Receive
+    @Binding var group: String        // グループ情報
+    public let groups: Array<String>  // 全てのグループ配列
+    public let isShow: Bool           // 表示/非表示フラグ
     
     var body: some View {
         if isShow {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PersonImageView: View {
     
+    // MARK: - Receive
     public var image: UIImage?
     public var size: CGFloat
     
@@ -22,10 +23,10 @@ struct PersonImageView: View {
                 .overlay{
                     RoundedRectangle(cornerRadius: size)
                         .stroke(style: StrokeStyle(lineWidth: size * 0.05))
-                            .frame(width: size)
-                            .foregroundStyle(.white)
+                        .frame(width: size)
+                        .foregroundStyle(.white)
                 }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
-                
+            
         } else {
             Asset.Images.person.swiftUIImage
                 .resizable()
@@ -34,9 +35,9 @@ struct PersonImageView: View {
                 .clipShape(RoundedRectangle(cornerRadius: size))
                 .overlay{
                     RoundedRectangle(cornerRadius: size)
-                            .stroke(style: StrokeStyle(lineWidth: size * 0.05))
-                            .frame(width: size)
-                            .foregroundStyle(.white)
+                        .stroke(style: StrokeStyle(lineWidth: size * 0.05))
+                        .frame(width: size)
+                        .foregroundStyle(.white)
                 }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
         }
     }

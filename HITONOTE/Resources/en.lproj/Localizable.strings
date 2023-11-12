@@ -44,3 +44,7 @@
 // MARK: - DisplayItem
 "setting_display_item_label" = "Item";
 "setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \n Items that are set to OFF will be hidden.";
+
+// MARK: - AppLockInput
+"setting_app_lock_title" = "Register password";
+"setting_app_lock_entry" = "Register";
