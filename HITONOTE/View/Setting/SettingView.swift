@@ -84,8 +84,20 @@ struct SettingView: View {
                     }
                 })
                 
-            }.scrollContentBackground(.hidden)
-                .background(.clear)
+            }
+            
+            if Locale.current.identifier == Locale(identifier: "ja_JP").identifier {
+                Section(header: Text("おすすめアプリ"), footer: Text("誕生日まであと何日か、星座や干支の表示、誕生日当日に通知が届くなど、友達の誕生日を管理するのに特化したアプリです。")) {
+                    if let url = URL(string: "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%AA%95%E7%94%9F%E6%97%A5/id1673431227") {
+                        Link(destination: url, label: {
+                            HStack {
+                                Image(systemName: "birthday.cake")
+                                Text("iOSアプリ：「みんなの誕生日」")
+                            }
+                        })
+                    }
+                }
+            }
             
         }.onAppear {
             isLock = KeyChainRepository.sheard.getData().count == 4
