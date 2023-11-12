@@ -18,44 +18,20 @@ struct AppLockView: View {
         VStack(spacing: 0) {
             
             
-            HeaderView(leadingIcon: "l", trailingIcon: "", leadingAction: { }, trailingAction: { })
+            HeaderView(leadingIcon: "", trailingIcon: "", leadingAction: { }, trailingAction: { })
             
             Spacer()
             
             ZStack {
                 
-                Path { path in
-                    path.addArc(center: CGPoint(x: 40, y: 60),
-                                radius: 70,
-                                startAngle: Angle(degrees: 0),
-                                endAngle: Angle(degrees: 360),
-                                clockwise: true)
-                }.fill(Asset.Colors.themaRed.swiftUIColor)
-                    .opacity(0.7)
-                    
+                PasswordBackGroundView()
                 
-                Path { path in
-                    path.addArc(center: CGPoint(x: DeviceSizeManager.deviceWidth - 40, y: 250),
-                                radius: 60,
-                                startAngle: Angle(degrees: 0),
-                                endAngle: Angle(degrees: 360),
-                                clockwise: true)
-                }.fill(Asset.Colors.themaGreen.swiftUIColor)
-                    .opacity(0.7)
-                
-                HStack(spacing: 30) {
-                    Text(password[safe: 0] == nil ? "ー" : "⚫︎")
-                    Text(password[safe: 1] == nil ? "ー" : "⚫︎")
-                    Text(password[safe: 2] == nil ? "ー" : "⚫︎")
-                    Text(password[safe: 3] == nil ? "ー" : "⚫︎")
-                }.foregroundStyle(Asset.Colors.textColor.swiftUIColor)
-                    .fontWeight(.bold)
+                DisplayPasswordView(password: password)
                     .onChange(of: password) { newValue in
-                        print(newValue)
                         if newValue.count == 4 {
                             isShowProgress = true
                             let pass = newValue.joined(separator: "")
-                            if pass == "1234" {
+                            if pass == KeyChainRepository.sheard.getData() {
                                 DispatchQueue.main.asyncAfter( deadline: DispatchTime.now() + 0.5) {
                                     isShowApp = true
                                 }
@@ -178,6 +154,48 @@ struct NumberKeyboardView: View {
     }
 }
 
+/// サークル背景
+struct PasswordBackGroundView: View {
+    
+    var body: some View {
+        Path { path in
+            path.addArc(center: CGPoint(x: 40, y: 60),
+                        radius: 70,
+                        startAngle: Angle(degrees: 0),
+                        endAngle: Angle(degrees: 360),
+                        clockwise: true)
+        }.fill(Asset.Colors.themaRed.swiftUIColor)
+            .opacity(0.7)
+            
+        
+        Path { path in
+            path.addArc(center: CGPoint(x: DeviceSizeManager.deviceWidth - 40, y: 250),
+                        radius: 60,
+                        startAngle: Angle(degrees: 0),
+                        endAngle: Angle(degrees: 360),
+                        clockwise: true)
+        }.fill(Asset.Colors.themaGreen.swiftUIColor)
+            .opacity(0.7)
+    }
+}
+
+/// 4桁のブラインドパスワードビュー
+struct DisplayPasswordView: View {
+    let password: Array<String>
+    
+    var body: some View {
+        HStack(spacing: 30) {
+            Text(password[safe: 0] == nil ? "ー" : "⚫︎")
+            Text(password[safe: 1] == nil ? "ー" : "⚫︎")
+            Text(password[safe: 2] == nil ? "ー" : "⚫︎")
+            Text(password[safe: 3] == nil ? "ー" : "⚫︎")
+        }.foregroundStyle(Asset.Colors.textColor.swiftUIColor)
+            .fontWeight(.bold)
+    }
+}
+
+
+/// 数値入力カスタムキーボード
 struct NumberButton: View {
     
     public let number: String

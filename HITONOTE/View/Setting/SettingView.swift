@@ -11,10 +11,10 @@ struct SettingView: View {
     
     private let viewModel = SettingViewModel()
     
-    @State var isShow: Bool = false
+    @State var isShowDisplayItem: Bool = false
     @State var isLock: Bool = false
-    @State var isShowPassInputAlert: Bool = false
-    @State var pass: String = ""
+    @State var isShowPassInput: Bool = false
+
     
     @Environment(\.dismiss) var dismiss
     
@@ -27,13 +27,13 @@ struct SettingView: View {
             Section(header: Text(L10n.settingAppSetting), footer: Text(L10n.settingDisplayItemDesc)) {
                 
                 Button {
-                    isShow = true
+                    isShowDisplayItem = true
                 } label: {
                     HStack {
                         Image(systemName: "switch.2")
                         Text(L10n.settingDisplayItemTitle)
                     }.fontWeight(.bold)
-                }.sheet(isPresented: $isShow) {
+                }.sheet(isPresented: $isShowDisplayItem) {
                     DisplayItemControlView()
                 }
                 
@@ -43,28 +43,15 @@ struct SettingView: View {
                         Text(L10n.settingAppLockTitle)
                     }.onChange(of: isLock) { newValue in
                         if newValue {
-                            isShowPassInputAlert = true
-                            viewModel.setAppLockFlag(isOn: newValue)
+                            isShowPassInput = true
                         } else {
-                            viewModel.setAppLockFlag(isOn: newValue)
+                            KeyChainRepository.sheard.delete()
                         }
                     }.tint(Asset.Colors.themaGreen.swiftUIColor)
                 }.fontWeight(.bold)
-                    .alert("4桁のパスワードを登録", isPresented: $isShowPassInputAlert) {
-                        TextField("", text: $pass)
-                            .keyboardType(.numberPad)
-                            .onChange(of: pass) { newValue in
-                                if newValue.count > 4 {
-                                    pass = String(newValue.prefix(4))
-                                }
-                            }
-                        Button("キャンセル") {
-                            isLock = false
-                        }
-                        Button("登録") {
-                            pass = ""
-                        }.disabled(pass.count != 4)
-                    }
+                    .sheet(isPresented: $isShowPassInput, content: {
+                        AppLockInputView(isLock: $isLock)
+                    })
             }
             
             
@@ -100,14 +87,13 @@ struct SettingView: View {
                 .background(.clear)
             
         }.onAppear {
-            isLock = UserDefaultsRepositoryViewModel.sheard.getAppLockFlag()
+            isLock = KeyChainRepository.sheard.getData().count == 4
         }
         .navigationBarBackButtonHidden()
             .navigationBarHidden(true)
             .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
     }
 }
-
 
 #Preview {
     SettingView()

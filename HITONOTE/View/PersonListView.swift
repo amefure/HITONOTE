@@ -10,13 +10,13 @@ import PhotosUI
 
 struct PersonListView: View {
     
-    @ObservedObject var repository = RealmRepositoryViewModel.shared
     private let imageFileManager = ImageFileManager()
-    @State var selectedGroup: String = "All"
-    @State var isShowInput = false
-    @State var isShowSetting = false
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     
-    @State var search = ""
+    @State private var search:String = ""
+    @State private var selectedGroup: String = "All"
+    @State private var isShowInput = false
+    @State private var isShowSetting = false
     
     var body: some View {
         VStack {
@@ -75,17 +75,17 @@ struct PersonListView: View {
                 .scrollContentBackground(.hidden)
                 .background(.clear)
                 .offset(y: -20)
-                    
-
+            
+            
         }.onAppear {
             repository.readAllPerson()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: nil)
         }).tint(Asset.Colors.themaGreen.swiftUIColor)
             .navigationBarBackButtonHidden()
-                .navigationBarHidden(true)
+            .navigationBarHidden(true)
     }
-
+    
 }
 
 
@@ -94,7 +94,7 @@ struct CustomHorizontalPicker: View {
     
     @State var groups: Array<String>
     @Binding var selectedSegment: String
-
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {

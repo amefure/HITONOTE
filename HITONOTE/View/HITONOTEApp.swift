@@ -24,7 +24,8 @@ struct HITONOTEApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if UserDefaultsRepositoryViewModel.sheard.getAppLockFlag() {
+                /// キーチェーンにアプリのログイン情報があれば参照
+                if KeyChainRepository.sheard.getData().count == 4 {
                     AppLockView()
                 } else {
                     PersonListView()

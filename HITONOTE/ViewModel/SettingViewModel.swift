@@ -11,8 +11,6 @@ class SettingViewModel {
     
     private let appUrlStr = L10n.appUrl
     private let shareText = L10n.settingRecommendShareText
-    
-    private let userDefaultsRepository = UserDefaultsRepository.sheard
 
     // App Store URL
     private var appUrl: URL {
@@ -57,10 +55,6 @@ class SettingViewModel {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let rootVC = windowScene?.windows.first?.rootViewController
         rootVC?.present(activityVC, animated: true, completion: {})
-    }
-    
-    public func setAppLockFlag(isOn: Bool) {
-        userDefaultsRepository.setBoolData(key: UserDefaultsKey.APP_LOCK_KEY, isOn: isOn)
     }
     
 }
