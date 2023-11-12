@@ -73,13 +73,15 @@ struct PersonListView: View {
                                 .fontWeight(.bold)
                         }
                     }
-                    
                 }
             }.listStyle(.grouped)
                 .scrollContentBackground(.hidden)
                 .background(.clear)
                 .offset(y: -20)
             
+            
+            AdMobBannerView()
+                .frame(height: 60)
             
         }.onAppear {
             repository.readAllPerson()

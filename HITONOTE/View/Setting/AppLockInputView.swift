@@ -26,6 +26,7 @@ struct AppLockInputView: View {
                 dismiss()
             }, trailingAction: {}, isShowLogo: false)
             .padding(.top , 20)
+            .tint(Asset.Colors.themaGreen.swiftUIColor)
             
             Text(L10n.settingAppLockTitle)
                 .fontWeight(.bold)

@@ -20,6 +20,8 @@ class UserDefaultsKey {
     
     static let APP_LOCK_KEY = "APP_LOCK_KEY"
     
+    static let COUNT_INTERSTITIAL_KEY = "COUNT_INTERSTITIAL_KEY"
+    
 }
 
 
@@ -35,7 +37,17 @@ class UserDefaultsRepository {
     }
     
     /// Bool：取得
-    public func getBoolData(key: String ) -> Bool {
+    public func getBoolData(key: String) -> Bool {
         return userDefaults.bool(forKey: key)
+    }
+    
+    /// Int：保存
+    public func setIntData(key: String, value: Int) {
+        userDefaults.set(value, forKey: key)
+    }
+    
+    /// Int：取得
+    public func getIntData(key: String) -> Int {
+        return userDefaults.integer(forKey: key)
     }
 }

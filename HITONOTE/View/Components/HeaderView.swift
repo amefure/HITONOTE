@@ -56,7 +56,6 @@ struct HeaderView: View {
                     .frame(width: 50)
             }
         }.padding(10)
-            .tint(Asset.Colors.themaGreen.swiftUIColor)
     }
 }
 

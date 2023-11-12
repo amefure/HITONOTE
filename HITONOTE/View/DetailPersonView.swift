@@ -16,6 +16,7 @@ struct DetailPersonView: View {
     // MARK: - ViewModel
     private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @ObservedObject private var interstitial = AdmobInterstitialView()
     
     init(person: Person) {
         self.person = person
@@ -34,8 +35,15 @@ struct DetailPersonView: View {
         VStack {
         
             VStack {
-                
-                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: { dismiss() }, trailingAction: {
+                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: {
+                    // 3回に1回インタースティシャル広告を表示する
+                    userDefaultsRepository.incrementCount()
+                    if userDefaultsRepository.isCount == 3 {
+                        interstitial.presentInterstitial()
+                        userDefaultsRepository.resetCount()
+                    }
+                    dismiss()
+                }, trailingAction: {
                     isShowInput = true
                 }, isShowLogo: false)
                 .tint(.white)
@@ -124,6 +132,8 @@ struct DetailPersonView: View {
                 .fontWeight(.bold)
                 .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
 
+            AdMobBannerView()
+                .frame(height: 60)
             
         }.alert("「\(person.name)」さんを削除しますか？", isPresented: $isDeleteDialog) {
             Button(role: .destructive) {
@@ -134,6 +144,7 @@ struct DetailPersonView: View {
             }
         }.onAppear {
             userDefaultsRepository.setDisplayAllItem()
+            interstitial.loadInterstitial()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: person)
         }).navigationBarBackButtonHidden()

@@ -21,6 +21,8 @@ class UserDefaultsRepositoryViewModel {
     var isMail: Bool = true          // メール
     var isMemo: Bool = true          // メモ
     
+    var isCount: Int = 0             // インタースティシャル用カウント
+    
     /// 取得
     public func setDisplayAllItem() {
         isRuby = userDefaultsRepository.getBoolData(key: UserDefaultsKey.RUBY_KEY)
@@ -31,6 +33,9 @@ class UserDefaultsRepositoryViewModel {
         isTell = userDefaultsRepository.getBoolData(key: UserDefaultsKey.TELL_KEY)
         isMail = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MAIL_KEY)
         isMemo = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MEMO_KEY)
+        
+        /// インタースティシャルカウント
+        isCount = userDefaultsRepository.getIntData(key: UserDefaultsKey.COUNT_INTERSTITIAL_KEY)
     }
     
     /// 取得
@@ -38,4 +43,15 @@ class UserDefaultsRepositoryViewModel {
         return userDefaultsRepository.getBoolData(key: UserDefaultsKey.APP_LOCK_KEY)
     }
 
+    
+    public func incrementCount() {
+        isCount += 1
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.COUNT_INTERSTITIAL_KEY, value: isCount)
+    }
+    
+    public func resetCount() {
+        isCount = 0
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.COUNT_INTERSTITIAL_KEY, value: isCount)
+    }
+    
 }

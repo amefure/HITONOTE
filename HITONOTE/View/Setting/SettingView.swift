@@ -22,6 +22,7 @@ struct SettingView: View {
     var body: some View {
         
         HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
+            .tint(Asset.Colors.themaGreen.swiftUIColor)
         
         List {
             Section(header: Text(L10n.settingAppSetting), footer: Text(L10n.settingDisplayItemDesc)) {
