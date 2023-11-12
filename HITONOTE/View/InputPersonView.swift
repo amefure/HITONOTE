@@ -66,7 +66,7 @@ struct InputPersonView: View {
                         if let image = image {
                             let result = imageFileManager.saveImage(name: imgName, image: image)
                             if result {
-                                print("保存成功")
+//                                print("保存成功")
                             }
                         }
                         
@@ -94,7 +94,7 @@ struct InputPersonView: View {
                             imgName = UUID().uuidString   // 画像のファイル名を構築
                             let result = imageFileManager.saveImage(name: imgName, image: image)
                             if result {
-                                print("保存成功")
+//                                print("保存成功")
                             }
                         }
                         
@@ -197,11 +197,11 @@ struct InputPersonView: View {
                 memo = person.memo
             }
             
-        }.alert(person == nil ? "「\(name)」さんを登録しました。" : "データを更新しました。", isPresented: $successAlert) {
+        }.alert(person == nil ? L10n.inputSuccessAlertCreate(name) : L10n.inputSuccessAlertUpdate, isPresented: $successAlert) {
             Button("OK") {
                 dismiss()
             }
-        }.alert("名前は必須入力です。", isPresented: $validationAlert) {
+        }.alert(L10n.inputValidationTitle, isPresented: $validationAlert) {
             
         }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
@@ -343,9 +343,9 @@ struct CustomBirthdayPickerView: View {
                     isShowDatePicker.toggle()
                 } label: {
                     if let birthday = birthday {
-                        Text(isShowDatePicker ? "決定" : dateFormatManager.getString(date: birthday))
+                        Text(isShowDatePicker ? L10n.inputBirthdayDecision : dateFormatManager.getString(date: birthday))
                     } else {
-                        Text(isShowDatePicker ? "決定" : "誕生日を設定する")
+                        Text(isShowDatePicker ? L10n.inputBirthdayDecision : L10n.inputBirthdaySetting)
                         if !isShowDatePicker {
                             Image(systemName: "chevron.up.chevron.down")
                                 .font(.system(size: 13))
@@ -356,8 +356,8 @@ struct CustomBirthdayPickerView: View {
                 if isShowDatePicker {
                     DatePicker(selection: $date,
                                displayedComponents: DatePickerComponents.date,
-                               label: { Text("誕生日") })
-                    .environment(\.locale, Locale(identifier: "ja_JP"))
+                               label: { Text(L10n.personBirthday) })
+                    .environment(\.locale, Locale(identifier: L10n.dateLocale))
                     .environment(\.calendar, Calendar(identifier: .gregorian))
                     .datePickerStyle(.wheel)
                 }

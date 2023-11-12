@@ -13,14 +13,9 @@ class DateFormatManager {
     public let today = Date()
 
     init() {
-        df.dateFormat = "yyyy年M月dd日"
-        df.locale = Locale(identifier: "ja_JP")
+        df.dateFormat = L10n.dateFormat
+        df.locale = Locale(identifier: L10n.dateLocale)
         df.calendar = Calendar(identifier: .gregorian)
-    }
-
-    public func conversionJapaneseEraName() {
-        df.calendar = Calendar(identifier: .japanese)
-        df.dateFormat = "Gy年"
     }
     
     public func getString(date: Date) -> String {

@@ -22,6 +22,20 @@
 
 // MARK: - Detail Item
 "person_age_view" = "%@";
+"delete_button_title" = "Delete";
+"delete_button_alert_title" = "Do you want to delete \"%@\"?";
+
+// MARK: - Input
+"input_birthday_setting" = "Set birthday";
+"input_birthday_decision" = "Decision";
+
+"input_success_alert_create" = "\"%@\" has been registered.";
+"input_success_alert_update" = "Data has been updated.";
+"input_validation_title" = "Name is required.";
+
+// MARK: - Loacle
+"date_locale" = "en_US";
+"date_format" = "M/dd/yyyy";
 
 // MARK: - Gender Model
 "gender_man" = "Man";
@@ -47,6 +61,9 @@
 // MARK: - DisplayItem
 "setting_display_item_label" = "Item";
 "setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \n Items that are set to OFF will be hidden.";
+
+// MARK: - AppLock
+"app_lock_alert" = "Password is incorrect.";
 
 // MARK: - AppLockInput
 "setting_app_lock_title" = "Register password";

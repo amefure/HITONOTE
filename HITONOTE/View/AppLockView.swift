@@ -55,7 +55,7 @@ struct AppLockView: View {
             
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
-        }.alert("パスワードが違います。", isPresented: $isShowFailureAlert) {
+        }.alert(L10n.appLockAlert, isPresented: $isShowFailureAlert) {
             Button("OK") {
             }
         }

@@ -23,7 +23,20 @@
 
 // MARK: - Detail Item
 "person_age_view" = "%@歳";
+"delete_button_title" = "削除";
+"delete_button_alert_title" = "「%@」さんを削除しますか？";
 
+// MARK: - Input
+"input_birthday_setting" = "誕生日を設定する";
+"input_birthday_decision" = "決定";
+
+"input_success_alert_create" = "「%@」さんを登録しました。";
+"input_success_alert_update" = "データを更新しました。";
+"input_validation_title" = "名前は必須入力です。";
+
+// MARK: - Loacle
+"date_locale" = "ja_JP";
+"date_format" = "yyyy年M月dd日";
 
 // MARK: - Gender Model
 "gender_man" = "男性";
@@ -50,6 +63,9 @@
 // MARK: - DisplayItem
 "setting_display_item_label" = "項目";
 "setting_display_item_desc" = "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。";
+
+// MARK: - AppLock
+"app_lock_alert" = "パスワードが違います。";
 
 // MARK: - AppLockInput
 "setting_app_lock_title" = "パスワードを登録";

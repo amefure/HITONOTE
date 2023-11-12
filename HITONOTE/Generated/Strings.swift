@@ -10,8 +10,20 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// パスワードが違います。
+  internal static let appLockAlert = L10n.tr("Localizable", "app_lock_alert", fallback: "パスワードが違います。")
   /// https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771
   internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771")
+  /// yyyy年M月dd日
+  internal static let dateFormat = L10n.tr("Localizable", "date_format", fallback: "yyyy年M月dd日")
+  /// ja_JP
+  internal static let dateLocale = L10n.tr("Localizable", "date_locale", fallback: "ja_JP")
+  /// 「%@」さんを削除しますか？
+  internal static func deleteButtonAlertTitle(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "delete_button_alert_title", String(describing: p1), fallback: "「%@」さんを削除しますか？")
+  }
+  /// 削除
+  internal static let deleteButtonTitle = L10n.tr("Localizable", "delete_button_title", fallback: "削除")
   /// 男性
   internal static let genderMan = L10n.tr("Localizable", "gender_man", fallback: "男性")
   /// その他
@@ -20,6 +32,18 @@ internal enum L10n {
   internal static let genderUnknown = L10n.tr("Localizable", "gender_unknown", fallback: "未設定")
   /// 女性
   internal static let genderWoman = L10n.tr("Localizable", "gender_woman", fallback: "女性")
+  /// 決定
+  internal static let inputBirthdayDecision = L10n.tr("Localizable", "input_birthday_decision", fallback: "決定")
+  /// 誕生日を設定する
+  internal static let inputBirthdaySetting = L10n.tr("Localizable", "input_birthday_setting", fallback: "誕生日を設定する")
+  /// 「%@」さんを登録しました。
+  internal static func inputSuccessAlertCreate(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "input_success_alert_create", String(describing: p1), fallback: "「%@」さんを登録しました。")
+  }
+  /// データを更新しました。
+  internal static let inputSuccessAlertUpdate = L10n.tr("Localizable", "input_success_alert_update", fallback: "データを更新しました。")
+  /// 名前は必須入力です。
+  internal static let inputValidationTitle = L10n.tr("Localizable", "input_validation_title", fallback: "名前は必須入力です。")
   /// 年齢
   internal static let personAge = L10n.tr("Localizable", "person_age", fallback: "年齢")
   /// %@歳

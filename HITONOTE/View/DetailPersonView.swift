@@ -119,7 +119,7 @@ struct DetailPersonView: View {
                 Button {
                     isDeleteDialog = true
                 } label: {
-                    Text("削除")
+                    Text(L10n.deleteButtonTitle)
                         .padding(.vertical, 7)
                         .frame(width: 100)
                         .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
@@ -140,12 +140,12 @@ struct DetailPersonView: View {
             AdMobBannerView()
                 .frame(height: 60)
             
-        }.alert("「\(person.name)」さんを削除しますか？", isPresented: $isDeleteDialog) {
+        }.alert(L10n.deleteButtonAlertTitle(person.name), isPresented: $isDeleteDialog) {
             Button(role: .destructive) {
                 repository.deletePerson(id: person.id)
                 dismiss()
             } label: {
-                Text("削除")
+                Text(L10n.deleteButtonTitle)
             }
         }.onAppear {
             interstitial.loadInterstitial()
