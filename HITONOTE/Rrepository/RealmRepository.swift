@@ -74,9 +74,5 @@ class RealmRepository {
             }
         }
     }
-    // MARK: - Person
-    
-
-    
 }
 

@@ -33,7 +33,7 @@ struct DetailPersonView: View {
     
     var body: some View {
         VStack {
-        
+            
             VStack {
                 HeaderView(leadingIcon: "chevron.backward", trailingIcon: "pencil", leadingAction: {
                     // 3回に1回インタースティシャル広告を表示する
@@ -57,7 +57,7 @@ struct DetailPersonView: View {
                     }
                     
                     Spacer()
-                        
+                    
                     PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
                     
                     Spacer()
@@ -72,9 +72,9 @@ struct DetailPersonView: View {
                             .fontWeight(.bold)
                             .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
                     }
-                        
+                    
                 }.padding()
-                            
+                
                 /// 名前とふりがな
                 VStack {
                     Text(person.name)
@@ -84,17 +84,18 @@ struct DetailPersonView: View {
                             .font(.system(size: 15))
                     }
                 }.fontWeight(.bold)
-                        .foregroundStyle(.white)
+                    .foregroundStyle(.white)
                 
             }.padding(.bottom)
                 .background(Asset.Colors.themaGreen.swiftUIColor)
-                
+            
             
             
             /// 情報
             ScrollView(showsIndicators: false) {
                 
-                    
+                CustomPersonItemView(label: L10n.personGender, value: person.gender.rawValue, isShow: userDefaultsRepository.isGender)
+                
                 CustomPersonItemView(label: L10n.personCharacter, value: person.character, isShow: userDefaultsRepository.isCharacter)
                 
                 CustomPersonItemView(label: L10n.personWork, value: person.work, isShow: userDefaultsRepository.isWork)
@@ -104,13 +105,15 @@ struct DetailPersonView: View {
                 }
                 
                 CustomPersonItemView(label: L10n.personTell, value: person.tell, isShow: userDefaultsRepository.isTell)
+                
                 CustomPersonItemView(label: L10n.personMail, value: person.mail, isShow: userDefaultsRepository.isMail)
+                
                 CustomPersonItemView(label: L10n.personMemo, value: person.memo, isShow: userDefaultsRepository.isMemo)
-                    
+                
                 
                 Spacer()
-                    
-                    
+                
+                
                 Button {
                     isDeleteDialog = true
                 } label: {
@@ -120,9 +123,9 @@ struct DetailPersonView: View {
                         .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
                         .overlay{
                             RoundedRectangle(cornerRadius: 8)
-                                    .stroke(style: StrokeStyle(lineWidth: 1))
-                                    .frame(width: 100)
-                                    .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
+                                .stroke(style: StrokeStyle(lineWidth: 1))
+                                .frame(width: 100)
+                                .foregroundStyle(Asset.Colors.themaRed.swiftUIColor)
                         }.padding(.top , 20)
                 }
                 
@@ -131,7 +134,7 @@ struct DetailPersonView: View {
                 .background(.white)
                 .fontWeight(.bold)
                 .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
-
+            
             AdMobBannerView()
                 .frame(height: 60)
             
@@ -143,7 +146,6 @@ struct DetailPersonView: View {
                 Text("削除")
             }
         }.onAppear {
-            userDefaultsRepository.setDisplayAllItem()
             interstitial.loadInterstitial()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: person)

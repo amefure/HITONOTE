@@ -18,6 +18,8 @@ class UserDefaultsKey {
     static let MAIL_KEY = "MAIL_KEY"
     static let MEMO_KEY = "MEMO_KEY"
     
+    static let APP_INITIAL_BOOT_FLAG = "APP_INITIAL_BOOT_FLAG"
+    
     static let APP_LOCK_KEY = "APP_LOCK_KEY"
     
     static let COUNT_INTERSTITIAL_KEY = "COUNT_INTERSTITIAL_KEY"

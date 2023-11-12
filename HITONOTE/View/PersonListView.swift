@@ -14,6 +14,7 @@ struct PersonListView: View {
     private let imageFileManager = ImageFileManager()
     
     // MARK: - ViewModel
+    private let userDefaultsRepository = UserDefaultsRepositoryViewModel.sheard
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     
     // MARK: - View
@@ -85,6 +86,7 @@ struct PersonListView: View {
             
         }.onAppear {
             repository.readAllPerson()
+            userDefaultsRepository.readingUserDefaultsAllItem()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: nil)
         }).tint(Asset.Colors.themaGreen.swiftUIColor)

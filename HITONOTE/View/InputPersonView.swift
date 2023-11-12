@@ -197,7 +197,6 @@ struct InputPersonView: View {
                 memo = person.memo
             }
             
-            userDefaultsRepository.setDisplayAllItem()
         }.alert(person == nil ? "「\(name)」さんを登録しました。" : "データを更新しました。", isPresented: $successAlert) {
             Button("OK") {
                 dismiss()
@@ -303,7 +302,7 @@ struct CustomGenderPickerView: View {
                         Text(item.rawValue)
                     }
                 }
-            }
+            }.tint(Asset.Colors.themaGreen.swiftUIColor)
         }
     }
 }
