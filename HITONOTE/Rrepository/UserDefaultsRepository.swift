@@ -18,6 +18,8 @@ class UserDefaultsKey {
     static let MAIL_KEY = "MAIL_KEY"
     static let MEMO_KEY = "MEMO_KEY"
     
+    static let APP_LOCK_KEY = "APP_LOCK_KEY"
+    
 }
 
 
@@ -26,12 +28,14 @@ class UserDefaultsRepository {
     static let sheard = UserDefaultsRepository()
     
     private let userDefaults = UserDefaults.standard
-    /// 保存
-    public func setDisplayItem(key: String, isOn: Bool) {
+    
+    /// Bool：保存
+    public func setBoolData(key: String, isOn: Bool) {
         userDefaults.set(isOn, forKey: key)
     }
-    /// 取得
-    public func getDisplayItem(key: String ) -> Bool {
+    
+    /// Bool：取得
+    public func getBoolData(key: String ) -> Bool {
         return userDefaults.bool(forKey: key)
     }
 }

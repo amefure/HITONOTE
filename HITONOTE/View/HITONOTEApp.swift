@@ -24,8 +24,11 @@ struct HITONOTEApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                //            PersonListView()
-                AppLockView()
+                if UserDefaultsRepositoryViewModel.sheard.getAppLockFlag() {
+                    AppLockView()
+                } else {
+                    PersonListView()
+                }
             }
         }
     }

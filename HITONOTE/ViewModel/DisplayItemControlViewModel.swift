@@ -14,11 +14,11 @@ class DisplayItemControlViewModel {
     
     /// 保存
     public func setDisplayItem(key: String, isOn: Bool) {
-        userDefaultsRepository.setDisplayItem(key: key, isOn: isOn)
+        userDefaultsRepository.setBoolData(key: key, isOn: isOn)
     }
     /// 取得
     public func getDisplayItem(key: String ) -> Bool {
-        return userDefaultsRepository.getDisplayItem(key: key)
+        return userDefaultsRepository.getBoolData(key: key)
     }
 
 }

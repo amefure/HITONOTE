@@ -88,7 +88,7 @@ struct DisplayItemControlView: View {
 
                 }
 
-            }
+            }.tint(Asset.Colors.themaGreen.swiftUIColor)
             
             Spacer()
         }

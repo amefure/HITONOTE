@@ -23,14 +23,19 @@ class UserDefaultsRepositoryViewModel {
     
     /// 取得
     public func setDisplayAllItem() {
-        isRuby = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.RUBY_KEY)
-        isGender = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)
-        isCharacter = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.CHARACTER_KEY)
-        isWork = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.WORK_KEY)
-        isBirthday = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.BIRTHDAY_KEY)
-        isTell = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.TELL_KEY)
-        isMail = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.MAIL_KEY)
-        isMemo = userDefaultsRepository.getDisplayItem(key: UserDefaultsKey.MEMO_KEY)
+        isRuby = userDefaultsRepository.getBoolData(key: UserDefaultsKey.RUBY_KEY)
+        isGender = userDefaultsRepository.getBoolData(key: UserDefaultsKey.GENDER_KEY)
+        isCharacter = userDefaultsRepository.getBoolData(key: UserDefaultsKey.CHARACTER_KEY)
+        isWork = userDefaultsRepository.getBoolData(key: UserDefaultsKey.WORK_KEY)
+        isBirthday = userDefaultsRepository.getBoolData(key: UserDefaultsKey.BIRTHDAY_KEY)
+        isTell = userDefaultsRepository.getBoolData(key: UserDefaultsKey.TELL_KEY)
+        isMail = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MAIL_KEY)
+        isMemo = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MEMO_KEY)
+    }
+    
+    /// 取得
+    public func getAppLockFlag() -> Bool {
+        return userDefaultsRepository.getBoolData(key: UserDefaultsKey.APP_LOCK_KEY)
     }
 
 }

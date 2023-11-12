@@ -12,9 +12,9 @@ struct SettingView: View {
     private let viewModel = SettingViewModel()
     
     @State var isShow: Bool = false
-    
     @State var isLock: Bool = false
-    
+    @State var isShowPassInputAlert: Bool = false
+    @State var pass: String = ""
     
     @Environment(\.dismiss) var dismiss
     
@@ -42,9 +42,29 @@ struct SettingView: View {
                     Toggle(isOn: $isLock) {
                         Text(L10n.settingAppLockTitle)
                     }.onChange(of: isLock) { newValue in
-                        
+                        if newValue {
+                            isShowPassInputAlert = true
+                            viewModel.setAppLockFlag(isOn: newValue)
+                        } else {
+                            viewModel.setAppLockFlag(isOn: newValue)
+                        }
+                    }.tint(Asset.Colors.themaGreen.swiftUIColor)
+                }.fontWeight(.bold)
+                    .alert("4桁のパスワードを登録", isPresented: $isShowPassInputAlert) {
+                        TextField("", text: $pass)
+                            .keyboardType(.numberPad)
+                            .onChange(of: pass) { newValue in
+                                if newValue.count > 4 {
+                                    pass = String(newValue.prefix(4))
+                                }
+                            }
+                        Button("キャンセル") {
+                            isLock = false
+                        }
+                        Button("登録") {
+                            pass = ""
+                        }.disabled(pass.count != 4)
                     }
-                }
             }
             
             
@@ -79,7 +99,10 @@ struct SettingView: View {
             }.scrollContentBackground(.hidden)
                 .background(.clear)
             
-        }.navigationBarBackButtonHidden()
+        }.onAppear {
+            isLock = UserDefaultsRepositoryViewModel.sheard.getAppLockFlag()
+        }
+        .navigationBarBackButtonHidden()
             .navigationBarHidden(true)
             .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
     }
