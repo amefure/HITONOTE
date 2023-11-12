@@ -21,7 +21,8 @@ class RealmRepositoryViewModel: ObservableObject {
         let result = repository.readAllPerson()
         // 名前の昇順で並び替える
         people = Array(result.sorted(by: { $0.name < $1.name }))
-        groups = people.filter({ $0.group != "" }).map({ $0.group })
+        groups = Array(Set(people.filter({ $0.group != "" }).map({ $0.group })))
+
     }
     
     public func createPerson(name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {

@@ -34,7 +34,7 @@ struct PersonListView: View {
             
             /// グループタブピッカー
             if repository.groups.count != 0 {
-                CustomHorizontalPicker(groups: repository.groups, selectedSegment: $selectedGroup)
+                CustomHorizontalPicker(groups: $repository.groups, selectedSegment: $selectedGroup)
                     .onChange(of: selectedGroup) { newValue in
                         if newValue == "All" {
                             repository.readAllPerson()
@@ -100,7 +100,7 @@ struct PersonListView: View {
 /// 横スクロールカスタムピッカー
 struct CustomHorizontalPicker: View {
     
-    @State var groups: Array<String>
+    @Binding var groups: Array<String>
     @Binding var selectedSegment: String
     
     var body: some View {
