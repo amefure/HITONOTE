@@ -20,12 +20,8 @@ class RealmRepositoryViewModel: ObservableObject {
         people.removeAll()
         let result = repository.readAllPerson()
         // 名前の昇順で並び替える
-        if let prefLang = Locale.preferredLanguages.first {
-            if prefLang == "ja-JP" {
-                people = Array(result.sorted(by: { $0.ruby < $1.ruby }))
-            } else {
-                people = Array(result.sorted(by: { $0.name < $1.name }))
-            }
+        if Locale.current == Locale(identifier: "ja_JP") {
+            people = Array(result.sorted(by: { $0.ruby < $1.ruby }))
         } else {
             people = Array(result.sorted(by: { $0.name < $1.name }))
         }
