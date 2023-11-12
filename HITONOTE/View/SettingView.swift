@@ -11,15 +11,21 @@ struct SettingView: View {
     
     private let viewModel = SettingViewModel()
     
-    @State var isShow = false
+    @State var isShow: Bool = false
+    
+    @State var isLock: Bool = false
+    
+    
     @Environment(\.dismiss) var dismiss
+    
     
     var body: some View {
         
         HeaderView(leadingIcon: "chevron.backward", trailingIcon: "", leadingAction: { dismiss() }, trailingAction: {})
         
         List {
-            Section(header: Text(L10n.settingDisplayTitle), footer: Text(L10n.settingDisplayItemDesc)) {
+            Section(header: Text(L10n.settingAppSetting), footer: Text(L10n.settingDisplayItemDesc)) {
+                
                 Button {
                     isShow = true
                 } label: {
@@ -27,11 +33,20 @@ struct SettingView: View {
                         Image(systemName: "switch.2")
                         Text(L10n.settingDisplayItemTitle)
                     }.fontWeight(.bold)
+                }.sheet(isPresented: $isShow) {
+                    DisplayItemControlView()
+                }
+                
+                HStack {
+                    Image(systemName: "lock.iphone")
+                    Toggle(isOn: $isLock) {
+                        Text(L10n.settingAppLockTitle)
+                    }.onChange(of: isLock) { newValue in
+                        
+                    }
                 }
             }
-            .sheet(isPresented: $isShow) {
-                DisplayItemControlView()
-            }
+            
             
             Section(header: Text("Link")) {
                 // 1:レビューページ

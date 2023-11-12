@@ -27,6 +27,10 @@
 "gender_unknown" = "Unknown";
 
 // MARK: - Setting
+"setting_app_setting" = "App settings";
+"setting_display_item_title" = "Customizing the displayed items";
+"setting_app_lock_title" = "Lock the app";
+
 "setting_review_title" = "Review app";
 "setting_review_url_query" = "?action=write-review";
 "app_url" = "https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771";
@@ -38,6 +42,5 @@
 "setting_terms_of_service_url" = "https://tech.amefure.com/app-terms-of-service";
 
 // MARK: - DisplayItem
-"setting_display_item_title" = "Customizing the displayed items";
 "setting_display_item_label" = "Item";
 "setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \n Items that are set to OFF will be hidden.";

@@ -19,7 +19,7 @@ struct PersonListView: View {
     @State var search = ""
     
     var body: some View {
-        NavigationStack {
+        VStack {
             
             HeaderView(leadingIcon: "gearshape.fill", trailingIcon: "plus", leadingAction: { isShowSetting = true }, trailingAction: { isShowInput = true })
                 .navigationDestination(isPresented: $isShowSetting) {
@@ -82,6 +82,8 @@ struct PersonListView: View {
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: nil)
         }).tint(Asset.Colors.themaGreen.swiftUIColor)
+            .navigationBarBackButtonHidden()
+                .navigationBarHidden(true)
     }
 
 }

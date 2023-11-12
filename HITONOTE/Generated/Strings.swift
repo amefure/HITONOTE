@@ -45,6 +45,10 @@ internal enum L10n {
   internal static let personTell = L10n.tr("Localizable", "person_tell", fallback: "電話")
   /// 職業
   internal static let personWork = L10n.tr("Localizable", "person_work", fallback: "職業")
+  /// アプリをロックする
+  internal static let settingAppLockTitle = L10n.tr("Localizable", "setting_app_lock_title", fallback: "アプリをロックする")
+  /// アプリ設定
+  internal static let settingAppSetting = L10n.tr("Localizable", "setting_app_setting", fallback: "アプリ設定")
   /// ONにしている項目が詳細や登録ページに表示されます。
   /// OFFにしている項目は非表示になります。
   internal static let settingDisplayItemDesc = L10n.tr("Localizable", "setting_display_item_desc", fallback: "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。")
@@ -52,8 +56,6 @@ internal enum L10n {
   internal static let settingDisplayItemLabel = L10n.tr("Localizable", "setting_display_item_label", fallback: "項目")
   /// 表示する項目のカスタマイズ
   internal static let settingDisplayItemTitle = L10n.tr("Localizable", "setting_display_item_title", fallback: "表示する項目のカスタマイズ")
-  /// アプリ設定
-  internal static let settingDisplayTitle = L10n.tr("Localizable", "setting_display_title", fallback: "アプリ設定")
   /// お出かけ前の忘れ物チェックにはこのアプリがおすすめ！
   internal static let settingRecommendShareText = L10n.tr("Localizable", "setting_recommend_share_text", fallback: "お出かけ前の忘れ物チェックにはこのアプリがおすすめ！")
   /// 「HITONOTE」をオススメする
