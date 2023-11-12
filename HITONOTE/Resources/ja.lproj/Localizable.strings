@@ -48,6 +48,7 @@
 "setting_app_setting" = "アプリ設定";
 "setting_display_item_title" = "表示する項目のカスタマイズ";
 "setting_app_lock_title" = "アプリをロックする";
+"setting_app_setting_desc" = "アプリに関する設定を変更でき、変更した値は保存されます。\n登録したロックパスワードはOFFにするとリセットされます。";
 
 "setting_review_title" = "アプリをレビューする";
 "setting_review_url_query" = "?action=write-review";

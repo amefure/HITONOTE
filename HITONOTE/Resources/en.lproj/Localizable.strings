@@ -47,6 +47,7 @@
 "setting_app_setting" = "App settings";
 "setting_display_item_title" = "Customizing the displayed items";
 "setting_app_lock_title" = "Lock the app";
+"setting_app_setting_desc" = "You can change settings related to the app, and the changed values ​​will be saved. \nThe registered lock password will be reset when you turn it off.";
 
 "setting_review_title" = "Review app";
 "setting_review_url_query" = "?action=write-review";
@@ -60,7 +61,7 @@
 
 // MARK: - DisplayItem
 "setting_display_item_label" = "Item";
-"setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \n Items that are set to OFF will be hidden.";
+"setting_display_item_desc" = "Items that are turned ON will be displayed on the details and registration page. \nItems that are set to OFF will be hidden.";
 
 // MARK: - AppLock
 "app_lock_alert" = "Password is incorrect.";

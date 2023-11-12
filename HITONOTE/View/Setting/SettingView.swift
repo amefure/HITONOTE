@@ -25,7 +25,7 @@ struct SettingView: View {
             .tint(Asset.Colors.themaGreen.swiftUIColor)
         
         List {
-            Section(header: Text(L10n.settingAppSetting), footer: Text(L10n.settingDisplayItemDesc)) {
+            Section(header: Text(L10n.settingAppSetting), footer: Text(L10n.settingAppSettingDesc)) {
                 
                 Button {
                     isShowDisplayItem = true

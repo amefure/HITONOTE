@@ -81,6 +81,9 @@ internal enum L10n {
   internal static let settingAppLockTitle = L10n.tr("Localizable", "setting_app_lock_title", fallback: "パスワードを登録")
   /// アプリ設定
   internal static let settingAppSetting = L10n.tr("Localizable", "setting_app_setting", fallback: "アプリ設定")
+  /// アプリに関する設定を変更でき、変更した値は保存されます。
+  /// 登録したロックパスワードはOFFにするとリセットされます。
+  internal static let settingAppSettingDesc = L10n.tr("Localizable", "setting_app_setting_desc", fallback: "アプリに関する設定を変更でき、変更した値は保存されます。\n登録したロックパスワードはOFFにするとリセットされます。")
   /// ONにしている項目が詳細や登録ページに表示されます。
   /// OFFにしている項目は非表示になります。
   internal static let settingDisplayItemDesc = L10n.tr("Localizable", "setting_display_item_desc", fallback: "ONにしている項目が詳細や登録ページに表示されます。\nOFFにしている項目は非表示になります。")
