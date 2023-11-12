@@ -114,13 +114,14 @@ struct CustomHorizontalPicker: View {
                         }
                     } label: {
                         Text(group)
-                    }.padding(10)
-                        .frame(width: 100)
-                        .background(selectedSegment == group ? Asset.Colors.themaGreen.swiftUIColor : .clear)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .foregroundStyle(selectedSegment == group ? .white : Asset.Colors.textColor.swiftUIColor)
-                        .lineLimit(1)
-                        .fontWeight(.bold)
+                            .padding(10)
+                            .frame(width: 100)
+                            .background(selectedSegment == group ? Asset.Colors.themaGreen.swiftUIColor : .clear)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .foregroundStyle(selectedSegment == group ? .white : Asset.Colors.textColor.swiftUIColor)
+                            .lineLimit(1)
+                            .fontWeight(.bold)
+                    }
                 }
                 Spacer()
             }
@@ -131,11 +132,6 @@ struct CustomHorizontalPicker: View {
             .padding(.horizontal, 5)
             .compositingGroup()
             .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
-            .onAppear {
-                if !groups.contains("All") {
-                    groups.insert("All", at: 0)
-                }
-            }
     }
 }
 

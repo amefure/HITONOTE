@@ -9,14 +9,14 @@ import UIKit
 import RealmSwift
 
 enum Gender: Int, PersistableEnum, Identifiable, CaseIterable {
-    var id:String{self.rawValue}
+    var id:String{self.value}
     
     case man
     case woman
     case other
     case unknown
     
-    public var rawValue: String {
+    public var value: String {
         switch self {
         case .man:
             return L10n.genderMan

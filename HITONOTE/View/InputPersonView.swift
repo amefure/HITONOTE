@@ -299,7 +299,7 @@ struct CustomGenderPickerView: View {
                 
                 Picker(selection: $gender, label: Text(L10n.personGender)) {
                     ForEach(Gender.allCases, id: \.self) { item in
-                        Text(item.rawValue)
+                        Text(item.value)
                     }
                 }
             }.tint(Asset.Colors.themaGreen.swiftUIColor)
