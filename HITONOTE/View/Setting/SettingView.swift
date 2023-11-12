@@ -57,23 +57,23 @@ struct SettingView: View {
             
             
             Section(header: Text("Link")) {
-//                // 1:レビューページ
-//                Link(destination: viewModel.reviewUrl, label: {
-//                    HStack {
-//                        Image(systemName: "hand.thumbsup")
-//                        Text(L10n.settingReviewTitle)
-//                    }
-//                })
-//                
-//                // 2:シェアボタン
-//                Button(action: {
-//                    viewModel.shareApp()
-//                }) {
-//                    HStack {
-//                        Image(systemName: "star.bubble")
-//                        Text(L10n.settingRecommendTitle)
-//                    }
-//                }
+                // 1:レビューページ
+                Link(destination: viewModel.reviewUrl, label: {
+                    HStack {
+                        Image(systemName: "hand.thumbsup")
+                        Text(L10n.settingReviewTitle)
+                    }
+                })
+                
+                // 2:シェアボタン
+                Button(action: {
+                    viewModel.shareApp()
+                }) {
+                    HStack {
+                        Image(systemName: "star.bubble")
+                        Text(L10n.settingRecommendTitle)
+                    }
+                }
                 
                 // 3:利用規約とプライバシーポリシー
                 Link(destination: viewModel.termsUrl, label: {
