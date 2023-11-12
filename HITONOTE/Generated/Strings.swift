@@ -20,6 +20,12 @@ internal enum L10n {
   internal static let genderUnknown = L10n.tr("Localizable", "gender_unknown", fallback: "未設定")
   /// 女性
   internal static let genderWoman = L10n.tr("Localizable", "gender_woman", fallback: "女性")
+  /// 年齢
+  internal static let personAge = L10n.tr("Localizable", "person_age", fallback: "年齢")
+  /// %@歳
+  internal static func personAgeView(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "person_age_view", String(describing: p1), fallback: "%@歳")
+  }
   /// 誕生日
   internal static let personBirthday = L10n.tr("Localizable", "person_birthday", fallback: "誕生日")
   /// こんな人

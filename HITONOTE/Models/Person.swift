@@ -22,6 +22,15 @@ class Person: Object, ObjectKeyIdentifiable {
     @Persisted var imagePath: String = ""      // 画像パス
     @Persisted var memo: String = ""           // メモ
     
+    
+    // 今何歳か
+    public var currentAge: Int? {
+        guard let birthday = birthday else { return nil }
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: Date())
+        let age = ageComponents.year ?? 0
+        return age
+    }
 
     static var demoPerson: Person {
         let person = Person()

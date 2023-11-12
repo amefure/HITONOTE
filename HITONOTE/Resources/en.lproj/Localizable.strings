@@ -13,12 +13,15 @@
 "person_character" = "Character";
 "person_work" = "Work";
 "person_birthday" = "Birthday";
+"person_age" = "Age";
 "person_tell" = "Tell";
 "person_mail" = "Mail";
 "person_group" = "Group";
 "person_imagePath" = "Image";
 "person_memo" = "Memo";
 
+// MARK: - Detail Item
+"person_age_view" = "%@";
 
 // MARK: - Gender Model
 "gender_man" = "Man";

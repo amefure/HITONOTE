@@ -14,11 +14,16 @@
 "person_character" = "こんな人";
 "person_work" = "職業";
 "person_birthday" = "誕生日";
+"person_age" = "年齢";
 "person_tell" = "電話";
 "person_mail" = "メール";
 "person_group" = "グループ";
 "person_imagePath" = "画像";
 "person_memo" = "メモ";
+
+// MARK: - Detail Item
+"person_age_view" = "%@歳";
+
 
 // MARK: - Gender Model
 "gender_man" = "男性";

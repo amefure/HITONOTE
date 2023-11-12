@@ -100,8 +100,10 @@ struct DetailPersonView: View {
                 
                 CustomPersonItemView(label: L10n.personWork, value: person.work, isShow: userDefaultsRepository.isWork)
                 
-                if let birthday = person.birthday {
+                if let birthday = person.birthday, let currentAge = person.currentAge {
                     CustomPersonItemView(label: L10n.personBirthday, value: dateFormatManager.getString(date: birthday), isShow: userDefaultsRepository.isBirthday)
+                    
+                    CustomPersonItemView(label: L10n.personAge, value: L10n.personAgeView(currentAge), isShow: userDefaultsRepository.isBirthday)
                 }
                 
                 CustomPersonItemView(label: L10n.personTell, value: person.tell, isShow: userDefaultsRepository.isTell)
