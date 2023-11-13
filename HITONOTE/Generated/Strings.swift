@@ -12,8 +12,8 @@ import Foundation
 internal enum L10n {
   /// パスワードが違います。
   internal static let appLockAlert = L10n.tr("Localizable", "app_lock_alert", fallback: "パスワードが違います。")
-  /// https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771
-  internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/stock-持ち物リスト/id6466220771")
+  /// https://apps.apple.com/jp/app/HITONOTE/id6471915200
+  internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/HITONOTE/id6471915200")
   /// yyyy年M月dd日
   internal static let dateFormat = L10n.tr("Localizable", "date_format", fallback: "yyyy年M月dd日")
   /// ja_JP
@@ -93,8 +93,8 @@ internal enum L10n {
   internal static let settingDisplayItemLabel = L10n.tr("Localizable", "setting_display_item_label", fallback: "項目")
   /// 表示する項目のカスタマイズ
   internal static let settingDisplayItemTitle = L10n.tr("Localizable", "setting_display_item_title", fallback: "表示する項目のカスタマイズ")
-  /// お出かけ前の忘れ物チェックにはこのアプリがおすすめ！
-  internal static let settingRecommendShareText = L10n.tr("Localizable", "setting_recommend_share_text", fallback: "お出かけ前の忘れ物チェックにはこのアプリがおすすめ！")
+  /// 友達や顧客、生徒など人の情報をメモしたい人におすすめだよ♪
+  internal static let settingRecommendShareText = L10n.tr("Localizable", "setting_recommend_share_text", fallback: "友達や顧客、生徒など人の情報をメモしたい人におすすめだよ♪")
   /// 「HITONOTE」をオススメする
   internal static let settingRecommendTitle = L10n.tr("Localizable", "setting_recommend_title", fallback: "「HITONOTE」をオススメする")
   /// アプリをレビューする
