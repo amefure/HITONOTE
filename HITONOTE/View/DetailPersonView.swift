@@ -110,7 +110,7 @@ struct DetailPersonView: View {
                 
                 CustomPersonItemView(label: L10n.personMail, value: person.mail, isShow: userDefaultsRepository.isMail)
                 
-                CustomPersonItemView(label: L10n.personUrl, value: person.url, isShow: userDefaultsRepository.isUrl)
+                CustomPersonLinkItemView(label: L10n.personUrl, value: person.url, isShow: userDefaultsRepository.isUrl)
                 
                 CustomPersonItemView(label: L10n.personMemo, value: person.memo, isShow: userDefaultsRepository.isMemo)
                 
@@ -187,6 +187,39 @@ struct CustomPersonItemView: View {
     }
 }
 
+/// URL表示用
+struct CustomPersonLinkItemView: View {
+    
+    public let label: String
+    public let value: String
+    public let isShow: Bool
+    
+    var body: some View {
+        if isShow {
+            Group {
+                if !value.isEmpty {
+                    HStack {
+                        Text(label)
+                            .font(.system(size: 13))
+                            .fontWeight(.light)
+                            .padding(.leading, 5)
+                        Spacer()
+                    }
+                    Divider()
+                        .padding(.bottom, 5)
+                    if let url = URL(string: value) {
+                        Link(destination: url, label: {
+                            Text(value)
+                                .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                        }).font(.system(size: 18))
+                            .padding(.bottom, 10)
+                            .textSelection(.enabled)
+                    }
+                }
+            }
+        }
+    }
+}
 
 #Preview {
     DetailPersonView(person: Person.demoPerson)

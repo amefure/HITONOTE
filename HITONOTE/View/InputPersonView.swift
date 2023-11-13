@@ -40,6 +40,7 @@ struct InputPersonView: View {
     @State private var isShowImagePicker: Bool = false  // 画像ピッカー表示
     @State private var successAlert: Bool = false       // 登録成功アラート
     @State private var validationAlert: Bool = false    // バリデーションアラート
+    @State private var validationUrlAlert: Bool = false // バリデーションURLアラート
     
     @Environment(\.dismiss) var dismiss
     
@@ -51,8 +52,19 @@ struct InputPersonView: View {
                 
                 HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
                     
+                    /// 必須入力事項チェック
                     guard !name.isEmpty else {
                         validationAlert = true
+                        return
+                    }
+                    
+                    /// 有効なURLかチェック
+                    guard let nsurl = NSURL(string: url) else {
+                        validationUrlAlert = true
+                        return
+                    }
+                    if !UIApplication.shared.canOpenURL(nsurl as URL) {
+                        validationUrlAlert = true
                         return
                     }
                     
@@ -209,6 +221,8 @@ struct InputPersonView: View {
                 dismiss()
             }
         }.alert(L10n.inputValidationTitle, isPresented: $validationAlert) {
+            
+        }.alert("無効なURLです。", isPresented: $validationUrlAlert) {
             
         }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
