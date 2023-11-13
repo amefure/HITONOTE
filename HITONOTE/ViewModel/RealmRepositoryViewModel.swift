@@ -32,13 +32,13 @@ class RealmRepositoryViewModel: ObservableObject {
         }
     }
     
-    public func createPerson(name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
-        repository.createPerson(name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
+    public func createPerson(name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, url: String,  group: String, imagePath: String, memo: String) {
+        repository.createPerson(name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, url: url, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
     
-    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
-        repository.updatePerson(id: id, name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, group: group, imagePath: imagePath, memo: memo)
+    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, url: String,  group: String, imagePath: String, memo: String) {
+        repository.updatePerson(id: id, name: name, ruby: ruby, gender: gender, character: character, work: work, birthday: birthday, tell: tell, mail: mail, url: url, group: group, imagePath: imagePath, memo: memo)
         self.readAllPerson()
     }
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DisplayItemControlView: View {
-
+    
     // MARK: - ViewMidel
     private let viewModel = DisplayItemControlViewModel()
     
@@ -20,6 +20,7 @@ struct DisplayItemControlView: View {
     @State private var isBirthday: Bool = true      // 誕生日
     @State private var isTell: Bool = true          // 電話
     @State private var isMail: Bool = true          // メール
+    @State private var isUrl: Bool = true           // URL
     @State private var isMemo: Bool = true          // メモ
     
     @Environment(\.dismiss) private var dismiss
@@ -83,31 +84,38 @@ struct DisplayItemControlView: View {
                         viewModel.setDisplayItem(key: UserDefaultsKey.MAIL_KEY, isOn: newValue)
                     }
                     
+                    Toggle(isOn: $isUrl) {
+                        Text(L10n.personUrl)
+                    }.onChange(of: isUrl) { newValue in
+                        viewModel.setDisplayItem(key: UserDefaultsKey.URL_KEY, isOn: newValue)
+                    }
+                    
                     Toggle(isOn: $isMemo) {
                         Text(L10n.personMemo)
                     }.onChange(of: isMemo) { newValue in
                         viewModel.setDisplayItem(key: UserDefaultsKey.MEMO_KEY, isOn: newValue)
                     }
-
+                    
                 }
-
+                
             }.tint(Asset.Colors.themaGreen.swiftUIColor)
             
             Spacer()
             
         }.onAppear {
-                // 初期値セット
-                isRuby = viewModel.getDisplayItem(key: UserDefaultsKey.RUBY_KEY)
-                isGender = viewModel.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)
-                isCharacter = viewModel.getDisplayItem(key: UserDefaultsKey.CHARACTER_KEY)
-                isWork = viewModel.getDisplayItem(key: UserDefaultsKey.WORK_KEY)
-                isBirthday = viewModel.getDisplayItem(key: UserDefaultsKey.BIRTHDAY_KEY)
-                isTell = viewModel.getDisplayItem(key: UserDefaultsKey.TELL_KEY)
-                isMail = viewModel.getDisplayItem(key: UserDefaultsKey.MAIL_KEY)
-                isMemo = viewModel.getDisplayItem(key: UserDefaultsKey.MEMO_KEY)
-            }
-            .navigationBarBackButtonHidden()
-                .navigationBarHidden(true)
+            // 初期値セット
+            isRuby = viewModel.getDisplayItem(key: UserDefaultsKey.RUBY_KEY)
+            isGender = viewModel.getDisplayItem(key: UserDefaultsKey.GENDER_KEY)
+            isCharacter = viewModel.getDisplayItem(key: UserDefaultsKey.CHARACTER_KEY)
+            isWork = viewModel.getDisplayItem(key: UserDefaultsKey.WORK_KEY)
+            isBirthday = viewModel.getDisplayItem(key: UserDefaultsKey.BIRTHDAY_KEY)
+            isTell = viewModel.getDisplayItem(key: UserDefaultsKey.TELL_KEY)
+            isMail = viewModel.getDisplayItem(key: UserDefaultsKey.MAIL_KEY)
+            isUrl = viewModel.getDisplayItem(key: UserDefaultsKey.URL_KEY)
+            isMemo = viewModel.getDisplayItem(key: UserDefaultsKey.MEMO_KEY)
+        }
+        .navigationBarBackButtonHidden()
+        .navigationBarHidden(true)
     }
 }
 

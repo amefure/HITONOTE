@@ -17,6 +17,7 @@
 "person_age" = "年齢";
 "person_tell" = "電話";
 "person_mail" = "メール";
+"person_url" = "URL";
 "person_group" = "グループ";
 "person_imagePath" = "画像";
 "person_memo" = "メモ";

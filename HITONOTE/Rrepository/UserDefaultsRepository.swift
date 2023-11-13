@@ -16,6 +16,7 @@ class UserDefaultsKey {
     static let BIRTHDAY_KEY = "BIRTHDAY_KEY"
     static let TELL_KEY = "TELL_KEY"
     static let MAIL_KEY = "MAIL_KEY"
+    static let URL_KEY = "URL_KEY"
     static let MEMO_KEY = "MEMO_KEY"
     
     static let APP_INITIAL_BOOT_FLAG = "APP_INITIAL_BOOT_FLAG"

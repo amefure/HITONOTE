@@ -32,6 +32,7 @@ struct InputPersonView: View {
     @State private var birthday: Date? = nil       // 誕生日
     @State private var tell: String = ""           // 電話
     @State private var mail: String = ""           // メール
+    @State private var url: String = ""            // URL
     @State private var group: String = ""          // グループ
     @State private var memo: String = ""           // メモ
     
@@ -81,6 +82,7 @@ struct InputPersonView: View {
                             birthday: birthday,
                             tell: tell,
                             mail: mail,
+                            url: url,
                             group: group,
                             imagePath: imgName,
                             memo: memo)
@@ -107,6 +109,7 @@ struct InputPersonView: View {
                             birthday: birthday,
                             tell: tell,
                             mail: mail,
+                            url: url,
                             group: group,
                             imagePath: imgName,
                             memo: memo)
@@ -166,6 +169,9 @@ struct InputPersonView: View {
                     /// メール
                     CustomInputView(label: L10n.personMail, text: $mail, isShow: userDefaultsRepository.isMail)
                     
+                    /// URL
+                    CustomInputView(label: L10n.personUrl, text: $url, isShow: userDefaultsRepository.isUrl)
+                    
                     /// グループ
                     CustomGroupPickerView(group: $group, groups: repository.groups, isShow: true)
                     
@@ -192,6 +198,7 @@ struct InputPersonView: View {
                 birthday = person.birthday
                 tell = person.tell
                 mail = person.mail
+                url = person.url
                 group = person.group
                 image = imageFileManager.loadImage(name: person.imagePath)
                 memo = person.memo

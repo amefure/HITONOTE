@@ -110,6 +110,8 @@ struct DetailPersonView: View {
                 
                 CustomPersonItemView(label: L10n.personMail, value: person.mail, isShow: userDefaultsRepository.isMail)
                 
+                CustomPersonItemView(label: L10n.personUrl, value: person.url, isShow: userDefaultsRepository.isUrl)
+                
                 CustomPersonItemView(label: L10n.personMemo, value: person.memo, isShow: userDefaultsRepository.isMemo)
                 
                 

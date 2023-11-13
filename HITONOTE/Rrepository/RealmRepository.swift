@@ -9,12 +9,19 @@ import UIKit
 import RealmSwift
 
 class RealmRepository {
+    
+    init() {
+        let config = Realm.Configuration(schemaVersion: 1)
+
+        Realm.Configuration.defaultConfiguration = config
+        realm = try! Realm()
+    }
 
     // MARK: - private property
-    private let realm = try! Realm()
+    private let realm: Realm
     
     // MARK: - Person
-    public func createPerson(name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func createPerson(name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, url: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let person = Person()
             person.name = name
@@ -25,6 +32,7 @@ class RealmRepository {
             person.birthday = birthday
             person.tell = tell
             person.mail = mail
+            person.url = url
             person.group = group
             person.imagePath = imagePath
             person.memo = memo
@@ -32,7 +40,7 @@ class RealmRepository {
         }
     }
     
-    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, group: String, imagePath: String, memo: String) {
+    public func updatePerson(id: ObjectId, name: String, ruby: String, gender: Gender, character: String, work: String, birthday: Date?, tell: String, mail: String, url: String, group: String, imagePath: String, memo: String) {
         try! realm.write {
             let people = realm.objects(Person.self)
             if let person = people.where({ $0.id == id }).first {
@@ -44,6 +52,7 @@ class RealmRepository {
                 person.birthday = birthday
                 person.tell = tell
                 person.mail = mail
+                person.url = url
                 person.group = group
                 person.imagePath = imagePath
                 person.memo = memo

@@ -73,6 +73,8 @@ internal enum L10n {
   internal static let personRuby = L10n.tr("Localizable", "person_ruby", fallback: "ふりがな")
   /// 電話
   internal static let personTell = L10n.tr("Localizable", "person_tell", fallback: "電話")
+  /// URL
+  internal static let personUrl = L10n.tr("Localizable", "person_url", fallback: "URL")
   /// 職業
   internal static let personWork = L10n.tr("Localizable", "person_work", fallback: "職業")
   /// 登録

@@ -16,6 +16,7 @@
 "person_age" = "Age";
 "person_tell" = "Tell";
 "person_mail" = "Mail";
+"person_url" = "URL";
 "person_group" = "Group";
 "person_imagePath" = "Image";
 "person_memo" = "Memo";

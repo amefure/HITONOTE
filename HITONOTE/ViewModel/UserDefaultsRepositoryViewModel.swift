@@ -19,6 +19,7 @@ class UserDefaultsRepositoryViewModel {
     var isBirthday: Bool = true      // 誕生日
     var isTell: Bool = true          // 電話
     var isMail: Bool = true          // メール
+    var isUrl: Bool = true           // URL
     var isMemo: Bool = true          // メモ
     
     var isCount: Int = 0             // インタースティシャル用カウント
@@ -39,6 +40,7 @@ class UserDefaultsRepositoryViewModel {
             userDefaultsRepository.setBoolData(key: UserDefaultsKey.BIRTHDAY_KEY, isOn: true)
             userDefaultsRepository.setBoolData(key: UserDefaultsKey.TELL_KEY, isOn: true)
             userDefaultsRepository.setBoolData(key: UserDefaultsKey.MAIL_KEY, isOn: true)
+            userDefaultsRepository.setBoolData(key: UserDefaultsKey.URL_KEY, isOn: true)
             userDefaultsRepository.setBoolData(key: UserDefaultsKey.MEMO_KEY, isOn: true)
             
             // 2回目起動以降にこの処理が走らないようにする
@@ -52,6 +54,7 @@ class UserDefaultsRepositoryViewModel {
         isBirthday = userDefaultsRepository.getBoolData(key: UserDefaultsKey.BIRTHDAY_KEY)
         isTell = userDefaultsRepository.getBoolData(key: UserDefaultsKey.TELL_KEY)
         isMail = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MAIL_KEY)
+        isUrl = userDefaultsRepository.getBoolData(key: UserDefaultsKey.URL_KEY)
         isMemo = userDefaultsRepository.getBoolData(key: UserDefaultsKey.MEMO_KEY)
         
         /// インタースティシャルカウント
