@@ -25,7 +25,7 @@ struct PersonImageView: View {
                         .stroke(style: StrokeStyle(lineWidth: size * 0.05))
                         .frame(width: size)
                         .foregroundStyle(.white)
-                }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
+                }.shadow(color: size == 90 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
             
         } else {
             Asset.Images.person.swiftUIImage
@@ -38,11 +38,11 @@ struct PersonImageView: View {
                         .stroke(style: StrokeStyle(lineWidth: size * 0.05))
                         .frame(width: size)
                         .foregroundStyle(.white)
-                }.shadow(color: size == 100 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
+                }.shadow(color: size == 90 ? Asset.Colors.opacityGray.swiftUIColor : .clear, radius: 3, x: 2, y: 3)
         }
     }
 }
 
 #Preview {
-    PersonImageView(image: nil, size: 100)
+    PersonImageView(image: nil, size: 90)
 }

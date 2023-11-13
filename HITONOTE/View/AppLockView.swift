@@ -69,6 +69,10 @@ struct NumberKeyboardView: View {
     
     @Binding var password: Array<String>
     
+    private var height: CGFloat {
+        DeviceSizeManager.isSESize ? 60 : 80
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -77,12 +81,12 @@ struct NumberKeyboardView: View {
                 NumberButton(number: "1", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "2", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "3", password: $password)
             }
@@ -95,12 +99,12 @@ struct NumberKeyboardView: View {
                 NumberButton(number: "4", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "5", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "6", password: $password)
                 
@@ -114,12 +118,12 @@ struct NumberKeyboardView: View {
                 NumberButton(number: "7", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "8", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "9", password: $password)
                 
@@ -133,18 +137,18 @@ struct NumberKeyboardView: View {
                 NumberButton(number: "-", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 NumberButton(number: "0", password: $password)
                 
                 Rectangle()
-                    .frame(width: 1, height: 80)
+                    .frame(width: 1, height: height)
                 
                 Button {
                     password = password.dropLast()
                 } label: {
                     Image(systemName: "delete.backward")
-                        .frame(width: DeviceSizeManager.deviceWidth / 3, height: 80)
+                        .frame(width: DeviceSizeManager.deviceWidth / 3, height: height)
                         .background(Asset.Colors.opacityBlack.swiftUIColor)
                 }
             }
@@ -156,10 +160,14 @@ struct NumberKeyboardView: View {
 /// サークル背景
 struct PasswordBackGroundView: View {
     
+    private var radius: CGFloat {
+        DeviceSizeManager.isSESize ? 60 : 70
+    }
+    
     var body: some View {
         Path { path in
             path.addArc(center: CGPoint(x: 40, y: 60),
-                        radius: 70,
+                        radius: radius,
                         startAngle: Angle(degrees: 0),
                         endAngle: Angle(degrees: 360),
                         clockwise: true)
@@ -168,7 +176,7 @@ struct PasswordBackGroundView: View {
         
         Path { path in
             path.addArc(center: CGPoint(x: DeviceSizeManager.deviceWidth - 40, y: 250),
-                        radius: 60,
+                        radius: radius - 10,
                         startAngle: Angle(degrees: 0),
                         endAngle: Angle(degrees: 360),
                         clockwise: true)
@@ -200,6 +208,10 @@ struct NumberButton: View {
     public let number: String
     @Binding var password: Array<String>
     
+    private var height: CGFloat {
+        DeviceSizeManager.isSESize ? 60 : 80
+    }
+    
     var body: some View {
         Button {
             if password.count != 4 && number != "-" {
@@ -207,7 +219,7 @@ struct NumberButton: View {
             }
         } label: {
             Text(number)
-                .frame(width: DeviceSizeManager.deviceWidth / 3, height: 80)
+                .frame(width: DeviceSizeManager.deviceWidth / 3, height: height)
                 .background(Asset.Colors.opacityBlack.swiftUIColor)
         }
     }

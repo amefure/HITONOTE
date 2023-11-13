@@ -58,15 +58,18 @@ struct InputPersonView: View {
                         return
                     }
                     
-                    /// 有効なURLかチェック
-                    guard let nsurl = NSURL(string: url) else {
-                        validationUrlAlert = true
-                        return
+                    if !url.isEmpty {
+                        /// 有効なURLかチェック
+                        guard let nsurl = NSURL(string: url) else {
+                            validationUrlAlert = true
+                            return
+                        }
+                        if !UIApplication.shared.canOpenURL(nsurl as URL) {
+                            validationUrlAlert = true
+                            return
+                        }
                     }
-                    if !UIApplication.shared.canOpenURL(nsurl as URL) {
-                        validationUrlAlert = true
-                        return
-                    }
+                    
                     
                     if let person = person {
                         

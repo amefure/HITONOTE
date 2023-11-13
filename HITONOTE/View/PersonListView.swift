@@ -114,7 +114,9 @@ struct CustomHorizontalPicker: View {
                         }
                     } label: {
                         Text(group)
-                            .padding(10)
+                            .font(.system(size: 12))
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 10)
                             .frame(width: 100)
                             .background(selectedSegment == group ? Asset.Colors.themaGreen.swiftUIColor : .clear)
                             .clipShape(RoundedRectangle(cornerRadius: 8))

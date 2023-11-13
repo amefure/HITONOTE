@@ -58,30 +58,32 @@ struct DetailPersonView: View {
                     
                     Spacer()
                     
-                    PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 100)
+                    PersonImageView(image: imageFileManager.loadImage(name: person.imagePath), size: 90)
                     
                     Spacer()
                     
                     if !person.group.isEmpty {
                         Text(person.group)
-                            .padding(8)
+                            .font(.system(size: 12))
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 8)
                             .frame(width: 100)
                             .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
                             .background(.white)
-                            .clipShape(RoundedRectangle(cornerRadius:  8))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                             .fontWeight(.bold)
                             .shadow(color: Asset.Colors.opacityGray.swiftUIColor, radius: 3, x: 2, y: 3)
                     }
                     
-                }.padding()
+                }.padding(10)
                 
                 /// 名前とふりがな
                 VStack {
                     Text(person.name)
-                        .font(.system(size: 30))
+                        .font(.system(size: 26))
                     if userDefaultsRepository.isRuby {
                         Text(person.ruby)
-                            .font(.system(size: 15))
+                            .font(.system(size: 14))
                     }
                 }.fontWeight(.bold)
                     .foregroundStyle(.white)
