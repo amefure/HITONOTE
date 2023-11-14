@@ -86,7 +86,6 @@ struct PersonListView: View {
             
         }.onAppear {
             repository.readAllPerson()
-            userDefaultsRepository.readingUserDefaultsAllItem()
         }.sheet(isPresented: $isShowInput, content: {
             InputPersonView(person: nil)
         }).tint(Asset.Colors.themaGreen.swiftUIColor)

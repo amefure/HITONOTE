@@ -13,6 +13,11 @@ class DeviceSizeManager {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
         return window.screen.bounds.width
     }
+
+    static var deviceHeight: CGFloat {
+        guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
+        return window.screen.bounds.height
+    }
     
     static var isSESize: Bool {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return false }

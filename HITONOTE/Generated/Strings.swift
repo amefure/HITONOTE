@@ -48,6 +48,21 @@ internal enum L10n {
   internal static let inputValidationTitle = L10n.tr("Localizable", "input_validation_title", fallback: "名前は必須入力です。")
   /// 無効なURLです。
   internal static let inputValidationUrlTitle = L10n.tr("Localizable", "input_validation_url_title", fallback: "無効なURLです。")
+  /// Localizable.strings
+  ///   HITONOTE
+  /// 
+  ///   Created by t&a on 2023/11/09.
+  internal static let onboarding1Title = L10n.tr("Localizable", "onboarding1_title", fallback: "お客さんや友達、生徒さんなど\n人の情報を見やすく管理できるメモアプリ")
+  /// 項目は表示/非表示を切り替えられるので
+  /// 必要な情報のみにカスタマイズ可能
+  internal static let onboarding2Title = L10n.tr("Localizable", "onboarding2_title", fallback: "項目は表示/非表示を切り替えられるので\n必要な情報のみにカスタマイズ可能")
+  /// アプリにロックがかけられるので
+  /// 大事な情報を外部に漏らさない
+  internal static let onboarding3Title = L10n.tr("Localizable", "onboarding3_title", fallback: "アプリにロックがかけられるので\n大事な情報を外部に漏らさない")
+  /// 次へ
+  internal static let onboardingNext = L10n.tr("Localizable", "onboarding_next", fallback: "次へ")
+  /// はじめる
+  internal static let onboardingStart = L10n.tr("Localizable", "onboarding_start", fallback: "はじめる")
   /// 年齢
   internal static let personAge = L10n.tr("Localizable", "person_age", fallback: "年齢")
   /// %@歳
@@ -68,10 +83,7 @@ internal enum L10n {
   internal static let personMail = L10n.tr("Localizable", "person_mail", fallback: "メール")
   /// メモ
   internal static let personMemo = L10n.tr("Localizable", "person_memo", fallback: "メモ")
-  /// Localizable.strings
-  ///   HITONOTE
-  /// 
-  ///   Created by t&a on 2023/11/09.
+  /// 名前
   internal static let personName = L10n.tr("Localizable", "person_name", fallback: "名前")
   /// ふりがな
   internal static let personRuby = L10n.tr("Localizable", "person_ruby", fallback: "ふりがな")

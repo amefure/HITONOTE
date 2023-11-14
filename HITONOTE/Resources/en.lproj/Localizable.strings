@@ -6,6 +6,13 @@
   
 */
 
+// MARK: - Onboarding
+"onboarding1_title" = "A memo app that allows you to easily view and manage information about customers, friends, students, etc.";
+"onboarding2_title" = "Items can be shown/hidden, so you can customize only the information you need.";
+"onboarding3_title" = "Since the app is locked, important information will not be leaked to outside parties.";
+"onboarding_next" = "Next";
+"onboarding_start" = "Start";
+
 // MARK: - Person Model
 "person_name" = "Name";
 "person_ruby" = "Ruby";

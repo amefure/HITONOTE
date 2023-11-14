@@ -39,6 +39,10 @@
 		12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9612AFCA012009EDD14 /* Assets.swift */; };
 		12C8D9642AFCA012009EDD14 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9622AFCA012009EDD14 /* Strings.swift */; };
 		12C8D9662AFCA223009EDD14 /* InputPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8D9652AFCA223009EDD14 /* InputPersonView.swift */; };
+		12F2E4532B03B1D500E12B43 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2E4522B03B1D500E12B43 /* SplashView.swift */; };
+		12F2E4552B03B22D00E12B43 /* Onboarding1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2E4542B03B22D00E12B43 /* Onboarding1View.swift */; };
+		12F2E4572B03B23900E12B43 /* Onboarding2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2E4562B03B23900E12B43 /* Onboarding2View.swift */; };
+		12F2E4592B03B24100E12B43 /* Onboarding3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2E4582B03B24100E12B43 /* Onboarding3View.swift */; };
 		1FC43675BB5AE52F42AFBE92 /* Pods_HITONOTE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF993EE6375C1A3E52ACE692 /* Pods_HITONOTE.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +82,10 @@
 		12C8D9612AFCA012009EDD14 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		12C8D9622AFCA012009EDD14 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		12C8D9652AFCA223009EDD14 /* InputPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPersonView.swift; sourceTree = "<group>"; };
+		12F2E4522B03B1D500E12B43 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		12F2E4542B03B22D00E12B43 /* Onboarding1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1View.swift; sourceTree = "<group>"; };
+		12F2E4562B03B23900E12B43 /* Onboarding2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2View.swift; sourceTree = "<group>"; };
+		12F2E4582B03B24100E12B43 /* Onboarding3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3View.swift; sourceTree = "<group>"; };
 		A60932F73774839E2C0AB7FF /* Pods-HITONOTE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HITONOTE.debug.xcconfig"; path = "Target Support Files/Pods-HITONOTE/Pods-HITONOTE.debug.xcconfig"; sourceTree = "<group>"; };
 		AF993EE6375C1A3E52ACE692 /* Pods_HITONOTE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HITONOTE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57BEEAB91599A7C4E5DBE43 /* Pods-HITONOTE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HITONOTE.release.xcconfig"; path = "Target Support Files/Pods-HITONOTE/Pods-HITONOTE.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				125F84732AFC59A700CCC2AF /* HITONOTEApp.swift */,
+				12F2E4512B03B1A300E12B43 /* Onboarding */,
 				125F84752AFC59A700CCC2AF /* PersonListView.swift */,
 				12C8D9652AFCA223009EDD14 /* InputPersonView.swift */,
 				127B56A22AFCECF10086439E /* DetailPersonView.swift */,
@@ -239,6 +248,17 @@
 				12B3A2852B00A90C00FD00CF /* KeyChainRepository.swift */,
 			);
 			path = Rrepository;
+			sourceTree = "<group>";
+		};
+		12F2E4512B03B1A300E12B43 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				12F2E4522B03B1D500E12B43 /* SplashView.swift */,
+				12F2E4542B03B22D00E12B43 /* Onboarding1View.swift */,
+				12F2E4562B03B23900E12B43 /* Onboarding2View.swift */,
+				12F2E4582B03B24100E12B43 /* Onboarding3View.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		2794C67DB28B81E143A8EFB1 /* Frameworks */ = {
@@ -376,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F2E4572B03B23900E12B43 /* Onboarding2View.swift in Sources */,
 				12C8D9582AFC60B4009EDD14 /* Person.swift in Sources */,
 				12B3A2802AFFAE3D00FD00CF /* AppLockView.swift in Sources */,
 				12C8D95C2AFC625D009EDD14 /* RealmRepository.swift in Sources */,
@@ -389,6 +410,8 @@
 				12B3A27E2AFF35CE00FD00CF /* UserDefaultsRepositoryViewModel.swift in Sources */,
 				12B3A2782AFE6D5400FD00CF /* Gender.swift in Sources */,
 				12C8D9632AFCA012009EDD14 /* Assets.swift in Sources */,
+				12F2E4592B03B24100E12B43 /* Onboarding3View.swift in Sources */,
+				12F2E4532B03B1D500E12B43 /* SplashView.swift in Sources */,
 				12B3A2862B00A90C00FD00CF /* KeyChainRepository.swift in Sources */,
 				12C8D95E2AFC62CC009EDD14 /* RealmRepositoryViewModel.swift in Sources */,
 				127B56B02AFDD0390086439E /* PersonImageView.swift in Sources */,
@@ -396,6 +419,7 @@
 				127B56A12AFCE8970086439E /* ImagePickerDialog.swift in Sources */,
 				125F84762AFC59A700CCC2AF /* PersonListView.swift in Sources */,
 				12B3A2822AFFC5D400FD00CF /* ExCollection.swift in Sources */,
+				12F2E4552B03B22D00E12B43 /* Onboarding1View.swift in Sources */,
 				127B56AC2AFCFDBC0086439E /* SettingViewModel.swift in Sources */,
 				12B3A2882B00B90800FD00CF /* AppLockInputView.swift in Sources */,
 				125F84742AFC59A700CCC2AF /* HITONOTEApp.swift in Sources */,

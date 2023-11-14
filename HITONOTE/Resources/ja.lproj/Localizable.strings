@@ -6,6 +6,12 @@
   
 */
 
+// MARK: - Onboarding
+"onboarding1_title" = "お客さんや友達、生徒さんなど\n人の情報を見やすく管理できるメモアプリ";
+"onboarding2_title" = "項目は表示/非表示を切り替えられるので\n必要な情報のみにカスタマイズ可能";
+"onboarding3_title" = "アプリにロックがかけられるので\n大事な情報を外部に漏らさない";
+"onboarding_next" = "次へ";
+"onboarding_start" = "はじめる";
 
 // MARK: - Person
 "person_name" = "名前";

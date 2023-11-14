@@ -24,11 +24,17 @@ struct HITONOTEApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                /// キーチェーンにアプリのログイン情報があれば参照
                 if KeyChainRepository.sheard.getData().count == 4 {
+                    /// キーチェーンにパスワードが保存されている場合
                     AppLockView()
                 } else {
-                    PersonListView()
+                    if UserDefaultsRepositoryViewModel.sheard.isInitialBoot {
+                        /// 一度でもアプリを起動していれば
+                        PersonListView()
+                    } else {
+                        /// アプリ初回起動時
+                        SplashView()
+                    }
                 }
             }
         }

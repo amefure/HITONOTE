@@ -35,6 +35,12 @@ internal enum Asset {
   internal enum Images {
     internal static let hitonoteLogo = ImageAsset(name: "HITONOTE_Logo")
     internal static let person = ImageAsset(name: "Person")
+    internal static let onboarding1En = ImageAsset(name: "onboarding_1_en")
+    internal static let onboarding1Jp = ImageAsset(name: "onboarding_1_jp")
+    internal static let onboarding2En = ImageAsset(name: "onboarding_2_en")
+    internal static let onboarding2Jp = ImageAsset(name: "onboarding_2_jp")
+    internal static let onboarding3En = ImageAsset(name: "onboarding_3_en")
+    internal static let onboarding3Jp = ImageAsset(name: "onboarding_3_jp")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

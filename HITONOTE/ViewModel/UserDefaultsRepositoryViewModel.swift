@@ -26,11 +26,10 @@ class UserDefaultsRepositoryViewModel {
     
     var isInitialBoot: Bool = false  // 初回起動フラグ
     
-    /// 取得
-    public func readingUserDefaultsAllItem() {
+    init() {
+        isInitialBoot = userDefaultsRepository.getBoolData(key: UserDefaultsKey.APP_INITIAL_BOOT_FLAG)
         
         /// 初回起動時かどうか識別
-        isInitialBoot = userDefaultsRepository.getBoolData(key: UserDefaultsKey.APP_INITIAL_BOOT_FLAG)
         if !isInitialBoot {
             // 初回起動の場合は表示アイテムを全てONにする
             userDefaultsRepository.setBoolData(key: UserDefaultsKey.RUBY_KEY, isOn: true)
