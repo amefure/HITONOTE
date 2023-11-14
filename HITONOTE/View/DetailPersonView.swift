@@ -96,7 +96,9 @@ struct DetailPersonView: View {
             /// 情報
             ScrollView(showsIndicators: false) {
                 
-                CustomPersonItemView(label: L10n.personGender, value: person.gender.value, isShow: userDefaultsRepository.isGender)
+                if person.gender.value != Gender.unknown.value {
+                    CustomPersonItemView(label: L10n.personGender, value: person.gender.value, isShow: userDefaultsRepository.isGender)
+                }
                 
                 CustomPersonItemView(label: L10n.personCharacter, value: person.character, isShow: userDefaultsRepository.isCharacter)
                 
