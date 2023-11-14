@@ -172,19 +172,30 @@ struct CustomPersonItemView: View {
         if isShow {
             Group {
                 if !value.isEmpty {
-                    HStack {
-                        Text(label)
-                            .font(.system(size: 13))
-                            .fontWeight(.light)
-                            .padding(.leading, 5)
-                        Spacer()
+                    ZStack {
+                        
+                        HStack {
+                            Text(label)
+                                .font(.system(size: 13))
+                                .fontWeight(.light)
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Text(value)
+                                .font(.system(size: 18))
+                                .padding(.bottom, 10)
+                                .textSelection(.enabled)
+                            
+                            Spacer()
+                        }
                     }
                     Divider()
-                        .padding(.bottom, 5)
-                    Text(value)
-                        .font(.system(size: 18))
                         .padding(.bottom, 10)
-                        .textSelection(.enabled)
                 }
             }
         }
@@ -202,23 +213,30 @@ struct CustomPersonLinkItemView: View {
         if isShow {
             Group {
                 if !value.isEmpty {
-                    HStack {
-                        Text(label)
-                            .font(.system(size: 13))
-                            .fontWeight(.light)
-                            .padding(.leading, 5)
-                        Spacer()
+                    ZStack {
+                        
+                        HStack {
+                            Text(label)
+                                .font(.system(size: 13))
+                                .fontWeight(.light)
+                                .padding(.leading, 5)
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            if let url = URL(string: value) {
+                                Link(destination: url, label: {
+                                    Text(value)
+                                        .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
+                                }).font(.system(size: 18))
+                                    .textSelection(.enabled)
+                            }
+                            Spacer()
+                        }
                     }
                     Divider()
-                        .padding(.bottom, 5)
-                    if let url = URL(string: value) {
-                        Link(destination: url, label: {
-                            Text(value)
-                                .foregroundStyle(Asset.Colors.themaGreen.swiftUIColor)
-                        }).font(.system(size: 18))
-                            .padding(.bottom, 10)
-                            .textSelection(.enabled)
-                    }
+                        .padding(.bottom, 10)
                 }
             }
         }

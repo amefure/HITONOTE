@@ -31,9 +31,12 @@
 "input_birthday_setting" = "誕生日を設定する";
 "input_birthday_decision" = "決定";
 
+"input_person_group" = "新しいグループ";
+
 "input_success_alert_create" = "「%@」さんを登録しました。";
 "input_success_alert_update" = "データを更新しました。";
 "input_validation_title" = "名前は必須入力です。";
+"input_validation_url_title" = "無効なURLです。";
 
 // MARK: - Loacle
 "date_locale" = "ja_JP";

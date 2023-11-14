@@ -30,9 +30,12 @@
 "input_birthday_setting" = "Set birthday";
 "input_birthday_decision" = "Decision";
 
+"input_person_group" = "New Group";
+
 "input_success_alert_create" = "\"%@\" has been registered.";
 "input_success_alert_update" = "Data has been updated.";
 "input_validation_title" = "Name is required.";
+"input_validation_url_title" = "Invalid URL.";
 
 // MARK: - Loacle
 "date_locale" = "en_US";

@@ -12,8 +12,8 @@ import Foundation
 internal enum L10n {
   /// パスワードが違います。
   internal static let appLockAlert = L10n.tr("Localizable", "app_lock_alert", fallback: "パスワードが違います。")
-  /// https://apps.apple.com/jp/app/HITONOTE/id6471915200
-  internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/HITONOTE/id6471915200")
+  /// https://apps.apple.com/jp/app/hitonote/id6471915200
+  internal static let appUrl = L10n.tr("Localizable", "app_url", fallback: "https://apps.apple.com/jp/app/hitonote/id6471915200")
   /// yyyy年M月dd日
   internal static let dateFormat = L10n.tr("Localizable", "date_format", fallback: "yyyy年M月dd日")
   /// ja_JP
@@ -36,6 +36,8 @@ internal enum L10n {
   internal static let inputBirthdayDecision = L10n.tr("Localizable", "input_birthday_decision", fallback: "決定")
   /// 誕生日を設定する
   internal static let inputBirthdaySetting = L10n.tr("Localizable", "input_birthday_setting", fallback: "誕生日を設定する")
+  /// 新しいグループ
+  internal static let inputPersonGroup = L10n.tr("Localizable", "input_person_group", fallback: "新しいグループ")
   /// 「%@」さんを登録しました。
   internal static func inputSuccessAlertCreate(_ p1: Any) -> String {
     return L10n.tr("Localizable", "input_success_alert_create", String(describing: p1), fallback: "「%@」さんを登録しました。")
@@ -44,6 +46,8 @@ internal enum L10n {
   internal static let inputSuccessAlertUpdate = L10n.tr("Localizable", "input_success_alert_update", fallback: "データを更新しました。")
   /// 名前は必須入力です。
   internal static let inputValidationTitle = L10n.tr("Localizable", "input_validation_title", fallback: "名前は必須入力です。")
+  /// 無効なURLです。
+  internal static let inputValidationUrlTitle = L10n.tr("Localizable", "input_validation_url_title", fallback: "無効なURLです。")
   /// 年齢
   internal static let personAge = L10n.tr("Localizable", "person_age", fallback: "年齢")
   /// %@歳

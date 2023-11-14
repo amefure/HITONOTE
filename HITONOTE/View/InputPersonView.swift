@@ -50,7 +50,7 @@ struct InputPersonView: View {
             
             VStack {
                 
-                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "figure.run", leadingAction: { dismiss() }, trailingAction: {
+                HeaderView(leadingIcon: "chevron.backward", trailingIcon: "checkmark", leadingAction: { dismiss() }, trailingAction: {
                     
                     /// 必須入力事項チェック
                     guard !name.isEmpty else {
@@ -225,7 +225,7 @@ struct InputPersonView: View {
             }
         }.alert(L10n.inputValidationTitle, isPresented: $validationAlert) {
             
-        }.alert("無効なURLです。", isPresented: $validationUrlAlert) {
+        }.alert(L10n.inputValidationUrlTitle, isPresented: $validationUrlAlert) {
             
         }.navigationBarBackButtonHidden()
             .navigationBarHidden(true)
@@ -252,14 +252,11 @@ struct CustomInputView: View {
                     Spacer()
                 }
                 
-                Divider()
-                    .padding(.bottom, 5)
-                
                 TextField(label, text: $text)
                     .textFieldStyle(.roundedBorder)
                     .padding(.bottom, 10)
                     .foregroundStyle(Asset.Colors.textColor.swiftUIColor)
-            }
+            }.padding(.bottom, 8)
         }
     }
 }
@@ -283,9 +280,6 @@ struct CustomInputEditorView: View {
                     Spacer()
                 }
                 
-                Divider()
-                    .padding(.bottom, 5)
-                
                 TextEditor(text: $text)
                     .frame(height: 100)
                     .padding(.bottom, 10)
@@ -295,7 +289,7 @@ struct CustomInputEditorView: View {
                             .stroke(style: StrokeStyle(lineWidth: 1))
                             .foregroundStyle(Asset.Colors.opacityGray.swiftUIColor)
                     }
-            }
+            }.padding(.bottom, 8)
         }
     }
 }
@@ -327,6 +321,7 @@ struct CustomGenderPickerView: View {
                     }
                 }
             }.tint(Asset.Colors.themaGreen.swiftUIColor)
+                .padding(.bottom, 8)
         }
     }
 }
@@ -385,7 +380,7 @@ struct CustomBirthdayPickerView: View {
                     .environment(\.calendar, Calendar(identifier: .gregorian))
                     .datePickerStyle(.wheel)
                 }
-            }
+            }.padding(.bottom, 8)
         }
     }
 }
@@ -430,14 +425,12 @@ struct CustomGroupPickerView: View {
                                     .fontWeight(.none)
                             }
                         }
-                        Divider()
-                            .padding(.bottom, 5)
-                        TextField(L10n.personGroup, text: $group)
+                        TextField(L10n.inputPersonGroup, text: $group)
                             .textFieldStyle(.roundedBorder)
                             .padding(.bottom, 10)
                     }
                 }
-            }
+            }.padding(.bottom, 8)
         }
     }
 }
